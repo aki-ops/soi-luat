@@ -6,7 +6,7 @@
       Soi Luật
     </a>
     <nav aria-label="Chức năng">
-      {% for href, label in [("/", "Tra cứu"), ("/review", "Duyệt liên kết"), ("/review/hints", "Hiệu lực gợi ý"), ("/review/subjects", "Đối tượng Q5"), ("/review/docs", "Văn bản"), ("/review/synonyms", "Từ điển"), ("/missed", "Truy vấn bỏ sót"), ("/jobs", "Nạp file")] %}
+      {% for href, label in [("/", "Tra cứu"), ("/review", "Duyệt liên kết"), ("/review/hints", "Hiệu lực gợi ý"), ("/review/subjects", "Đối tượng Q5"), ("/review/docs", "Văn bản"), ("/review/synonyms", "Từ điển"), ("/missed", "Truy vấn bỏ sót")] %}
       <a href="{{ href }}"{% if here == href %} aria-current="page"{% endif %}>{{ label }}</a>
       {% endfor %}
     </nav>

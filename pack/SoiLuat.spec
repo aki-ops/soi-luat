@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""SoiLuat.exe (Search App) — không kèm Tesseract; kèm thư viện Advance (mô hình ở models\\ cạnh SoiLuat\\).
+"""SoiLuat.exe — MỘT app: tìm, nạp file, OCR, nhúng vector (Advance).
+Tesseract (tesseract/) và mô hình (models/) đặt cạnh SoiLuat.exe bởi build.ps1.
 Chạy: pyinstaller pack/SoiLuat.spec"""
 
 from pathlib import Path
@@ -16,6 +17,14 @@ hidden = collect_submodules("soiluat") + [
     "onnxruntime",
     "tokenizers",
     "numpy",
+    "pytesseract",
+    "PIL",
+    "soiluat.convert",
+    # win32com: đổi .doc/.rtf qua Word COM (tuỳ chọn, cần pywin32 trên máy build)
+    "win32com",
+    "win32com.client",
+    "pythoncom",
+    "pywintypes",
     "uvicorn.logging",
     "uvicorn.lifespan.on",
     "uvicorn.lifespan.off",
@@ -35,7 +44,7 @@ a = Analysis(
     hooksconfig={},
     runtime_hooks=[],
     # Advance (semantic.py) cần onnxruntime + tokenizers + numpy; bỏ phần onnxruntime không dùng khi chỉ chạy suy luận
-    excludes=["pytesseract", "PIL", "cv2", "torch", "onnx", "llama_cpp", "sympy", "huggingface_hub",
+    excludes=["cv2", "torch", "onnx", "llama_cpp", "sympy", "huggingface_hub",
               "onnxruntime.transformers", "onnxruntime.quantization", "onnxruntime.tools",
               # numpy kéo theo thư viện tuỳ chọn có trên máy build (+~400 MB) mà app không import
               "pandas", "scipy", "matplotlib", "pyarrow", "numba", "llvmlite", "botocore", "boto3",

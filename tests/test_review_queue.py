@@ -118,32 +118,6 @@ def test_empty_kho_message(tmp_path, monkeypatch):
     assert "Kho chưa có văn bản" in r.text
     assert "Không tìm thấy quy định" not in r.text
 
-
-def test_import_spawn_uses_importer_module(tmp_path, monkeypatch):
-    monkeypatch.setenv("SOILUAT_DATA", str(tmp_path))
-    import soiluat.app as appmod
-
-    called: dict = {}
-
-    class _P:
-        pass
-
-    def fake_popen(args, **kwargs):
-        called["args"] = args
-        return _P()
-
-    monkeypatch.setattr(appmod.subprocess, "Popen", fake_popen)
-    client = TestClient(appmod.app)
-    # D (L14) kiểm tra đường dẫn tồn tại trước khi gọi Importer → dùng thư mục có thật.
-    kho = tmp_path / "kho"
-    kho.mkdir()
-    r = client.post("/import-spawn", data={"path": str(kho)}, follow_redirects=False)
-    assert r.status_code == 303
-    assert "soiluat.importer" in called["args"]
-    jobs = client.get("/jobs")
-    assert jobs.status_code == 200
-
-
 def test_backup_http(tmp_path, monkeypatch):
     client, _, _, _ = _client(tmp_path, monkeypatch)
     r = client.post("/backup")

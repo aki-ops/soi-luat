@@ -1,10 +1,9 @@
-"""Agent D: cổng, lệnh Importer, nạp từ UI, /jobs OCR, từ điển, hiển thị trang, xuất Word."""
+"""Agent D: cổng, nạp file trong app, trạng thái, từ điển, hiển thị trang, xuất Word."""
 
 from __future__ import annotations
 
 import socket
-import subprocess
-import sys
+import time
 
 import pytest
 from docx import Document
@@ -74,96 +73,154 @@ def test_main_reads_env_port(monkeypatch):
     assert seen["port"] == 9001
 
 
-# --- lệnh Importer ---
+# --- nạp file ngay trong app (một process) ---
+
+DOC = "Nghị định số 9/2024/NĐ-CP\nĐiều 1. Giá dịch vụ\n1. Cơ sở phải niêm yết giá.\n"
 
 
-def test_importer_cmd_source():
-    assert appmod.importer_cmd(["x", "--ocr"]) == [sys.executable, "-m", "soiluat.importer", "x", "--ocr"]
+@pytest.fixture
+def jobs(tmp_path, monkeypatch):
+    from soiluat.jobs import Jobs
 
-
-def test_importer_cmd_frozen(tmp_path, monkeypatch):
-    app_dir = tmp_path / "SoiLuat"
-    app_dir.mkdir()
-    monkeypatch.setattr(sys, "frozen", True, raising=False)
-    monkeypatch.setattr(sys, "executable", str(app_dir / "SoiLuat.exe"))
-    with pytest.raises(FileNotFoundError):
-        appmod.importer_cmd(["--check-ocr"])
-    sib = tmp_path / "SoiLuatImporter" / "SoiLuatImporter.exe"
-    sib.parent.mkdir()
-    sib.write_bytes(b"")
-    assert appmod.importer_cmd(["a"]) == [str(sib), "a"]
-    near = app_dir / "SoiLuatImporter.exe"
-    near.write_bytes(b"")
-    assert appmod.importer_cmd(["a"])[0] == str(near)
-    assert appmod._child_kw()["creationflags"] == getattr(subprocess, "CREATE_NO_WINDOW", 0)
-
-
-def test_spawn_with_ocr_and_missing_path(tmp_path, monkeypatch, no_ocr_check):
     monkeypatch.setenv("SOILUAT_DATA", str(tmp_path))
-    called: list = []
-    monkeypatch.setattr(appmod.subprocess, "Popen", lambda args, **kw: called.append((args, kw)))
-    client = TestClient(appmod.app)
+    j = Jobs()
+    monkeypatch.setattr(appmod, "JOBS", j)
+    yield j
+    j.stop()
+
+
+def _wait(j, timeout=30):
+    """Chờ hàng đợi xong (submit đã xếp item trước khi trả lời nên active=True ngay)."""
+    end = time.time() + timeout
+    while time.time() < end:
+        s = j.snapshot()
+        if s["total"] and not s["active"]:
+            return s
+        time.sleep(0.05)
+    raise AssertionError(j.snapshot())
+
+
+def _states(snap):
+    return [(i["name"], i["state"]) for i in snap["items"]]
+
+
+def _upload(client, *files, **form):
+    return client.post("/import/files", files=[("files", (n, c, "application/octet-stream")) for n, c in files], data=form)
+
+
+def test_import_path_runs_in_process(tmp_path, jobs):
+    from soiluat.config import db_path
+    from soiluat.db import connect
+
     src = tmp_path / "kho"
     src.mkdir()
-    r = client.post("/import-spawn", data={"path": str(src), "ocr": "on", "doan": "on"}, follow_redirects=False)
-    assert r.status_code == 303
-    args, kw = called[0]
-    assert args[-3:] == [str(src), "--ocr", "--doan"]
-    assert kw["env"]["SOILUAT_DATA"] == str(tmp_path.resolve())
-    r = client.post("/import-spawn", data={"path": str(tmp_path / "khong_co")})
-    assert r.status_code == 400 and "Không thấy" in r.text
-    assert len(called) == 1
-
-
-# --- /jobs + trạng thái OCR ---
-
-
-def _fake_run(result):
-    def run(*a, **k):
-        if isinstance(result, Exception):
-            raise result
-        return result
-
-    return run
-
-
-@pytest.mark.parametrize(
-    "result",
-    [
-        subprocess.TimeoutExpired(["x"], 10),
-        subprocess.CompletedProcess([], 2, stdout="usage: lỗi", stderr="bad"),
-        subprocess.CompletedProcess([], 0, stdout="không phải json", stderr=""),
-        OSError("không chạy được"),
-    ],
-)
-def test_jobs_when_check_ocr_fails(tmp_path, monkeypatch, result):
-    monkeypatch.setenv("SOILUAT_DATA", str(tmp_path))
-    monkeypatch.setattr(appmod, "_ocr_cache", None)
-    monkeypatch.setattr(appmod.subprocess, "run", _fake_run(result))
-    r = TestClient(appmod.app).get("/jobs")
-    assert r.status_code == 200
-    assert "Không kiểm tra được OCR" in r.text
-    assert 'name="ocr"' in r.text
-
-
-def test_jobs_ocr_missing_shows_help_and_caches(tmp_path, monkeypatch):
-    monkeypatch.setenv("SOILUAT_DATA", str(tmp_path))
-    monkeypatch.setattr(appmod, "_ocr_cache", None)
-    n = {"calls": 0}
-    line = '{"ok": false, "tesseract_cmd": null, "tessdata": null, "langs": [], "message": "Thiếu vie"}'
-
-    def run(*a, **k):
-        n["calls"] += 1
-        return subprocess.CompletedProcess([], 0, stdout="cảnh báo\n" + line + "\n", stderr="")
-
-    monkeypatch.setattr(appmod.subprocess, "run", run)
+    (src / "a.txt").write_text(DOC, encoding="utf-8")
+    (src / "b.xyz").write_text("x", encoding="utf-8")
     client = TestClient(appmod.app)
-    r = client.get("/jobs")
-    assert "Thiếu vie" in r.text and "winget" in r.text
-    client.get("/jobs")
-    assert n["calls"] == 1
-    client.get("/jobs", params={"ocr": "lai"})
-    assert n["calls"] == 2
+    r = client.post("/import/path", data={"path": str(src)})
+    assert r.status_code == 200 and r.json() == {"ok": True, "queued": 1, "skipped": 1}
+    assert _states(_wait(jobs)) == [("a.txt", "du")]
+    conn = connect(db_path())
+    assert conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0] == 1
+    conn.close()
+    r = client.post("/import/path", data={"path": str(tmp_path / "khong_co")})
+    assert r.status_code == 400 and "Không thấy" in r.json()["error"]
+
+
+def test_upload_many_files_dedup_and_rename(tmp_path, jobs):
+    from soiluat.config import db_path
+    from soiluat.db import connect
+
+    client = TestClient(appmod.app)
+    r = _upload(client, ("a.txt", DOC.encode()), ("b.txt", (DOC + "2. Thêm.\n").encode()), ("virus.exe", b"MZ"))
+    assert r.json() == {"ok": True, "queued": 2, "skipped": 1}
+    assert sorted(p.name for p in (tmp_path / "files").iterdir()) == ["a.txt", "b.txt"]  # .exe không được lưu
+    assert sorted(_states(_wait(jobs))) == [("a.txt", "du"), ("b.txt", "du")]
+    conn = connect(db_path())
+    paths = {r[0] for r in conn.execute("SELECT file_path FROM documents")}
+    conn.close()
+    assert paths == {"files/a.txt", "files/b.txt"}  # lưu tương đối thư mục data: xem trang gốc được
+    # cùng tên + cùng nội dung: dùng lại file cũ, không nạp lại
+    _upload(client, ("a.txt", DOC.encode()))
+    assert _states(_wait(jobs))[-1] == ("a.txt", "khong_doi")
+    assert sorted(p.name for p in (tmp_path / "files").iterdir()) == ["a.txt", "b.txt"]
+    # cùng tên khác nội dung: thêm "(2)"
+    _upload(client, ("a.txt", (DOC + "2. Khác hẳn.\n").encode()))
+    _wait(jobs)
+    assert (tmp_path / "files" / "a (2).txt").is_file()
+
+
+def test_upload_name_is_sanitised(tmp_path, jobs):
+    client = TestClient(appmod.app)
+    _upload(client, ("..\\..\\x:y.txt", DOC.encode()))
+    _wait(jobs)
+    assert [p.name for p in (tmp_path / "files").iterdir()] == ["x_y.txt"]
+    assert appmod._safe_name("") == "tai-lieu"
+
+
+def test_import_clear_keeps_only_busy(tmp_path, jobs):
+    client = TestClient(appmod.app)
+    _upload(client, ("a.txt", DOC.encode()))
+    _wait(jobs)
+    assert client.post("/import/clear").json() == {"ok": True}
+    assert jobs.snapshot()["items"] == []
+
+
+def test_import_requires_csrf(tmp_path, monkeypatch, jobs):
+    monkeypatch.delenv("SOILUAT_ALLOW_TEST_HOST", raising=False)
+    client = TestClient(appmod.app)
+    page = client.get("/", headers=H)
+    token = page.cookies.get("soiluat_csrf")
+    assert client.post("/import/path", headers=H, data={"path": str(tmp_path)}).status_code == 403
+    assert client.post("/import/files", headers=H, files=[("files", ("a.txt", b"x"))]).status_code == 403
+    assert client.post("/import/clear", headers=H).status_code == 403
+    ok = client.post("/import/files", headers={**H, "X-CSRF-Token": token}, files=[("files", ("a.txt", DOC.encode()))])
+    assert ok.status_code == 200 and ok.json()["queued"] == 1
+
+
+def test_status_endpoint_shape_and_ocr_cache(tmp_path, monkeypatch, jobs):
+    import soiluat.importer as imp
+
+    calls = []
+    monkeypatch.setattr(imp, "check_ocr", lambda: calls.append(1) or {"ok": True, "langs": ["vie"], "message": ""})
+    monkeypatch.setattr(appmod, "_ocr_cache", None)
+    client = TestClient(appmod.app)
+    st = client.get("/api/status").json()
+    assert set(st) == {"docs", "jobs", "mode"} and not calls  # không kèm OCR thì không nạp module OCR
+    assert set(st["jobs"]) == {"items", "total", "done", "active", "embed"}
+    assert set(st["mode"]) == {"mode", "installed", "pending"}
+    assert client.get("/api/status", params={"ocr": "1"}).json()["ocr"]["langs"] == ["vie"]
+    client.get("/api/status", params={"ocr": "1"})
+    assert len(calls) == 1  # nhớ kết quả
+    client.get("/api/status", params={"ocr": "lai"})
+    assert len(calls) == 2
+
+
+def test_jobs_page_moved_and_home_has_buttons(tmp_path, monkeypatch):
+    monkeypatch.setenv("SOILUAT_DATA", str(tmp_path))
+    client = TestClient(appmod.app)
+    r = client.get("/jobs", follow_redirects=False)
+    assert r.status_code == 307 and r.headers["location"] == "/#import"
+    page = client.get("/").text
+    assert 'id="btn-import"' in page and 'id="btn-settings"' in page and 'id="composer"' in page
+    assert "0 văn bản" in page and "Kho chưa có văn bản" in page
+
+
+def test_main_import_subcommand(monkeypatch):
+    import soiluat.importer as imp
+
+    seen = []
+    monkeypatch.setattr(imp, "main", lambda argv: seen.append(argv) or 0)
+    with pytest.raises(SystemExit) as e:
+        appmod.main(["import", "thu_muc", "--ocr"])
+    assert e.value.code == 0 and seen == [["thu_muc", "--ocr"]]
+
+
+def test_suffix_sets_match_importer():
+    from soiluat import jobs as jobsmod
+    from soiluat.importer import SUPPORTED_SUFFIXES
+
+    assert jobsmod.SUFFIXES == frozenset(SUPPORTED_SUFFIXES)
 
 
 # --- /review/synonyms ---

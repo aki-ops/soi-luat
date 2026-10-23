@@ -4,11 +4,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_search_spec_excludes_tesseract():
+def test_single_spec_bundles_ocr_and_semantic_libs():
     text = (ROOT / "pack" / "SoiLuat.spec").read_text(encoding="utf-8")
-    assert "pytesseract" in text
-    assert "excludes" in text
-    assert "SoiLuat" in text
+    for name in ("pytesseract", "PIL", "onnxruntime", "tokenizers", "win32com"):
+        assert f'"{name}"' in text
+    assert '"pytesseract", "PIL"' not in text.split("excludes")[1]  # không còn loại khỏi gói
+    assert "run_search.py" in text
+    assert not (ROOT / "pack" / "SoiLuatImporter.spec").exists()
 
 
 def test_bind_localhost_only():
@@ -16,11 +18,3 @@ def test_bind_localhost_only():
 
     assert HOST == "127.0.0.1"
     assert PORT == 8000
-
-
-def test_importer_spec_allows_ocr():
-    text = (ROOT / "pack" / "SoiLuatImporter.spec").read_text(encoding="utf-8")
-    assert "SoiLuatImporter" in text
-    assert "run_importer.py" in text
-    search = (ROOT / "pack" / "SoiLuat.spec").read_text(encoding="utf-8")
-    assert "run_search.py" in search

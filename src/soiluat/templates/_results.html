@@ -7,7 +7,7 @@
   <div class="empty">
   {% if empty_kho %}
     <p><b>Kho chưa có văn bản.</b></p>
-    <p>Nạp file tại <a href="/jobs">Nạp file</a> rồi tìm lại.</p>
+    <p>Bấm <button type="button" class="linklike" data-open="import">Nạp file</button> rồi tìm lại.</p>
   {% else %}
     <p><b>Không tìm thấy quy định khớp với «{{ q }}» trong kho.</b></p>
     <p class="note">Thử từ khoá ngắn hơn, bỏ bộ lọc, hoặc gõ số hiệu văn bản.</p>
@@ -56,7 +56,7 @@
         {% if c.warnings %}<p class="warn">⚠ {{ c.warnings | join(" · ") }}</p>{% endif %}
         <div class="cfoot">
           {% if c.file_path %}<span class="file" title="{{ c.file_path }}">{{ c.file_path }}</span>{% endif %}
-          {% if c.unit_ids %}<a class="src" href="/unit/{{ c.unit_ids[0] }}">Xem nguồn →</a>{% endif %}
+          {% if c.unit_ids %}<a class="src" href="/unit/{{ c.unit_ids[0] }}" target="_blank" rel="noopener">Xem nguồn →</a>{% endif %}
         </div>
       </article>
     {% endfor %}

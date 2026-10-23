@@ -1,22 +1,29 @@
-"""SoiLuat.exe — FastAPI, chỉ 127.0.0.1, không import OCR."""
+"""SoiLuat.exe — một app: tra cứu + nạp file + cài đặt. FastAPI, chỉ 127.0.0.1.
+
+Phần nạp (trích chữ, OCR) chỉ nạp khi dùng lần đầu (soiluat.jobs), nên Normal không tốn RAM cho nó."""
 
 from __future__ import annotations
 
 import argparse
-import json
+import hashlib
 import os
+import re
 import secrets
+import shutil
 import socket
-import subprocess
+import sqlite3
 import sys
 import threading
+import uuid
 import webbrowser
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 
-from fastapi import FastAPI, Form, HTTPException, Query, Request
-from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, RedirectResponse, Response
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
+from fastapi.responses import (
+    FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response,
+)
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.base import BaseHTTPMiddleware
 import uvicorn
@@ -27,15 +34,12 @@ from soiluat.config import HOST, PORT, data_dir, db_path
 from soiluat.db import backup_db, connect, init_schema
 from soiluat.export_word import card_pages, export_cards, page_label
 from soiluat.fold import display_addr
+from soiluat.jobs import JOBS, SUFFIXES
 from soiluat.search import DIEU_CAP, apply_doc_filters, cascade_search
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals.update(page_label=page_label, card_pages=card_pages)
 CSRF_TOKEN = secrets.token_urlsafe(32)
-OCR_HELP = (
-    "Cài Tesseract 5 (winget install UB-Mannheim.TesseractOCR) và chép vie.traineddata "
-    r"vào %LOCALAPPDATA%\SoiLuat\tessdata (hoặc đặt SOILUAT_TESSDATA), rồi nạp lại với ô OCR."
-)
 _ocr_cache: dict | None = None
 
 app = FastAPI(title="Soi Luật")
@@ -154,11 +158,14 @@ def _search_ctx(
             intent=result.intent,
         )
         n = summarize(cards)
-        conn.execute(
-            "INSERT INTO query_log(query_raw, result_count, created_at) VALUES (?,?,?)",
-            (q, len(cards), _now()),
-        )
-        conn.commit()
+        try:
+            conn.execute(
+                "INSERT INTO query_log(query_raw, result_count, created_at) VALUES (?,?,?)",
+                (q, len(cards), _now()),
+            )
+            conn.commit()
+        except sqlite3.OperationalError:  # đang nạp file giữ khoá ghi: bỏ một dòng nhật ký, không làm hỏng kết quả
+            conn.rollback()
         if not cards:
             rows = conn.execute(
                 "SELECT term FROM synonyms WHERE approved = 1 LIMIT 8"
@@ -177,6 +184,7 @@ def _search_ctx(
         "hints": hints,
         "q2_note": q2_note,
         "empty_kho": empty_kho,
+        "n_docs": int(n_docs or 0),
     }
 
 
@@ -191,15 +199,15 @@ def home(
     ctx = _search_ctx(q, loai, co_quan, hieu_luc)
     if request.headers.get("HX-Request"):
         return _tpl(request, "_results.html", ctx)
-    return _tpl(request, "index.html", {**ctx, "mode": _mode_status()})
+    return _tpl(request, "index.html", {**ctx, "mode": _mode_status(), "suffixes": ",".join(sorted(SUFFIXES))})
 
 
-def _mode_status() -> dict:
+def _mode_status(count_pending: bool = True) -> dict:
     """Chế độ tìm + tình trạng mô hình; đếm Điều chưa nhúng chỉ khi advance (đỡ tốn ở normal)."""
     conn = get_conn()
     mode = semantic.get_mode(conn)
     installed = semantic.model_installed()
-    pending = semantic.pending(conn) if mode == "advance" and installed else 0
+    pending = semantic.pending(conn) if count_pending and mode == "advance" and installed else 0
     conn.close()
     return {"mode": mode, "installed": installed, "pending": pending}
 
@@ -212,6 +220,7 @@ def set_search_mode(request: Request, mode: str = Form(...), q: str = Form(""), 
     conn = get_conn()
     semantic.set_mode(conn, mode)
     conn.close()
+    JOBS.wake()  # chuyển sang Advance: bắt đầu nhúng nền các Điều chưa có vector
     return RedirectResponse("/?" + urlencode({"q": q}) if q else "/", status_code=303)
 
 
@@ -521,12 +530,15 @@ def unit_view(request: Request, unit_id: int):
         (u["doc_id"], u["page_from"] or 1, u["page_to"] or u["page_from"] or 1),
     ).fetchall()
     notes = _unit_notes(conn, u)
-    conn.execute(
-        "UPDATE query_log SET selected_unit = ?, selected_doc_id = ?, selected_path = ? "
-        "WHERE id = (SELECT id FROM query_log ORDER BY id DESC LIMIT 1)",
-        (unit_id, u["doc_id"], u["path"]),
-    )
-    conn.commit()
+    try:
+        conn.execute(
+            "UPDATE query_log SET selected_unit = ?, selected_doc_id = ?, selected_path = ? "
+            "WHERE id = (SELECT id FROM query_log ORDER BY id DESC LIMIT 1)",
+            (unit_id, u["doc_id"], u["path"]),
+        )
+        conn.commit()
+    except sqlite3.OperationalError:  # đang nạp file giữ khoá ghi
+        conn.rollback()
     conn.close()
     ud = dict(u)
     dd = dict(doc) if doc else {}
@@ -597,83 +609,111 @@ def missed(request: Request):
     return _tpl(request, "missed.html", {"rows": [dict(r) for r in rows]})
 
 
-def _frozen() -> bool:
-    return bool(getattr(sys, "frozen", False))
-
-
-def importer_cmd(args: list[str]) -> list[str]:
-    """Lệnh gọi Importer: mã nguồn → python -m; bản đóng gói → SoiLuatImporter.exe."""
-    if not _frozen():
-        return [sys.executable, "-m", "soiluat.importer", *args]
-    here = Path(sys.executable).resolve().parent
-    for exe in (
-        here / "SoiLuatImporter.exe",
-        here.parent / "SoiLuatImporter" / "SoiLuatImporter.exe",
-    ):
-        if exe.is_file():
-            return [str(exe), *args]
-    raise FileNotFoundError(
-        "Không tìm thấy SoiLuatImporter.exe (cạnh SoiLuat.exe hoặc ở ..\\SoiLuatImporter\\)."
-    )
-
-
-def _child_kw() -> dict:
-    env = {**os.environ, "SOILUAT_DATA": str(data_dir()), "PYTHONIOENCODING": "utf-8"}
-    # bản đóng gói: Importer là exe console, không bật cửa sổ đen
-    flags = getattr(subprocess, "CREATE_NO_WINDOW", 0) if _frozen() else 0
-    return {"env": env, "creationflags": flags}
-
-
 def ocr_status(refresh: bool = False) -> dict:
-    """Trạng thái OCR qua `importer --check-ocr` (không import OCR vào Search App)."""
+    """Trạng thái OCR (Tesseract + gói vie), nhớ kết quả; module OCR chỉ nạp ở lần gọi đầu."""
     global _ocr_cache
-    if _ocr_cache is not None and not refresh:
-        return _ocr_cache
-    try:
-        r = subprocess.run(
-            importer_cmd(["--check-ocr"]),
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=10,
-            **_child_kw(),
-        )
-        lines = [x for x in (r.stdout or "").splitlines() if x.strip().startswith("{")]
-        st = json.loads(lines[-1]) if r.returncode == 0 and lines else None
-        if not isinstance(st, dict) or "ok" not in st:
-            raise ValueError(f"mã thoát {r.returncode}")
-    except Exception as e:  # noqa: BLE001 — lỗi gì cũng chỉ là "không kiểm tra được"
-        st = {"ok": None, "message": f"Không kiểm tra được OCR ({type(e).__name__}: {e})."}
-    _ocr_cache = st
-    return st
+    if _ocr_cache is None or refresh:
+        from soiluat.importer import check_ocr
+
+        _ocr_cache = check_ocr()
+    return _ocr_cache
 
 
-def _jobs_page(request: Request, err: str = "", status_code: int = 200, refresh: bool = False):
+def _safe_name(name: str) -> str:
+    base = Path((name or "").replace("\\", "/")).name
+    base = re.sub(r'[<>:"/\|?*\x00-\x1f]', "_", base).strip(" .")
+    return base or "tai-lieu"
+
+
+def _sha(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _store_upload(up: UploadFile, folder: Path) -> Path:
+    """Lưu file tải lên vào data/files. Trùng tên + trùng nội dung: dùng lại file cũ;
+    trùng tên khác nội dung: 'tên (2).đuôi'. Giữ bản gốc để còn xem trang gốc đối chiếu."""
+    folder.mkdir(parents=True, exist_ok=True)
+    tmp = folder / f".{uuid.uuid4().hex}.part"
+    with open(tmp, "wb") as out:
+        shutil.copyfileobj(up.file, out)
+    name = _safe_name(up.filename or "")
+    stem, suf = Path(name).stem, Path(name).suffix
+    dest, n, sha = folder / name, 1, ""
+    while dest.exists():
+        sha = sha or _sha(tmp)
+        if _sha(dest) == sha:
+            tmp.unlink()
+            return dest
+        n += 1
+        dest = folder / f"{stem} ({n}){suf}"
+    tmp.replace(dest)
+    return dest
+
+
+@app.get("/api/status")
+def api_status(ocr: str = Query("")):
+    """Tình trạng cho giao diện: số văn bản, hàng đợi nạp, nhúng vector, chế độ tìm; ?ocr=1 kèm OCR (lai = kiểm lại)."""
     conn = get_conn()
-    rows = conn.execute(
-        "SELECT id, status, phase, file_path, sha256, pages_done, pages_total, "
-        "error, started_at, finished_at, existing_file_path "
-        "FROM import_jobs ORDER BY id DESC LIMIT 50"
-    ).fetchall()
+    docs = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
+    snap = JOBS.snapshot(conn)
     conn.close()
-    resp = _tpl(
-        request,
-        "jobs.html",
-        {
-            "rows": [dict(r) for r in rows],
-            "ocr": ocr_status(refresh),
-            "ocr_help": OCR_HELP,
-            "err": err,
-        },
-    )
-    resp.status_code = status_code
-    return resp
+    emb = snap["embed"]
+    mode = _mode_status(count_pending=not emb["running"])
+    if emb["running"]:
+        mode["pending"] = max(0, emb["total"] - emb["done"])
+    out = {"docs": docs, "jobs": snap, "mode": mode}
+    if ocr:
+        out["ocr"] = ocr_status(refresh=(ocr == "lai"))
+    return out
 
 
-@app.get("/jobs", response_class=HTMLResponse)
-def jobs(request: Request, ocr: str = Query("")):
-    return _jobs_page(request, refresh=(ocr == "lai"))
+@app.post("/import/files")
+def import_files(
+    request: Request,
+    files: list[UploadFile] = File(...),
+    ocr: str = Form(""),
+    doan: str = Form(""),
+    csrf_token: str = Form(""),
+):
+    """Nhận nhiều file (hoặc cả thư mục) từ trình duyệt, lưu vào data/files rồi xếp hàng nạp."""
+    _check_csrf(request, csrf_token)
+    ok = [f for f in files if Path(_safe_name(f.filename or "")).suffix.lower() in SUFFIXES]
+    paths = [_store_upload(f, data_dir() / "files") for f in ok]
+    res = JOBS.submit(paths, ocr=bool(ocr), doan=bool(doan)) if paths else {"queued": 0, "skipped": 0}
+    res["skipped"] += len(files) - len(ok)
+    return JSONResponse({"ok": True, **res})
+
+
+@app.post("/import/path")
+def import_path(
+    request: Request,
+    path: str = Form(...),
+    ocr: str = Form(""),
+    doan: str = Form(""),
+    csrf_token: str = Form(""),
+):
+    """Nạp file/thư mục đã có trên máy, giữ nguyên chỗ cũ (không sao chép)."""
+    _check_csrf(request, csrf_token)
+    src = Path(path.strip().strip('"'))
+    if not path.strip() or not src.exists():
+        return JSONResponse({"ok": False, "error": f"Không thấy file/thư mục: {path}"}, status_code=400)
+    return JSONResponse({"ok": True, **JOBS.submit([src], ocr=bool(ocr), doan=bool(doan))})
+
+
+@app.post("/import/clear")
+def import_clear(request: Request, csrf_token: str = Form("")):
+    _check_csrf(request, csrf_token)
+    JOBS.clear()
+    return {"ok": True}
+
+
+@app.get("/jobs")
+def jobs_moved():
+    return RedirectResponse("/#import", status_code=307)
 
 
 @app.post("/export")
@@ -703,41 +743,6 @@ def backup(request: Request, csrf_token: str = Form("")):
     return {"ok": True, "path": str(dest)}
 
 
-@app.post("/import-spawn")
-def import_spawn(
-    request: Request,
-    path: str = Form(...),
-    csrf_token: str = Form(""),
-    doan: str = Form(""),
-    ocr: str = Form(""),
-):
-    _check_csrf(request, csrf_token)
-    src = Path(path.strip().strip('"'))
-    if not path.strip() or not src.exists():
-        return _jobs_page(request, f"Không thấy file/thư mục: {path}", 400)
-    args = [str(src)]
-    if ocr:
-        args.append("--ocr")
-    if doan:
-        args.append("--doan")
-    try:
-        cmd = importer_cmd(args)
-    except FileNotFoundError as e:
-        return _jobs_page(request, str(e), 500)
-    data_dir().mkdir(parents=True, exist_ok=True)
-    # process con không có console khi đóng gói → ghi ra log để còn xem lỗi
-    with open(data_dir() / "importer.log", "ab") as log:
-        subprocess.Popen(
-            cmd,
-            cwd=str(Path.cwd()),
-            stdin=subprocess.DEVNULL,
-            stdout=log,
-            stderr=subprocess.STDOUT,
-            **_child_kw(),
-        )
-    return RedirectResponse("/jobs", status_code=303)
-
-
 def _port_busy(port: int) -> bool:
     # thử kết nối trước: app khác nghe [::]:port vẫn trả lời 127.0.0.1 dù bind được
     try:
@@ -763,6 +768,11 @@ def pick_port(start: int, tries: int = 20) -> int:
 
 
 def main(argv: list[str] | None = None) -> None:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["import"]:  # SoiLuat.exe import <đường dẫn> [--ocr] [--nhung]: nạp hàng loạt từ dòng lệnh
+        from soiluat.importer import main as import_main
+
+        raise SystemExit(import_main(argv[1:]))
     ap = argparse.ArgumentParser(prog="soiluat", description="Soi Luật — tra cứu, chỉ 127.0.0.1")
     ap.add_argument(
         "--port",

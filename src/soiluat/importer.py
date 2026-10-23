@@ -1,4 +1,4 @@
-"""SoiLuatImporter — process riêng, được phép import OCR."""
+"""Nạp văn bản vào kho (OCR, trích chữ, nhúng): dùng từ dòng lệnh; app gọi cùng hàm này qua soiluat.jobs."""
 
 from __future__ import annotations
 
@@ -118,7 +118,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.nhung and (semantic.model_dir() / "tokenizer.json").exists():
         n = semantic.pending(conn)
         if n:
-            cmd = "SoiLuatImporter.exe" if getattr(sys, "frozen", False) else "python -m soiluat.importer"
+            cmd = "SoiLuat.exe import" if getattr(sys, "frozen", False) else "python -m soiluat.importer"
             print(f"Còn {n} Điều chưa có vector theo nghĩa (vẫn tìm được bằng BM25). "
                   f"Tính nền: {cmd} --nhung --nen")
     conn.close()

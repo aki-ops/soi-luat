@@ -124,7 +124,7 @@ def test_rerank_keeps_order_without_vectors_or_model(db, doc, fake, monkeypatch)
     assert semantic.rerank(db, "đội mũ", ids) == ids  # tắt bằng biến môi trường
 
 
-def test_frozen_model_dir_beside_app_folders(tmp_path, monkeypatch):
+def test_frozen_model_dir_beside_exe(tmp_path, monkeypatch):
     import sys
 
     monkeypatch.delenv("SOILUAT_MODEL_DIR", raising=False)
@@ -132,7 +132,7 @@ def test_frozen_model_dir_beside_app_folders(tmp_path, monkeypatch):
     assert semantic.model_dir() == tmp_path / "data" / "models" / "embeddinggemma"  # chạy từ mã nguồn
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     monkeypatch.setattr(sys, "executable", str(tmp_path / "dist" / "SoiLuat" / "SoiLuat.exe"))
-    assert semantic.model_dir() == tmp_path / "dist" / "models" / "embeddinggemma"
+    assert semantic.model_dir() == tmp_path / "dist" / "SoiLuat" / "models" / "embeddinggemma"
 
 
 def test_missing_model_dir_gives_no_encoder(tmp_path, monkeypatch):

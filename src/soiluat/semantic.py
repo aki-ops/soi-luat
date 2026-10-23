@@ -37,8 +37,8 @@ def model_dir() -> Path:
     if raw:
         return Path(raw)
     path = data_dir() / "models" / "embeddinggemma"
-    if not path.exists() and getattr(sys, "frozen", False):  # bản đóng gói: models\ cạnh SoiLuat\ và SoiLuatImporter\
-        return Path(sys.executable).resolve().parent.parent / "models" / "embeddinggemma"
+    if not path.exists() and getattr(sys, "frozen", False):  # bản đóng gói: models\ nằm cạnh SoiLuat.exe
+        return Path(sys.executable).resolve().parent / "models" / "embeddinggemma"
     return path
 
 
