@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Truy vấn bỏ sót — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Truy vấn không có kết quả</h1>
+  <p>Dùng danh sách này để bổ sung từ điển đồng nghĩa đã duyệt. Không bịa kết quả.</p>
+  <ul class="plain">
+    {% for r in rows %}
+      <li>{{ r.created_at }} — «{{ r.query_raw }}»</li>
+    {% else %}
+      <li>Chưa có truy vấn bỏ sót.</li>
+    {% endfor %}
+  </ul>
+  </main>
+</body>
+</html>

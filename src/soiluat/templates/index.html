@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Soi Luật</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  {% include "_style.html" %}
+  <style>
+    .search-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
+    .search-main { display: flex; gap: 8px; }
+    .search-main .field { position: relative; flex: 1; }
+    .search-main .field svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .search-main input[type=search] { width: 100%; font-size: 1.05rem; min-height: 46px; padding-left: 40px; border-radius: 10px; }
+    .search-main button { min-height: 46px; padding: 0 22px; border-radius: 10px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .filters select, .filters input { font-size: 14px; min-height: 34px; padding: 6px 10px; }
+    .filters input { width: 160px; }
+    .mode { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 14px 0 0; padding-top: 12px; border-top: 1px dashed var(--border); font-size: 13.5px; }
+    .mode .label { color: var(--muted); font-weight: 600; }
+    .seg { display: inline-flex; padding: 3px; background: var(--surface-2); border-radius: 9px; gap: 2px; }
+    .seg button { min-height: 30px; padding: 4px 14px; border: 0; background: transparent; color: var(--muted); border-radius: 7px; font-size: 13px; }
+    .seg button[aria-pressed=true] { background: var(--surface); color: var(--primary); box-shadow: 0 1px 2px rgba(16, 24, 40, .12); }
+    .mode .note { flex: 1 1 260px; }
+    .mode .warn { font-size: 13px; }
+    .side { margin-top: 32px; display: flex; justify-content: flex-end; }
+    .side button { font-size: 13px; min-height: 32px; color: var(--muted); }
+    #out.htmx-request { opacity: .55; transition: opacity .15s ease; }
+    /* Kết quả (_results.html, cũng nạp qua HTMX) */
+    .notice { margin-top: 16px; }
+    .empty { background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; padding: 20px; margin-top: 18px; text-align: center; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 20px 0 6px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--r4); border-radius: 10px; padding: 10px 12px; }
+    .stat b { display: block; font-size: 1.4rem; line-height: 1.2; }
+    .stat span { font-size: 12.5px; color: var(--muted); }
+    .stat.r1 { border-top-color: var(--r1); } .stat.r1 b { color: var(--r1); }
+    .stat.r2 { border-top-color: var(--r2); } .stat.r2 b { color: var(--r2); }
+    .stat.r3 { border-top-color: var(--r3); } .stat.r3 b { color: var(--r3); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--r4); border-radius: 12px; padding: 14px 18px; margin: 12px 0; box-shadow: var(--shadow); }
+    .card.r1 { border-left-color: var(--r1); } .card.r2 { border-left-color: var(--r2); } .card.r3 { border-left-color: var(--r3); }
+    .card.grey { opacity: .65; }
+    .chead { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .chead .badge { white-space: normal; line-height: 1.3; }
+    .pick { margin-left: auto; font-size: 13px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; padding: 4px 6px; border-radius: 6px; }
+    .pick:hover { background: var(--surface-2); }
+    .card h2 { font-size: 1.12rem; margin: 10px 0 4px; }
+    .sample { color: var(--muted); font-size: 14px; }
+    .law.sanction { border-left-color: var(--r1); }
+    .law-tag { display: block; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--r1); margin-bottom: 4px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: 13px; color: var(--muted); margin: 8px 0 4px; }
+    .meta .m + .m::before { content: "·"; margin-right: 12px; color: var(--border); }
+    .card .warn { font-size: 13px; padding: 6px 10px; margin: 6px 0; }
+    .cfoot { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 13px; }
+    .cfoot .file { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .cfoot .src { font-weight: 600; white-space: nowrap; text-decoration: none; }
+    .export-bar { position: sticky; bottom: 0; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+                  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; margin-top: 16px; box-shadow: 0 -4px 16px rgba(16, 24, 40, .08); }
+    @media (max-width: 600px) {
+      .summary { grid-template-columns: repeat(2, 1fr); } .card { padding: 12px 14px; }
+      .export-bar .note { display: none; } .export-bar button { width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .search-panel { padding: 14px; border-radius: 12px; }
+      .search-main button { padding: 0 16px; }
+      .filters > * { flex: 1 1 140px; }
+      .filters input { width: auto; }
+    }
+  </style>
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+    <h1>Tra cứu quy định</h1>
+    <p class="lead">Gõ từ khoá, câu hỏi hoặc số hiệu. Kết quả là nguyên văn văn bản, không phải diễn giải máy.</p>
+    <section class="search-panel" aria-label="Tìm kiếm">
+      <form class="search" method="get" action="/" hx-get="/" hx-target="#out" hx-push-url="true">
+        <div class="search-main">
+          <div class="field">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" name="q" value="{{ q }}" placeholder="ví dụ: báo cáo định kỳ hoặc 15/2020/NĐ-CP" aria-label="Nội dung tìm" autofocus>
+          </div>
+          <button type="submit" class="primary">Tìm</button>
+        </div>
+        <div class="filters">
+          <select name="loai" aria-label="Loại văn bản">
+            <option value="">Loại: tất cả</option>
+            {% for v, t in [("luat", "Luật / Bộ luật"), ("phap_lenh", "Pháp lệnh"), ("nghi_quyet", "Nghị quyết"), ("nghi_dinh", "Nghị định"), ("thong_tu", "Thông tư"), ("quyet_dinh", "Quyết định"), ("chi_thi", "Chỉ thị"), ("cong_van", "Công văn")] %}
+            <option value="{{ v }}" {% if loai==v %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+          </select>
+          <input type="text" name="co_quan" value="{{ co_quan }}" placeholder="Cơ quan ban hành" aria-label="Cơ quan ban hành">
+          <select name="hieu_luc" aria-label="Hiệu lực">
+            <option value="">Hiệu lực: tất cả</option>
+            <option value="con" {% if hieu_luc=='con' %}selected{% endif %}>Còn</option>
+            <option value="het" {% if hieu_luc=='het' %}selected{% endif %}>Hết</option>
+            <option value="chua_ro" {% if hieu_luc=='chua_ro' %}selected{% endif %}>Chưa rõ</option>
+          </select>
+        </div>
+      </form>
+      <form class="mode" method="post" action="/settings/mode" aria-label="Chế độ tìm">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="hidden" name="q" value="{{ q }}">
+        <span class="label">Chế độ tìm</span>
+        <span class="seg" role="group" aria-label="Chế độ tìm">
+          <button type="submit" name="mode" value="normal" aria-pressed="{{ 'true' if mode.mode == 'normal' else 'false' }}"
+                  title="BM25 thuần: nhẹ, chạy mọi máy">Normal</button>
+          <button type="submit" name="mode" value="advance" aria-pressed="{{ 'true' if mode.mode == 'advance' else 'false' }}"
+                  title="BM25 + embedding: chính xác hơn vài %, tốn thêm ~0,5–1,3 GB RAM">Advance</button>
+        </span>
+        {% if mode.mode == 'advance' and not mode.installed %}
+        <span class="note warn">Chưa cài mô hình EmbeddingGemma — đang tìm như Normal (xem README).</span>
+        {% elif mode.mode == 'advance' and mode.pending %}
+        <span class="note">Còn {{ mode.pending }} Điều chưa nhúng (vẫn tìm được). Chạy nền: <code>python -m soiluat.importer --nhung --nen</code></span>
+        {% elif mode.mode == 'advance' %}
+        <span class="note">BM25 + embedding. Câu tìm đầu tiên chậm hơn (nạp mô hình).</span>
+        {% else %}
+        <span class="note">BM25 thuần.</span>
+        {% endif %}
+      </form>
+    </section>
+    <div id="out" aria-live="polite">
+      {% include "_results.html" %}
+    </div>
+    <div class="side">
+      <form method="post" action="/backup">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit">Sao lưu SQLite</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

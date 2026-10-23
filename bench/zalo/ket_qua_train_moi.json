@@ -1,0 +1,2430 @@
+{
+ "so_cau": 300,
+ "phuong_phap": {
+  "hien_tai": {
+   "Hit@10": 0.827,
+   "Recall@10": 0.821,
+   "MRR@10": 0.628,
+   "khong_ket_qua": 0.0,
+   "p50_ms": 1760,
+   "p95_ms": 2889
+  },
+  "bm25_or_codau_kem_ngucanh": {
+   "Hit@10": 0.847,
+   "Recall@10": 0.839,
+   "MRR@10": 0.652,
+   "khong_ket_qua": 0.0,
+   "p50_ms": 482,
+   "p95_ms": 758
+  }
+ },
+ "tung_cau": {
+  "00173eabc26fe36c519a55d102712770": {
+   "q": "Thời gian khóa học và thời gian tổ chức giảng dạy từ xa trình độ cao đẳng được quy định như thế nào?",
+   "dap_an": [
+    "33/2018/tt-blđtbxh+7"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "002a8ef45186d00d026d1dbb072b044b": {
+   "q": "Phương thức một giai đoạn hai túi hồ sơ trong lựa chọn nhà thầu cung cấp thuốc được quy định như thế nào?",
+   "dap_an": [
+    "15/2019/tt-byt+26"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "004a3bc83f47576a7250787913664b33": {
+   "q": "Mức phạt đối với luật sư hướng dẫn cho khách hàng cung cấp vật chứng giả là bao nhiêu?",
+   "dap_an": [
+    "82/2020/nđ-cp+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "00c70a6019962d51d32d96622daa64b6": {
+   "q": "Thời gian tạm trú là 02 tháng thì có được đi bầu cử Đại biểu HĐND cấp huyện nơi tạm trú không?",
+   "dap_an": [
+    "85/2015/qh13+29"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "00c7583140aad533cb7d0d5a0dac9155": {
+   "q": "Quy mô hội chợ, triển lãm quốc tế tại Việt Nam cho sản phẩm của doanh nghiệp nước ngoài có nhu cầu nhập khẩu từ Việt Nam được quy định như thế nào ạ?",
+   "dap_an": [
+    "11/2019/tt-bct+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "00d9e55165c40ad189a18ef7c107af86": {
+   "q": "Tự ý thay đổi vị trí, cỡ, loại đồng hồ đo nước bị phạt thế nào?",
+   "dap_an": [
+    "139/2017/nđ-cp+45"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "00fa4c6e80158882914f90abc46e5624": {
+   "q": "Mức chi hỗ trợ thành lập doanh nghiệp sản xuất công nghiệp nông thôn trong hoạt động khuyến công quốc gia là bao nhiêu?",
+   "dap_an": [
+    "28/2018/tt-btc+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "012741708a3764783fdfc3379b87687b": {
+   "q": "Việc xuất, nhập khẩu sản phẩm đo đạc và bản đồ được quy định ra sao?",
+   "dap_an": [
+    "45/2015/nđ-cp+28"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0145eac8973da0af80aaa1731e0ed76f": {
+   "q": "Mức phạt khi điều khiển xe ô tô không có đèn báo hãm theo nghị định 100?",
+   "dap_an": [
+    "100/2019/nđ-cp+16"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0149d1b9a046fdbd30155b6eb49f0a68": {
+   "q": "Báo cáo thực hiện dịch vụ công ích thủy lợi theo phương thức đặt hàng là như thế nào?",
+   "dap_an": [
+    "96/2018/nđ-cp+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "015cde571c5fa8768a44e31d7f6f005f": {
+   "q": "NLĐ được hỗ trợ kinh phí chữa bệnh nghề nghiệp như thế nào?",
+   "dap_an": [
+    "88/2020/nđ-cp+21"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "016143c124ea46fe7a899f41bb8395a1": {
+   "q": "Bồi thường về đất đối với những người đang có đồng quyền sử dụng đất khi Nhà nước thực hiện thu hồi đất được quy định như thế nào?",
+   "dap_an": [
+    "47/2014/nđ-cp+15"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "01760b6e4779e2d828370742c13d579e": {
+   "q": "Thẩm quyền bổ nhiệm Phó Thủ trưởng cơ quan thi hành án hình sự Công an cấp tỉnh được quy định như thế nào?",
+   "dap_an": [
+    "25/2012/tt-bca+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "01c83de6fe6a0edc59718b2d0bf212e5": {
+   "q": "Yêu cầu về nội dung, phương pháp giáo dục từ 01/7/2020 được quy định như thế nào?",
+   "dap_an": [
+    "43/2019/qh14+7"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "01d37535bebdb20b89c081e29dec766a": {
+   "q": "Điều kiện tổ chức phiên họp Hội đồng khoa học chuyên ngành đánh giá hồ sơ đăng ký chế phẩm sinh học được quy định như thế nào?",
+   "dap_an": [
+    "19/2010/tt-btnmt+7"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0202f4503f734361cede3c679872b2cc": {
+   "q": "Nội dung và mức chi xây dựng và hoàn thiện cơ chế chính sách hỗ trợ học sinh, sinh viên khởi nghiệp được quy định như thế nào?",
+   "dap_an": [
+    "126/2018/tt-btc+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "027ee1d7ec4e69f6f8dcaecbe308ff71": {
+   "q": "Quy định về quy trình lựa chọn nhà thầu mua vé máy bay đối với đoàn đi công tác trong nước",
+   "dap_an": [
+    "17/2019/qđ-ttg+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "02a0f8f38d832b429f2cabf6ef2c7f04": {
+   "q": "Các tố cáo xuất phát từ khiếu nại tại Tòa án phải có các điều kiện gì để được thụ lý theo quy định mới?",
+   "dap_an": [
+    "01/2020/tt-tandtc+27"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "02f8b69ed2d05e37e9b2e9af1f30eacb": {
+   "q": "Cán bộ đi công tác cuối tuần có tính lương ngoài giờ không?",
+   "dap_an": [
+    "40/2017/tt-btc+3"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "03043c1470149f786474d7a080d262b9": {
+   "q": "Cơ sở đào tạo lái xe không có đủ hệ thống phòng học bị phạt bao nhiêu?",
+   "dap_an": [
+    "100/2019/nđ-cp+37"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0323a9f1837bd4c4ce1c913825cbdf2e": {
+   "q": "Được phép chuyển nhượng văn phòng thừa phát lại không?",
+   "dap_an": [
+    "08/2020/nđ-cp+28"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "033ee5f44378f057d8cdadfabeb3aec7": {
+   "q": "Trang phục của công chức, viên chức và thuyền viên Cảng vụ hàng hải bao gồm những gì?",
+   "dap_an": [
+    "20/2012/tt-bgtvt+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "034dfc57906fbbbb73a955afff850bc1": {
+   "q": "Trách nhiệm của các đơn vị truyền thông trong công tác thi đua khen thưởng ngành KH&ĐT được quy định như thế nào?",
+   "dap_an": [
+    "07/2018/tt-bkhđt+41"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "039a08ae0e5f3b15bae7b89bc0246b02": {
+   "q": "Phê duyệt, điều chỉnh chương trình khắc phục hậu quả bom mìn vật nổ sau chiến tranh được quy định như thế nào?",
+   "dap_an": [
+    "18/2019/nđ-cp+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "039c2a66655cc69cb6fc547482a715ed": {
+   "q": "Quỹ Tích lũy trả nợ hoàn trả ngân sách nhà nước được quy định như thế nào?",
+   "dap_an": [
+    "92/2018/nđ-cp+11"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": 8
+  },
+  "03a3cda64976da73053ee06b15db957f": {
+   "q": "Quyền lợi của học viên bác sĩ nội trú được quy định ra sao?",
+   "dap_an": [
+    "19/2006/qđ-byt+18"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "03af707b7d5c2ffab7482f85e0e74540": {
+   "q": "Điều lệ công ty, Quy chế nội bộ về quản trị công ty đại chúng được quy định như thế nào?",
+   "dap_an": [
+    "155/2020/nđ-cp+270"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "03bfc25fa040f2ce3e408c00b6ab4e16": {
+   "q": "Gói thầu mua sắm hàng hóa 14 tỷ có được xem là gói thầu có quy mô nhỏ hay không?",
+   "dap_an": [
+    "63/2014/nđ-cp+63"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "03e752e55fba3628592880f9d8f486cd": {
+   "q": "Đối với trường hợp tố cáo tại Tòa án người lao động đã chuyển công tác thì thẩm quyền xử lý thuộc về tai theo quy định mới?",
+   "dap_an": [
+    "01/2020/tt-tandtc+22"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0413e7967f42809659e955ce32007bb4": {
+   "q": "Say rượu, bia gây mất trật tự công cộng bị xử lý ra sao?",
+   "dap_an": [
+    "167/2013/nđ-cp+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0415afab2730904f2da87964ad72fedf": {
+   "q": "Quy định về thời hiệu xử lý kỷ luật trong quốc phòng được quy định như thế nào?",
+   "dap_an": [
+    "16/2020/tt-bqp+43"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "049337e9d162566a57d80e874270f671": {
+   "q": "Định nghĩa lãi từ tiền cho vay theo Hiệp định tránh đánh thuế hai lần được quy định như thế nào?",
+   "dap_an": [
+    "205/2013/tt-btc+18"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "04ad87051747e549cc3cd38bd4991dc8": {
+   "q": "Ai có trách nhiệm nộp phí thẩm định nội dung tài liệu không kinh doanh để cấp giấy phép xuất bản?",
+   "dap_an": [
+    "214/2016/tt-btc+2"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "04d33cd81bd8592ffa7687255f871aaf": {
+   "q": "Mức xử phạt khi xây dựng nhà ở riêng lẻ không che chắn là bao nhiêu?",
+   "dap_an": [
+    "139/2017/nđ-cp+15"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "04d39fdce84f5cada541e7ac3ea28c98": {
+   "q": "Theo quy định, bảo quản thuốc, nguyên liệu làm thuốc là gì?",
+   "dap_an": [
+    "36/2018/tt-byt+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "04e271f9968789c6b50b931a7d42c5f1": {
+   "q": "Trách nhiệm thực hiện bảo quản tài nguyên thông tin của các thư viện được quy định như thế nào?",
+   "dap_an": [
+    "02/2020/tt-bvhttdl+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "04e909b3f16852b0325175e56ff09537": {
+   "q": "Người phụ trách kỹ thuật đồng thời thực hiện 3 dự án điều tra cơ bản tài nguyên nước bị xử lý thế nào?",
+   "dap_an": [
+    "36/2020/nđ-cp+6"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "04f722029dacacf074b0bf1da761d2c7": {
+   "q": "Khi nào có kết quả kỳ thi nâng hạng đối với giáo viên?",
+   "dap_an": [
+    "28/2017/tt-bgdđt+8"
+   ],
+   "hien_tai": 10,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0505153dea92f19f37303158f968fb90": {
+   "q": "Thành viên chưa góp đủ vốn đã cam kết thì công ty TNHH đăng ký thay đổi vốn điều lệ thời hạn bao lâu?",
+   "dap_an": [
+    "59/2020/qh14+47"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "050dfcb6d120e12a81f6520d67bd93bc": {
+   "q": "Thủ tục đóng tạm thời cảng hàng không, sân bay được quy định như thế nào?",
+   "dap_an": [
+    "05/2021/nđ-cp+43"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0528ea6cf559be4d1261a919401bd52f": {
+   "q": "Mức phạt đối với xe ô tô gắn biển số bị bẻ cong, bị che lấp, bị hỏng",
+   "dap_an": [
+    "100/2019/nđ-cp+16"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "053367516dbca170b8c53dada00b544c": {
+   "q": "Phân loại công trình xây dựng được quy định như thế nào?",
+   "dap_an": [
+    "06/2021/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "05a3d253d7ef87accd12757f6f95a2d4": {
+   "q": "Hồ sơ đề nghị đóng tạm thời cảng hàng không, sân bay trong trường hợp cải tạo, mở rộng bao gồm những gì?",
+   "dap_an": [
+    "05/2021/nđ-cp+43"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "05cb1921f39ff14b3bed05e0cc0f96e7": {
+   "q": "Nội dung chương trình bồi dưỡng nghiệp vụ sư phạm cho nhà giáo dạy trình độ trung cấp, dạy trình độ cao đẳng được quy định như thế nào?",
+   "dap_an": [
+    "28/2018/tt-blđtbxh+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "05eb11ca52db41620854e60473ec851b": {
+   "q": "Trách nhiệm của viện, bệnh viện và cơ sở thực hành liên quan trong việc đào tạo bác sĩ nội trú được quy định như thế nào?",
+   "dap_an": [
+    "19/2006/qđ-byt+22"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0604dc5370e1966d112ae9d32acc9fa9": {
+   "q": "Khu vực và công việc nào người lao động không được đến làm việc ở nước ngoài?",
+   "dap_an": [
+    "38/2020/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "060d5ce2d374afc9a0e70f5e6e554967": {
+   "q": "NLĐ được hỗ trợ kinh phí phục hồi chức năng lao động như thế nào?",
+   "dap_an": [
+    "88/2020/nđ-cp+25"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "060e0cd1a73ffe7012a1090498e6ce9c": {
+   "q": "Mức phạt khi điều khiển xe mô tô, xe gắn máy không có bộ phận giảm thanh, giảm khói",
+   "dap_an": [
+    "100/2019/nđ-cp+17"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "0637bf82c8b290c7875c5bfddbf91df5": {
+   "q": "Công an xã xử phạt lỗi không mang bằng lái xe có đúng không?",
+   "dap_an": [
+    "47/2011/tt-bca+7"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "06556f593c9aa0e0d58bdce58500ef44": {
+   "q": "Nộp phí, lệ phí thực hiện thủ tục hành chính về giống cây trồng và canh tác bằng các hình thức nào?",
+   "dap_an": [
+    "94/2019/nđ-cp+2"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "066cf148c1ef8ef47358931dd6962af2": {
+   "q": "Kinh phí thực hiện quy trình phân tích nguy cơ dịch hại đối với vật thể thuộc diện kiểm dịch thực vật được quy định như thế nào?",
+   "dap_an": [
+    "36/2014/tt-bnnptnt+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "06a4df4df5e1d1b13a86d2466dd65f7a": {
+   "q": "Sổ sách kế toán công ty nước ngoài được sử dụng tiếng nước ngoài không?",
+   "dap_an": [
+    "88/2015/qh13+11"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "06a6f5c90c68a12c0e03fa37bd16e85e": {
+   "q": "Thủ tục cấp lại Giấy phép kinh doanh vận tải do bị mất, bị hỏng được quy định như thế nào?",
+   "dap_an": [
+    "10/2020/nđ-cp+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "06ccdfb9ed3613382f946787469eb7d6": {
+   "q": "Trách nhiệm của cơ sở giáo dục phổ thông về việc lựa chọn sách giáo khoa được quy định như thế nào?",
+   "dap_an": [
+    "25/2020/tt-bgdđt+14"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "06e3b3564731caca597b6db41ea139ab": {
+   "q": "Các ngành đúng đào tạo về công nghệ thông tin gồm ngành gì?",
+   "dap_an": [
+    "45/2017/tt-btttt+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0720eaecc12050bf4962d16b21e21dd9": {
+   "q": "Một nhiệm kỳ một người được ứng cử bao nhiêu cấp đại biểu HĐND?",
+   "dap_an": [
+    "85/2015/qh13+36"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "074a510c8b6f475f5416c896e2a39e83": {
+   "q": "Người được hưởng án treo có cần thông báo tạm trú khi đến nơi khác không?",
+   "dap_an": [
+    "41/2019/qh14+92"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0753dd0598ce184c080229e1099a9806": {
+   "q": "Người thực hiện công tác quản lý an toàn lao động của chủ đầu tư có trách nhiệm gì?",
+   "dap_an": [
+    "06/2021/nđ-cp+14"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0772bcdf91744bc2697eedf7be969500": {
+   "q": "Trung tâm sát hạch lái xe thay đổi hình các bài sát hạch mà chưa được chấp thuận bị phạt bao nhiêu tiền?",
+   "dap_an": [
+    "100/2019/nđ-cp+37"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "07cb58b46334a4437f8c4abb9ce33fd6": {
+   "q": "Không đóng BHYT của đối tượng bắt buộc tham gia thì phạt bao nhiêu?",
+   "dap_an": [
+    "117/2020/nđ-cp+80"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "07f2baa85997ba04e7ece54dfe73fcd7": {
+   "q": "Các hình thức gia công hàng hóa có yếu tố nước ngoài khác khác, sửa chữa, tái chế máy móc, thiết bị được quy định ra sao?",
+   "dap_an": [
+    "69/2018/nđ-cp+46"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "08214959db7ae07b389c7786638a3bbf": {
+   "q": "Một người có thể hướng dẫn thực hành khám chữa bệnh tối đa cho bao nhiêu người trong cùng thời điểm?",
+   "dap_an": [
+    "117/2020/nđ-cp+38"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "082bcbbfa2b645226b166e8e8eb1dd97": {
+   "q": "Công an xã có được dừng xe trên các tuyến đường tỉnh lộ để kiểm soát không?",
+   "dap_an": [
+    "47/2011/tt-bca+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "082ca0a3cdccb645c7aec145e4451ad4": {
+   "q": "Hình thức và phương tiện công bố siêu dữ liệu viễn thám quốc gia được quy định như thế nào?",
+   "dap_an": [
+    "35/2016/tt-btnmt+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "085b2072801e92842ca695b078c7a2cf": {
+   "q": "Mức phạt đối với hành vi tổ chức kiểm tra, đánh giá kết quả học tập của người học không đúng quy định là bao nhiêu?",
+   "dap_an": [
+    "04/2021/nđ-cp+15"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "085db03fae37bb6249522e26e5c93f13": {
+   "q": "Điều kiện về vốn để được cấp giấy phép thành lập, hoạt động của công ty đầu tư chứng khoán được quy định như thế nào?",
+   "dap_an": [
+    "155/2020/nđ-cp+259"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 8
+  },
+  "08652a4d9c9368d2abcd3acafce59ce2": {
+   "q": "Người chấp hành xong hình phạt tù tham gia đào tạo nghề có được miễn học phí không?",
+   "dap_an": [
+    "49/2020/nđ-cp+11"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "08683040fdfd763981912512857c99b2": {
+   "q": "Không thỏa thuận về bồi thường thiệt hại có được bồi thường không?",
+   "dap_an": [
+    "91/2015/qh13+418"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0869dceb6887ee36cf36375f011654ac": {
+   "q": "Có giấy chứng nhận tốt nghiệp tạm thời có được tham dự khóa đào tạo nghề luật sư không?",
+   "dap_an": [
+    "20/2012/qh13+1"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0870cda934e343e6bd6e52b5cb4c7433": {
+   "q": "Nộp thủ thục hành chính về giống cây trồng và canh tác như thế nào?",
+   "dap_an": [
+    "94/2019/nđ-cp+2"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "088fdab6472a3cbd8d0ab15f0a7de5ce": {
+   "q": "Quy định về tổ chức thị trường giao dịch chứng khoán",
+   "dap_an": [
+    "54/2019/qh14+42"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0892cb25c6a9e2050308b6a718ffcb50": {
+   "q": "Mức phạt đối với hành vi chuyển mục đích sử dụng rừng đặc dụng có diện tích từ 800 m2 đến dưới 1.500 m2 không đúng quy định được quy định như thế nào?",
+   "dap_an": [
+    "35/2019/nđ-cp+12"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "08baf2e8d120c2984d9bfe4a4a2b58af": {
+   "q": "Hỗ trợ hoạt động khởi nghiệp doanh nghiệp khoa học và công nghệ được quy định như thế nào?",
+   "dap_an": [
+    "142/2017/tt-btc+5"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "08c2bd0bda4da6797f605cd0a1d3b42b": {
+   "q": "Thời gian tổ chức khám sức khỏe cho thí sinh đăng ký vào các trường quân đội trong năm 2021 là khi nào?",
+   "dap_an": [
+    "42/2017/tt-bqp+1"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "08d76208dad8dde96a06d523746e4a1b": {
+   "q": "Văn phòng Ủy ban nhân dân cấp tỉnh có nhiệm vụ gì trong việc hướng dẫn nghiệp vụ hành chính văn phòng?",
+   "dap_an": [
+    "01/2015/ttlt-vpcp-bnv+2"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "08f09e11bf3d81dce414300c1ed3c576": {
+   "q": "Biểu trưng của cơ quan kiểm ngư được quy định như thế nào?",
+   "dap_an": [
+    "20/2018/tt-bnnptnt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "08ffad4961b4357c31a67d139ad36137": {
+   "q": "Không báo cáo kết quả quan trắc, giám sát tài nguyên nước cho cơ quan có thẩm quyền bị phạt thế nào?",
+   "dap_an": [
+    "36/2020/nđ-cp+8"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0910d165a55158e2a0ca9fa0870f239c": {
+   "q": "Cơ quan đại diện chủ sở hữu có trách nhiệm gì trong việc thực hiện thí điểm quản lý lao động, tiền lương, tiền thưởng tại một số tập đoàn kinh tế nhà nước",
+   "dap_an": [
+    "20/2020/nđ-cp+18"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0959d7957ea119783b6bafafffeecfe2": {
+   "q": "Những đối tượng nào được mua giấy tờ có giá (kỳ phiếu, tín phiếu, chứng chỉ tiền gửi, trái phiếu)?",
+   "dap_an": [
+    "01/2021/tt-nhnn+4"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "09810519bf1b143cc9406e9a83ad7c56": {
+   "q": "Mức phạt công chứng thiếu chữ ký của người dịch vào từng trang bản dịch được quy định như thế nào?",
+   "dap_an": [
+    "82/2020/nđ-cp+14"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "09a5630476246f72c23403777fe40c5a": {
+   "q": "Thực hiện giám định đối với di vật cổ vật khó di chuyển được quy định như thế nào?",
+   "dap_an": [
+    "03/2019/tt-bvhttdl+6"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "09b57975e868bdab6b09e6940742d987": {
+   "q": "Phạm nhân dưới 18 tuổi được gọi cho thân nhân không?",
+   "dap_an": [
+    "41/2019/qh14+76"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "09d3ddd919d24b4bdee22aef4a85ed39": {
+   "q": "Bán cổ phần doanh nghiệp nhà nước tái cơ cấu lần đầu được quy định như thế nào?",
+   "dap_an": [
+    "126/2017/nđ-cp+42",
+    "69/2018/tt-btc+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "09fd2d9c1eee7598e78f20b823579673": {
+   "q": "Nguyên tắc đánh giá, xếp loại Đơn vị học tập được quy định như thế nào?",
+   "dap_an": [
+    "22/2020/tt-bgdđt+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0a0230ebff42061db19497d47f8816fe": {
+   "q": "Mức phạt khi thi công công trình trong phạm vi đất dành cho đường bộ có Giấy phép thi công nhưng đã hết thời hạn",
+   "dap_an": [
+    "100/2019/nđ-cp+13"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0a04c0fc37cd87758776238ebef5b0ec": {
+   "q": "Kiểm soát viên chính thị trường là ai?",
+   "dap_an": [
+    "09/2018/tt-bct+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0a4421dd6a0c61d27e016893778f2c71": {
+   "q": "Theo quy định pháp luật, chế độ báo cáo trong hoạt động của các cơ quan hành chính nhà nước là gì?",
+   "dap_an": [
+    "09/2019/nđ-cp+3"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0a511cc0f680089efcdddc09b24d0578": {
+   "q": "Giám sát thiết bị viễn thông, đài vô tuyến điện đã được cấp Giấy chứng nhận kiểm định như thế nào?",
+   "dap_an": [
+    "07/2020/tt-btttt+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0a8307bac487fe4f9cf001bc2baa14c4": {
+   "q": "Thời hạn của giấy chứng nhận sử dụng vũ khí, vật liệu nổ quân dụng, công cụ hỗ trợ được quy định như thế nào?",
+   "dap_an": [
+    "79/2018/nđ-cp+18"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0a9a22b7f35e1d8c4fb72a2362fc56d5": {
+   "q": "Mức phạt khi thi công trên đường bộ đang khai thác không treo biển báo thông tin công trình",
+   "dap_an": [
+    "100/2019/nđ-cp+13"
+   ],
+   "hien_tai": 9,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0aa2fd4ca76a63b383c551b62a3b565c": {
+   "q": "Trách nhiệm của Bộ Tài Chính trong việc thu phí tự động không dừng được quy định như thế nào?",
+   "dap_an": [
+    "19/2020/qđ-ttg+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "0aad55a0b7030f8e5e8f7ee38b63bd7d": {
+   "q": "Việc xác định loại công ty đối với các công ty thuộc tổng công ty nhà nước dựa trên tiêu chí nào?",
+   "dap_an": [
+    "20/2020/nđ-cp+11"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0aba4441497f8b184bb9ddfcf57c08ce": {
+   "q": "Điều khiển xe mô tô, xe gắn máy không có còi bị phạt bao nhiêu theo nghị định 100/2019/NĐ-CP?",
+   "dap_an": [
+    "100/2019/nđ-cp+17"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 5
+  },
+  "0abd5737f4a5eeeabab49710b4a8d056": {
+   "q": "Điều khiển xe ô tô, máy kéo và các loại xe tương tự xe ô tô vi phạm quy định về bảo vệ môi trường bị phạt thế nào?",
+   "dap_an": [
+    "100/2019/nđ-cp+20"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0ae92a99fc5960cb3241801c148271e7": {
+   "q": "Thực hiện dân chủ trong cơ sở giáo dục công lập thì nhà trường có những trách nhiệm nào?",
+   "dap_an": [
+    "11/2020/tt-bgdđt+5"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0ae993cb3f6fe895055b4c3572383e87": {
+   "q": "Trang thiết bị phục vụ cảnh giới là gì?",
+   "dap_an": [
+    "28/2018/tt-bgtvt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0aedc00028a92c75e26716ff7c30c559": {
+   "q": "Nhà đầu tư nước ngoài đầu tư trên thị trường chứng khoán Việt Nam dưới các hình thức nào?",
+   "dap_an": [
+    "155/2020/nđ-cp+138"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0afce6c125c315e6e24c33f339fc6b7f": {
+   "q": "Có được ủy quyền cho người khác đi gửi tiết kiệm ngân hàng không?",
+   "dap_an": [
+    "48/2018/tt-nhnn+12"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "0b342c928d0dc9bce7dfb82014bfe5d2": {
+   "q": "Trách nhiệm của Bộ Tài nguyên và Môi trường về quản lý và phát triển công nghiệp an ninh được quy định như thế nào?",
+   "dap_an": [
+    "63/2020/nđ-cp+20"
+   ],
+   "hien_tai": 7,
+   "bm25_or_codau_kem_ngucanh": 6
+  },
+  "0b50d29c4ff1970418db4666d1d86b7a": {
+   "q": "Mật độ hướng dẫn tập luyện môn patin được quy định như thế nào?",
+   "dap_an": [
+    "20/2018/tt-bvhttdl+5"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 10
+  },
+  "0b90625933834101a0b9963d15018e3b": {
+   "q": "Đầu tư xây dựng kết cấu hạ tầng đường thủy nội địa theo nguyên tắc nào?",
+   "dap_an": [
+    "08/2021/nđ-cp+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0b9f2dac94d826a368ac7bf2441ac7b1": {
+   "q": "Chuyến bay chuyển cảng hàng không được quy định như thế nào?",
+   "dap_an": [
+    "53/2019/tt-bgtvt+3"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c15f2785819f326ffb30dc839b3b31e": {
+   "q": "Việc lựa chọn người tham gia Đoàn thanh tra được quy định như thế nào?",
+   "dap_an": [
+    "05/2014/tt-ttcp+9"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c1ef1c14699f9a2a09ce2fdc84b6dad": {
+   "q": "Chi cục Kiểm dịch động vật được thu phí, lệ phí thú y không?",
+   "dap_an": [
+    "101/2020/tt-btc+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c5b0bd8be4c2ca410e70a1bfdfd6426": {
+   "q": "Nuôi trồng thủy sản bán thâm canh là gì?",
+   "dap_an": [
+    "26/2019/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c7657220607605085ad62f58868cc14": {
+   "q": "Từ năm 2020, phạm nhân dưới 18 tuổi được gặp gia đình 01 tháng bao nhiêu lần?",
+   "dap_an": [
+    "41/2019/qh14+76"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c82b235d6eb8371b6b29629612fed32": {
+   "q": "Nơi nộp tiền phạt khi vi phạm về lĩnh vực cạnh tranh được quy định như thế nào?",
+   "dap_an": [
+    "75/2019/nđ-cp+32"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c8f7700fa78a516d7459a16963a4c14": {
+   "q": "Bằng lái xe bị tước nhưng sắp hết hạn có được cấp đổi không?",
+   "dap_an": [
+    "100/2019/nđ-cp+81"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0c92434a6c970bb272f5245bacad5a40": {
+   "q": "Thực hiện về quyền cầm giữ tài sản được quy định như thế nào?",
+   "dap_an": [
+    "21/2021/nđ-cp+48"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0ca175a3d708e4a8f32cbc41a5b66aca": {
+   "q": "Thẩm quyền lập biên bản vi phạm hành chính trong hoạt động Khoa học và công nghệ được quy định như thế nào?",
+   "dap_an": [
+    "51/2019/nđ-cp+27"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "0caad2a945db299975e46f5bbde59b8e": {
+   "q": "Áp dụng kỷ luật Đảng thay cho kỷ luật hành chính có được không?",
+   "dap_an": [
+    "112/2020/nđ-cp+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0ccc0e982b2219cee4e65a12730e5d60": {
+   "q": "Giá trị đề nghị trúng thầu dự án đầu tư có sử dụng đất phải đáp ứng yêu cầu nào?",
+   "dap_an": [
+    "25/2020/nđ-cp+56"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0cd9b916a13ec5b2b34ca7b25ab55e14": {
+   "q": "Chế độ khen thưởng đối với viên chức được quy định như thế nào?",
+   "dap_an": [
+    "58/2010/qh12+51"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0d0c6088a937fa6defa804775e2821c9": {
+   "q": "Không trả lời tin nhắn, nhà mạng thu tiền dịch vụ có đúng không?",
+   "dap_an": [
+    "91/2015/qh13+393"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0d1053fa03f697433dfd29f78deb1701": {
+   "q": "Tiêu chí số người tập luyện thể dục, thể thao thường xuyên được quy định như thế nào?",
+   "dap_an": [
+    "01/2019/tt-bvhttdl+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0d2af7632b34796855f3853c4eda9525": {
+   "q": "Thời gian được phép đi khỏi nơi cư trú đối với người phạt quản chế?",
+   "dap_an": [
+    "41/2019/qh14+115"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "0d6a228795875e5bf69dd68eddcd9b14": {
+   "q": "Thời hạn của văn bản thỏa thuận thông số kỹ thuật xây dựng bến khách ngang sông, bến thủy nội địa phục vụ thi công công trình chính là bao lâu?",
+   "dap_an": [
+    "08/2021/nđ-cp+16"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0d96688a54d9beaf93076106207ce81b": {
+   "q": "Kiếm soát nội bộ theo định hướng rủi ro NHNN là như thế nào?",
+   "dap_an": [
+    "06/2020/tt-nhnn+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0da66511d76c26cb28cb52b24d691749": {
+   "q": "Chứng khoán của tổ chức nước ngoài thưởng cho người lao động Việt Nam làm việc trong các tổ chức nước ngoài tại Việt Nam được quy định như thế nào?",
+   "dap_an": [
+    "155/2020/nđ-cp+66"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "0dab0d07d5da11be4c3f22d66619820e": {
+   "q": "Trình tự, thủ tục điều chỉnh quy hoạch cục bộ cảng hàng không, sân bay được thực hiện như thế nào?",
+   "dap_an": [
+    "05/2021/nđ-cp+37"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0dc6aad9267ed2fb232a1277aaa860f8": {
+   "q": "Giá trị nguyên liệu (VNM) được xác định như thế nào?",
+   "dap_an": [
+    "12/2019/tt-bct+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0dcd23ee9cc174c5c6463b81cbce6836": {
+   "q": "Tiêu chuẩn của thành viên Hội đồng tư vấn chuyên môn đánh giá nguyên nhân tai biến nặng trong quá trình sử dụng vắc xin cấp Bộ được quy định như thế nào?",
+   "dap_an": [
+    "24/2018/tt-byt+2"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0e07b597234565242f3608de2042ec6a": {
+   "q": "Ai có thẩm quyền xác minh thông tin về tài sản của pháp nhân thương mại để kê biên?",
+   "dap_an": [
+    "44/2020/nđ-cp+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "0e12cdfda4e44d76c3bdf1986505e8ba": {
+   "q": "Người đại diện phần vốn nhà nước tại công ty cổ phần có trách nhiệm gì trong thí điểm quản lý lao động, tiền lương, tiền thưởng tại một số tập đoàn kinh tế nhà nước",
+   "dap_an": [
+    "20/2020/nđ-cp+17"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0e2612f7896f2156cb96b216b3e5a72c": {
+   "q": "Từ năm 2020, ai chi trả kinh phí khám chữa bệnh cho phạm nhân?",
+   "dap_an": [
+    "41/2019/qh14+55"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0e3ea946bcef6b97197755177c8ff9cb": {
+   "q": "Công chứng viên được Sở tư pháp cấp thẻ công chứng và đăng ký hành nghề rồi thì đã được ký văn bản công chứng chưa?",
+   "dap_an": [
+    "01/2021/tt-btp+4"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "0e96227cfe8502a39d8eda2cc880d204": {
+   "q": "Trách nhiệm của Cục Đường thủy nội địa Việt Nam đối với nạo vét vùng nước đường thuỷ nội địa kết hợp thu hồi sản phẩm được quy định như thế nào?",
+   "dap_an": [
+    "33/2019/tt-bgtvt+20"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0ea4b37ac7c50de1c9e730ea76bae04c": {
+   "q": "Nguyên tắc thực hiện bồi dưỡng bắt buộc về chuyên môn, nghiệp vụ của luật sư được quy định như thế nào?",
+   "dap_an": [
+    "02/2019/tt-btp+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0ef48d826a19aacd9f9ccf6c69052122": {
+   "q": "Xử lý vi phạm quy định về xuất khẩu giống thủy sản được quy định như thế nào?",
+   "dap_an": [
+    "42/2019/nđ-cp+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0eff217633d10c32db20512c5d2c2764": {
+   "q": "Lãi suất công cụ nợ của Chính phủ được quy định như thế nào?",
+   "dap_an": [
+    "30/2019/tt-btc+19"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "0f0bcfa6bd8405ea6352ae8e422ca388": {
+   "q": "Phương pháp xác định xác định diện tích chuyên dùng Nhà xe thuộc lĩnh vực giáo dục và đào tạo được quy định như thế nào?",
+   "dap_an": [
+    "03/2020/tt-bgdđt+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0f25385c605d9b46e9658a50c6778074": {
+   "q": "Trách nhiệm quản lý nhà nước đối với các hợp tác xã nông nghiệp ở cấp tỉnh, huyện, xã là như thế nào?",
+   "dap_an": [
+    "06/2019/tt-bnnptnt+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0f2fd53a5677130b973b2e544fef136c": {
+   "q": "Đối tượng được bổ nhiệm Phó Thủ trưởng cơ quan quản lý thi hành án hình sự thuộc Bộ Công an được quy định như thế nào?",
+   "dap_an": [
+    "25/2012/tt-bca+3"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "0f33bd2e24cadf85ca45467146976a25": {
+   "q": "Thời hạn báo cáo thống kê ngành tài chính được quy định như thế nào?",
+   "dap_an": [
+    "02/2019/tt-btc+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0f34e9bd276fc9b56990869f3c802917": {
+   "q": "Mức phạt khi chiếm dụng lòng đường đô thị hoặc hè phố từ 20 m2 trở lên làm nơi trông, giữ xe",
+   "dap_an": [
+    "100/2019/nđ-cp+12"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0f46c9bccfe3afdc901c33a55110c1e9": {
+   "q": "Mức phạt hành khi  thu gom, sơ chế các loài thủy sản có xuất xứ từ cơ sở nuôi,  vùng nuôi thủy sản cấm thu hoạch được quy định như thế nào?",
+   "dap_an": [
+    "115/2018/nđ-cp+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0fa6eb5aa91fe91765aee11ff4c1b153": {
+   "q": "Trường hợp nào phải thành lập hội đồng giám định tư pháp trong lĩnh vực nông nghiệp và phát triển nông thôn?",
+   "dap_an": [
+    "49/2014/tt-bnnptnt+16"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "0fb5f40456fd6358242503eb38002ddd": {
+   "q": "Có bao nhiêu câu kiến thức chung trong đề thi cấp chứng chỉ đại lý bảo hiểm?",
+   "dap_an": [
+    "125/2018/tt-btc+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0fb94f4a6e6bd2d43c8ce1c2ccf6152b": {
+   "q": "Cơ quan nào có thẩm quyền thu hồi giấy phép kinh doanh vũ trường?",
+   "dap_an": [
+    "54/2019/nđ-cp+9"
+   ],
+   "hien_tai": 10,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0fc78abcb1d89de814762276e42249bf": {
+   "q": "Bí mật kinh doanh có thuộc phạm vi giải trình về tham nhũng không?",
+   "dap_an": [
+    "59/2019/nđ-cp+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "0fe593a773cf391978df28051ff1501e": {
+   "q": "Thẩm quyền công khai tài sản công của các đơn vị thuộc Bộ Quốc phòng được quy định như thế nào?",
+   "dap_an": [
+    "26/2019/tt-bqp+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1009c980f6afe2e271de24e7a79126f6": {
+   "q": "Người bị mất năng lực hành vi dân sự có được mở tài khoản ngân hàng không?",
+   "dap_an": [
+    "48/2018/tt-nhnn+3",
+    "91/2015/qh13+136"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 9
+  },
+  "101d1ae821eacb441557d692cd4a932c": {
+   "q": "Mức phạt khi không tuân thủ các quy định về thực phẩm biến đổi gen, sinh vật biến đổi gen sử dụng làm thực phẩm được quy định như thế nào?",
+   "dap_an": [
+    "115/2018/nđ-cp+17"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "102925fb1cc8aafea96c2bf1ed751d04": {
+   "q": "Dự phòng nợ phải thu khó đòi là gì?",
+   "dap_an": [
+    "48/2019/tt-btc+2"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "10341930819ed2c13c3d305156430970": {
+   "q": "Nhiệm vụ, quyền hạn của Bộ Y tế trong hoạt động khắc phục hậu quả bom mìn vật nổ sau chiến tranh được quy định như thế nào?",
+   "dap_an": [
+    "18/2019/nđ-cp+43"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "108f40328a7f089518e2acbea9631168": {
+   "q": "Làm sai lệch kết quả kiểm định bị phạt bao nhiêu tiền?",
+   "dap_an": [
+    "100/2019/nđ-cp+38"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "109d26533cf1dd856c826280fff9a190": {
+   "q": "Xác định khối lượng trong nghiệm thu, thanh toán và quyết toán hợp đồng thi công xây dựng được quy định như thế nào?",
+   "dap_an": [
+    "17/2019/tt-bxd+9"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "10c3d55c7c9d787baae39a9b2962cabc": {
+   "q": "Thời hạn bổ nhiệm các chức vụ lãnh đạo, quản lý của quận, phường ở TP HCM được quy định như thế nào?",
+   "dap_an": [
+    "33/2021/nđ-cp+32"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "10f2b87c0ce18aa91f8acb674ce34abb": {
+   "q": "Mức phạt khi sử dụng đường bộ trái quy định để tổ chức các hoạt động văn hóa, thể thao, diễu hành, lễ hội",
+   "dap_an": [
+    "100/2019/nđ-cp+12"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1108a19ce528ebf31d253c910affcc6d": {
+   "q": "Cơ quan thuế phát hiện hóa đơn điện tử đã được cấp mã có sai sót thì xử lý như thế nào?",
+   "dap_an": [
+    "68/2019/tt-btc+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "110d6adc2734419be2125ab7233bc3e6": {
+   "q": "Mã số REX là gì?",
+   "dap_an": [
+    "38/2018/tt-bct+3"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1122df434eac2b89305b9c8f15b88885": {
+   "q": "Xây dựng cơ sở dữ liệu về thi hành án hình sự được quy định như thế nào?",
+   "dap_an": [
+    "59/2020/nđ-cp+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "1145e32146becb3d6dcae37e7055e06d": {
+   "q": "Cơ quan nào có thẩm quyền thu hồi giấy phép kinh doanh karaoke?",
+   "dap_an": [
+    "54/2019/nđ-cp+9"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "11789a5a153fe22552ae28b39e609709": {
+   "q": "Công ty chứng khoán có trách nhiệm gì khi được yêu cầu phong tỏa tài khoản của pháp nhân thương mại để thi hành án?",
+   "dap_an": [
+    "44/2020/nđ-cp+14"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "117b79159959875c12ef8d09cfc4ef58": {
+   "q": "Ai có thẩm quyền cấp lại chứng nhận người hưởng chính sách như thương binh",
+   "dap_an": [
+    "31/2013/nđ-cp+28"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "117baa94eb7eb0ba4c88e563edcea547": {
+   "q": "Nguyên đơn vắng mặt tại phiên họp giải quyết tranh chấp trong tố tụng trọng tài xử lý thế nào?",
+   "dap_an": [
+    "54/2010/qh12+56"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "11d1ab4e72284b51e88423ab72273874": {
+   "q": "Thẩm quyền xử phạt của Đội trưởng của chiến sĩ Bộ đội biên phòng trong lĩnh vực hóa chất được quy định như thế nào?",
+   "dap_an": [
+    "71/2019/nđ-cp+63"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 5
+  },
+  "11e1a46880e50003ee65a734abdb559e": {
+   "q": "Hiệu trưởng liệu có được xử phạt học sinh vi phạm an toàn giao thông hay không?",
+   "dap_an": [
+    "100/2019/nđ-cp+74"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "11e5f08c43b922d8c9138fe00d9f8d2b": {
+   "q": "Theo quy định pháp luật, mục đích của việc đào tạo, bồi dưỡng nghiệp vụ chuyên ngành thẩm định giá là gì?",
+   "dap_an": [
+    "204/2014/tt-btc+3"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "11f7688abb848aad1f19a3107a95f88d": {
+   "q": "Mức thu lệ phí công bố hợp chuẩn, hợp quy năm 2019 được quy định như thế nào?",
+   "dap_an": [
+    "183/2016/tt-btc+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "120fcf8579bde30e38669aed7eabf477": {
+   "q": "Mệnh giá phát hành tín phiếu Kho bạc là bao nhiêu?",
+   "dap_an": [
+    "95/2018/nđ-cp+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "123bf9c143a2fcd8ec88b98fc44aedfc": {
+   "q": "Đèn báo hiệu trên đường bộ, tại đường ngang là gì?",
+   "dap_an": [
+    "28/2018/tt-bgtvt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "124202371477c7ab40db738fdc9a0ea6": {
+   "q": "Chức trách Thủ quỹ ngân hàng nhà nước trung ương được quy định như thế nào?",
+   "dap_an": [
+    "12/2019/tt-nhnn+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "124a11dffbc4955348d83930ab15981b": {
+   "q": "Mật độ tập luyện môn Judo được quy định cụ thể như thế nào?",
+   "dap_an": [
+    "09/2018/tt-bvhttdl+5"
+   ],
+   "hien_tai": 7,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "125248d5b2bea72dd292de28fec01cf8": {
+   "q": "Nội dung thực hiện khi tổ chức tham gia khóa đào tạo trọn gói của các tổ chức đào tạo xúc tiến thương mại được quy định như thế nào?",
+   "dap_an": [
+    "11/2019/tt-bct+27"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "125726dea13269110042384fa3be5538": {
+   "q": "Công dân có được vừa ứng cử đại biểu HĐND cấp xã và HĐND cấp huyện?",
+   "dap_an": [
+    "85/2015/qh13+36"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 10
+  },
+  "126f7ab24d30d1d4bd87cfea97afae21": {
+   "q": "Tổng giám đốc thuộc công ty nhà nước trong việc thực hiện thí điểm quản lý lao động, tiền lương tại một số tập đoàn kinh tế nhà nước có trách nhiệm gì?",
+   "dap_an": [
+    "20/2020/nđ-cp+16"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1280393cc65268349b688cb75a21f8ee": {
+   "q": "Luật sư không phải xuất trình CMND khi đăng ký bào chữa?",
+   "dap_an": [
+    "101/2015/qh13+78"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "12a5a66af14c73d8418d9a1432733b40": {
+   "q": "Trình tự thực hiện cấp giấy phép lái tàu trên đường sắt đô thị cho người nước ngoài đã có giấy phép lái tàu được quy định như thế nào?",
+   "dap_an": [
+    "33/2018/tt-bgtvt+36"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "12aa2415daa67ab4c04be1c30828a5b1": {
+   "q": "Bị thương tật 25%, cơ quan nhà nước có khởi tố không?",
+   "dap_an": [
+    "12/2017/qh14+1"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "12b143d8b79a82a7ccafa6f5637abb43": {
+   "q": "Doanh nghiệp Việt Nam chịu thuế nhà thầu được không?",
+   "dap_an": [
+    "103/2014/tt-btc+1"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 8
+  },
+  "12cb8b3534bbc346e00126e45704b4fe": {
+   "q": "Trách nhiệm của Ngân hàng Nhà nước về quản lý và phát triển công nghiệp an ninh được quy định như thế nào?",
+   "dap_an": [
+    "63/2020/nđ-cp+20"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "12f6f4d5319c4f664fff7f84ba4584bd": {
+   "q": "Có được yêu cầu mở thủ tục phá sản khi công ty nợ tiền thi công công trình 3 tháng không?",
+   "dap_an": [
+    "51/2014/qh13+4",
+    "51/2014/qh13+5"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "135d01b7fef8b053add57d58c372b442": {
+   "q": "Không có chứng minh có được thăm chồng ở trung tâm cai nghiện không?",
+   "dap_an": [
+    "14/2014/tt-blđtbxh+9"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "136d1504074d05e46ca2e0e06109d0b1": {
+   "q": "Chế độ báo cáo của chủ đầu tư trong Bộ Quốc phòng được quy định như thế nào?",
+   "dap_an": [
+    "99/2017/tt-bqp+22"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "13ad222895d282284bc2f1cd48438f4b": {
+   "q": "Doanh nghiệp được tiết lộ thông tin cá nhân của người sử dụng thông tin trên mạng khi nào?",
+   "dap_an": [
+    "72/2013/nđ-cp+21"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "13e4ba1495cd45809946cf23f4e627a4": {
+   "q": "Việc quyết toán kinh phí đọc và kiểm tra, thẩm định nội dung, tư vấn xử lý xuất bản phẩm lưu chiểu được quy định như thế nào?",
+   "dap_an": [
+    "169/2013/ttlt-btc-btttt+9"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1400472193d1e9803b7adf7de2f2113b": {
+   "q": "Hoạt động giám định tư pháp trong lĩnh vực nông nghiệp và phát triển nông thôn được áp dụng những quy chuẩn, tiêu chuẩn nào?",
+   "dap_an": [
+    "49/2014/tt-bnnptnt+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "14034b5b7ee28cebd2709d7dd51b8815": {
+   "q": "Cưỡi súc vật chạy đua trái phép trên đường giao thông bị phạt bao nhiêu?",
+   "dap_an": [
+    "100/2019/nđ-cp+34"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1409c388d28ba3e54ec3ded95be73025": {
+   "q": "Trưởng tàu cho tàu chạy khi chưa nhận được tín hiệu an toàn bị phạt bao nhiêu tiền?",
+   "dap_an": [
+    "100/2019/nđ-cp+44"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "140e07d52ae5b70b380b9c1e3b7d7c38": {
+   "q": "Gia đình, người giám hộ có trách nhiệm gì trong việc thực hiện quản lý đối tượng được cung cấp dịch vụ công tác xã hội?",
+   "dap_an": [
+    "02/2020/tt-blđtbxh+13"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "142e0483fd375f557561ace15e2aea83": {
+   "q": "Những dịch vụ nào được cung cấp trực tuyến trong việc kiểm soát hộ chiếu công dân Việt Nam?",
+   "dap_an": [
+    "77/2020/nđ-cp+8"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "1465eb09d291e4bdd6b340486ffe558d": {
+   "q": "Mức phạt khi dắt súc vật chạy theo khi đang điều khiển hoặc ngồi trên phương tiện giao thông đường bộ",
+   "dap_an": [
+    "100/2019/nđ-cp+10"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "14abaff7da7786919278833e8114b56a": {
+   "q": "Quy định về thời gian tổ chức diễn đàn trẻ em được quy định như thế nào?",
+   "dap_an": [
+    "29/2019/tt-blđtbxh+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "14b25492501510e80330d1f2e353e358": {
+   "q": "Bom mìn vật nổ sau chiến tranh là gì?",
+   "dap_an": [
+    "18/2019/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "14b3b09fc368317699a66890364bb403": {
+   "q": "“Huân chương Chiến công” hạng nhất thì nhận được bao nhiêu tiền thưởng?",
+   "dap_an": [
+    "38/2019/nđ-cp+3",
+    "91/2017/nđ-cp+70"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "14ea607c1685d34fd3a70b528e050e7a": {
+   "q": "Chủ DNTN ở tù thì sẽ giải quyết công việc tại doanh nghiệp thế nào?",
+   "dap_an": [
+    "59/2020/qh14+193"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "14f682ef0794f5f7aa14ebf0ee716974": {
+   "q": "Mức phạt người được chở trên xe mô tô, xe gắn máy dẫn dắt súc vật, mang vác vật cồng kềnh ?",
+   "dap_an": [
+    "100/2019/nđ-cp+11"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "150e891d2ae9dc86b667065a2038d1a4": {
+   "q": "Công ty không trả lương thì nhân viên có quyền yêu cầu tòa mở thủ tục phá sản công ty không?",
+   "dap_an": [
+    "51/2014/qh13+5"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "151041b72fc8fff65064bbd45ea5377e": {
+   "q": "Người sử dụng lao động có hành vi không thực hiện đối thoại khi đại diện tập thể lao động yêu cầu thì bị xử lý ra sao?",
+   "dap_an": [
+    "28/2020/nđ-cp+14"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "152a0b07eda7149a75936ad02a41eb69": {
+   "q": "Chữ viết và chữ số sử dụng trong kế toán theo Luật kế toán 2003 được quy định như thế nào?",
+   "dap_an": [
+    "03/2003/qh11+12"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1537f97fbfbc86a11e3ab465e154a79e": {
+   "q": "Ai không bị áp dụng hình thức kỷ luật tước danh hiệu quân nhân và buộc thôi việc?",
+   "dap_an": [
+    "16/2020/tt-bqp+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "153f6d535477be696393de2b0c12df20": {
+   "q": "Chính sách đối với người lao động dôi dư khi chuyển đơn vị sự nghiệp công lập thành công ty cổ phần được quy định như thế nào?",
+   "dap_an": [
+    "150/2020/nđ-cp+38"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "15455d0d0757e1f0b630e5fded2eaf75": {
+   "q": "Công bố điều ước quốc tế được quy định như thế nào?",
+   "dap_an": [
+    "161/1999/nđ-cp+14"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1577337883ccbd1b7ec0cd6e620266b0": {
+   "q": "Tổ chức trao tặng danh hiệu thi đua ngành lao động thương binh và xã hội được quy định như thế nào?",
+   "dap_an": [
+    "08/2019/tt-blđtbxh+30"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "15cf1e23471d118aa07fa5b5984d4e7f": {
+   "q": "Chi phí chuyển đổi doanh nghiệp nhà nước tái cơ cấu thành công ty cổ phần được quy định như thế nào?",
+   "dap_an": [
+    "69/2018/tt-btc+10"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "161a69edb9a803e2507224205bba12e4": {
+   "q": "Công cụ đánh giá định kỳ quốc kết quả học tập gia của học sinh được quy định như thế nào?",
+   "dap_an": [
+    "51/2011/tt-bgdđt+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "16496969953f68d7c6ecbc9051391140": {
+   "q": "Kế toán CTCP có được kiêm làm thủ quỹ, thủ kho không?",
+   "dap_an": [
+    "174/2016/nđ-cp+19"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1671f5975fc66940fd05d01ac0fd2214": {
+   "q": "Mức chi thuê chuyên gia tư vấn ứng cứu sự cố, bảo đảm an toàn thông tin mạng được quy định như thế nào?",
+   "dap_an": [
+    "121/2018/tt-btc+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "168dc6cad82af85378b9ec454844b4d0": {
+   "q": "Khí thiên nhiên hóa lỏng là gì?",
+   "dap_an": [
+    "87/2018/nđ-cp+3"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "16a65e83a9fcf0ce797b506919dcc3db": {
+   "q": "Tổ chức nào chủ trì nhiệm vụ khoa học và công nghệ?",
+   "dap_an": [
+    "70/2018/nđ-cp+3"
+   ],
+   "hien_tai": 10,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "16a7b24daaa69c58b1f4c16e4e3b9439": {
+   "q": "Xử phạt khi tiến hành công chứng nhưng không đúng thời hạn quy định pháp luật được quy định như thế nào?",
+   "dap_an": [
+    "82/2020/nđ-cp+15"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "16d0216535e63b657f8b683ac201d53d": {
+   "q": "Khám, tư vấn về dinh dưỡng cho người bệnh ngoại trú về dinh dưỡng, tiết chế được quy định như thế nào?",
+   "dap_an": [
+    "08/2011/tt-byt+1"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "171f240dce4e37ca363e123e7201e949": {
+   "q": "Ai có quyền thành lập công đoàn?",
+   "dap_an": [
+    "12/2012/qh13+5"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "1720de4bc5f0a1632b4f026a769e04c9": {
+   "q": "Mức phạt đối với hành vi không niêm yết công khai giá mua bán hàng dự trữ quốc gia được quy định như thế nào?",
+   "dap_an": [
+    "63/2019/nđ-cp+40"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "177e8e79ac1d78e048839d6074efda0f": {
+   "q": "Các hình thức xử lý kỷ luật khi quân nhân chấp hành không nghiêm quy định về tuần tra, canh gác được quy định như thế nào?",
+   "dap_an": [
+    "16/2020/tt-bqp+25"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17ad1d214574712182c1be8e1ac35b0d": {
+   "q": "Thanh toán giá trị chuyển nhượng dự án đầu tư giữa các nhà đầu tư trong hợp đồng BCC được quy định như thế nào?",
+   "dap_an": [
+    "06/2019/tt-nhnn+10"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17c41fb62e9e8199bfb69804bd7ddb22": {
+   "q": "Phạt đến 200 triệu nếu ép buộc khách, không cho khách mua hàng bên đối thủ?",
+   "dap_an": [
+    "75/2019/nđ-cp+17"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17d1eb958d6a406fb1d6c23b7d2a7493": {
+   "q": "Xử phạt cơ sở khám, chữa bệnh không xác định khuyết tật bẩm sinh đối với trẻ em sơ sinh được quy định như thế nào?",
+   "dap_an": [
+    "144/2013/nđ-cp+10"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17d628a4f4298228ef861ac681644804": {
+   "q": "Ai được hưởng mức hỗ trợ cung cấp dịch vụ viễn thông công ích khẩn cấp được quy định như thế nào?",
+   "dap_an": [
+    "02/2020/tt-btttt+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17dc5678938a81cb2ee3a54145a8f80b": {
+   "q": "Trình thẩm định, phê duyệt chương trình quản lý tổng hợp tài nguyên vùng bờ được quy định như thế nào?",
+   "dap_an": [
+    "40/2016/nđ-cp+16",
+    "40/2016/nđ-cp+17",
+    "49/2017/tt-btnmt+17"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17e5d2344608ff3f096a0ff76e6620bf": {
+   "q": "Đổi tên trường cao đẳng nghề có phải làm lại giấy đăng ký hoạt động dạy nghề không?",
+   "dap_an": [
+    "140/2018/nđ-cp+5"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "17f5547e5a58e77de3e5551a64cfb0be": {
+   "q": "Vùng nguyên liệu mây, tre gồm những gì?",
+   "dap_an": [
+    "11/2011/qđ-ttg+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "17fa4b65c97471951ec3c086fe953a97": {
+   "q": "Không thực hiện các quy định về phát bưu gửi bị phạt bao nhiêu?",
+   "dap_an": [
+    "15/2020/nđ-cp+8"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "1809b67d231c8282904e02138efe5384": {
+   "q": "Xử lý vượt quá định mức trong vấn đề liên quan đến tham nhũng được quy định như thế nào?",
+   "dap_an": [
+    "59/2019/nđ-cp+82"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "181790aebab8ff9a9ce377a90fe0527c": {
+   "q": "Thời hạn hiệu lực quyết định công bố hoạt động bến thủy nội địa phục vụ thi công công trình chính được quy định như thế nào?",
+   "dap_an": [
+    "08/2021/nđ-cp+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1828361c7032b61da67a604432e600ac": {
+   "q": "Kết hợp trong việc lấy ý kiến xây dựng các chiến lược, quy hoạch, dự án phát triển kinh tế - xã hội với quốc phòng được quy định như thế nào?",
+   "dap_an": [
+    "164/2018/nđ-cp+13"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "18338aab4a8fbf1067a6b2d0770ca546": {
+   "q": "Theo quy định pháp luật, cơ sở bảo quản thuốc, nguyên liệu làm thuốc gồm những cơ sở nào?",
+   "dap_an": [
+    "36/2018/tt-byt+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "183c6d8ec1dbcbc066dd318e4e18e44b": {
+   "q": "Trách nhiệm của y tế các Bộ, ngành trong giám sát bệnh, dịch bệnh truyền nhiễm được quy định như thế nào?",
+   "dap_an": [
+    "17/2019/tt-byt+21"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "183e7340c019a295049ba04f666d9e16": {
+   "q": "Mục tiêu của giáo dục nghề nghiệp từ tháng 7/2020 được quy định như thế nào?",
+   "dap_an": [
+    "43/2019/qh14+36"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "184d0ef2223b202cde4122b811df9a23": {
+   "q": "Bộ trưởng, Thủ trưởng cơ quan ngang bộ là ai?",
+   "dap_an": [
+    "76/2015/qh13+32"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1855347ecd4f61d170666c5b41ece651": {
+   "q": "Mục tiêu phát triển khu công nghiệp hỗ trợ được quy định như thế nào?",
+   "dap_an": [
+    "82/2018/nđ-cp+34"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1869e466367711060c8ad37b58a038d9": {
+   "q": "Quỹ hưu trí tự nguyện được quy định như thế nào?",
+   "dap_an": [
+    "115/2013/tt-btc+3"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "186f33210cfd1f6761cec8de0836c335": {
+   "q": "Cảnh giới trong hoạt động giao thông đường sắt là gì?",
+   "dap_an": [
+    "65/2018/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "18934997db41e92c1b5a3c5700fb58ba": {
+   "q": "Mức chi hoạt động công nghiệp hỗ trợ ở địa phương được quy định như thế nào?",
+   "dap_an": [
+    "29/2018/tt-btc+13"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "18d7a37c84f918451752cb50d2e22dc0": {
+   "q": "Kinh doanh vận tải hàng nguy hiểm được hiểu thế nào?",
+   "dap_an": [
+    "10/2020/nđ-cp+9"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "18df2e742366d2468fafbbcb8a01012e": {
+   "q": "Mức phạt hành vi chậm trồng thay thế 0.8 héc ta rừng trên 1 năm là bao nhiêu?",
+   "dap_an": [
+    "35/2019/nđ-cp+15"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "18e38b95de7dae5e56cb1bb2163b05a2": {
+   "q": "Tự ý cắt tỉa cây xanh đô thị có bị xử phạt không?",
+   "dap_an": [
+    "139/2017/nđ-cp+53"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "19010500328ffa687c926e68a1aa9417": {
+   "q": "Quy định việc giao nộp tài liệu đã được đánh giá, xếp loại tài liệu đánh giá chất lượng tài liệu hải văn, môi trường không khí và nước được quy định như thế nào?",
+   "dap_an": [
+    "01/2020/tt-btnmt+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1924c7ae6995609d6104608512b8f93b": {
+   "q": "Dị tật bào thai được hiểu như thế nào?",
+   "dap_an": [
+    "34/2017/tt-byt+2"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "194dcaae7be171f8087b79de9ce17991": {
+   "q": "Nạn nhân bom mìn vật nổ sau chiến tranh là những ai?",
+   "dap_an": [
+    "18/2019/nđ-cp+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1988cc5d15989838e974c8401b64ffa5": {
+   "q": "Có được khấu trừ tiền lương để trả tiền thuê nhà ở công vụ hay không?",
+   "dap_an": [
+    "09/2015/tt-bxd+12"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "199fcec60e486ecacaf7595049bb9db8": {
+   "q": "Đơn vị công lập có được thuê dịch vụ bảo vệ không?",
+   "dap_an": [
+    "06/2013/nđ-cp+7"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "19b6a6007708c3a38d59b58cf08e33f5": {
+   "q": "Quy định về việc quảng cáo rượu, bia có độ cồn dưới 5,5 độ được quy định như thế nào?",
+   "dap_an": [
+    "24/2020/nđ-cp+5"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "19de583ce94cf036016decc3707d794b": {
+   "q": "Thoát nước mưa qua nhà người khác có được không?",
+   "dap_an": [
+    "91/2015/qh13+250"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "19f25d08086fb2e9bf29696ad9c4c9f5": {
+   "q": "Thử nghiệm lâm sàng nghiên cứu y sinh học là gì?",
+   "dap_an": [
+    "45/2017/tt-byt+3"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1a0be9396d94ea8ea9abb32eb4522663": {
+   "q": "Quản lý hoạt động xét nghiệm HIV được quy định như thế nào?",
+   "dap_an": [
+    "49/2018/tt-byt+9"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1a3e6f3530596b0921f54e65ebd20004": {
+   "q": "Người bị bị tuyên bố chết quay về có được đòi tài sản đã chia rồi không?",
+   "dap_an": [
+    "91/2015/qh13+73"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "1a41263de4952f4ff9a7d3a88bc8efcf": {
+   "q": "Trình tự và nội dung làm việc của hội đồng tư vấn tuyển chọn, giao trực tiếp tổ chức chủ trì dự án Chương trình phát triển tài sản trí tuệ được quy định như thế nào?",
+   "dap_an": [
+    "17/2017/tt-bkhcn+17"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1a45ea66ec443af382a2e3382009b5db": {
+   "q": "Khung xếp hạng các tổ chức sự nghiệp thuộc Chính phủ được quy định như thế nào?",
+   "dap_an": [
+    "181/2005/qđ-ttg+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1a4ea7a99f4ba892ec0313d051c0acd0": {
+   "q": "Phải làm gì sau khi nhận được văn bản của Ủy ban Chứng khoán Nhà nước về việc cho phép chấm dứt hoạt động kinh doanh chứng khoán phái sinh?",
+   "dap_an": [
+    "158/2020/nđ-cp+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1a509e547c54a745cfa1fa7976eae6d0": {
+   "q": "Tài liệu khai thác cảng hàng không, sân bay gồm có những gì?",
+   "dap_an": [
+    "05/2021/nđ-cp+54"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1a6404b7ee86e9178fc6f5e81895e705": {
+   "q": "Có phải bồi thường khi gây tai nạn giao thông mà không phải lỗi của mình?",
+   "dap_an": [
+    "91/2015/qh13+584",
+    "91/2015/qh13+585"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "1a6b01cf67f88b62fa94c1f6e84b0dc4": {
+   "q": "Ai có thẩm quyền phê duyệt kế hoạch quản lý khu bảo tồn đất ngập nước?",
+   "dap_an": [
+    "66/2019/nđ-cp+17"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1a7fc2a537de6a27e9da2faa88d4ef79": {
+   "q": "Có phải lập tiến độ thi công xây dựng trước khi triển khai thi công hay không?",
+   "dap_an": [
+    "06/2021/nđ-cp+18"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1a81afea6e7e8a7692e6bd098d6e12de": {
+   "q": "Thẩm quyền bổ nhiệm Thủ trưởng cơ quan thi hành án hình sự Công an cấp tỉnh được quy định như thế nào?",
+   "dap_an": [
+    "25/2012/tt-bca+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1a99570e8b6706d10bf1149b789cd2ac": {
+   "q": "Kho bạc nhà nước có trách nhiệm gì khi được yêu cầu phong tỏa tài khoản của pháp nhân thương mại để thi hành án?",
+   "dap_an": [
+    "44/2020/nđ-cp+14"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "1af9b014fe3e8156e1e5ff8ea9149f16": {
+   "q": "Diện tích làm việc của giáo sư, phó giáo sư, giảng viên chính, giảng viên được xác định là bao nhiêu?",
+   "dap_an": [
+    "03/2020/tt-bgdđt+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1b36aa1fb9276793ec56b235ccd6a090": {
+   "q": "Hoạt động vũ trường quá giờ được phép bị phạt bao nhiêu?",
+   "dap_an": [
+    "158/2013/nđ-cp+19"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1b79029bd531f73c557ec2aea434251f": {
+   "q": "Sở hữu chéo giữa các công ty được hiểu thế nào?",
+   "dap_an": [
+    "96/2015/nđ-cp+16"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1b9aefd60ed95e9a9ddf12ef0f9d5a13": {
+   "q": "Tiêu chí xác định thương nhân áp dụng chế độ Luồng Đỏ được quy định như thế nào?",
+   "dap_an": [
+    "31/2018/nđ-cp+29"
+   ],
+   "hien_tai": 7,
+   "bm25_or_codau_kem_ngucanh": 7
+  },
+  "1ba577c812c0fca18db2c62138a1c0c0": {
+   "q": "Nguyên tắc xử lý kỷ luật đối với cán bộ, công chức, viên chức có hành vi vi phạm pháp luật tố cáo được quy định như thế nào?",
+   "dap_an": [
+    "31/2019/nđ-cp+21"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1ba9f2c2975103a3bdb7f999818987cc": {
+   "q": "Sử dụng trái phép lòng đường đô thị, hè phố để bày bán hàng hóa bị phạt bao nhiêu theo nghị định 100/2019/NĐ-CP?",
+   "dap_an": [
+    "100/2019/nđ-cp+12"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1bb4ae1debdc7c13eea600712cfcf202": {
+   "q": "Quy định về trách nhiệm của cơ quan, tổ chức, cá nhân có yêu cầu giải quyết các thủ tục xuất nhập cảnh được quy định như thế nào?",
+   "dap_an": [
+    "19/2020/tt-bca+10"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1bef3be1686e5da9fdf2af7b0296561d": {
+   "q": "Mức phạt khi điều khiển xe ô tô không có Giấy đăng ký xe theo quy định",
+   "dap_an": [
+    "100/2019/nđ-cp+16"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1c2b655a49e8dff84d8c26afb94bf3dd": {
+   "q": "Xuất khẩu giống thủy sản được quy định như thế nào?",
+   "dap_an": [
+    "26/2019/nđ-cp+23"
+   ],
+   "hien_tai": 3,
+   "bm25_or_codau_kem_ngucanh": 5
+  },
+  "1c4f30814cde360b658f29163a2ae7ed": {
+   "q": "Chi phí tư vấn đầu tư xây dựng được xác định như thế nào?",
+   "dap_an": [
+    "06/2016/tt-bxd+8"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 6
+  },
+  "1c61bdc783536ce84a27232724f1c0bc": {
+   "q": "Quy định về đánh giá năng lực và kinh nghiệm đối với nhà đầu tư dự án PPP được quy định như thế nào?",
+   "dap_an": [
+    "25/2020/nđ-cp+38"
+   ],
+   "hien_tai": 5,
+   "bm25_or_codau_kem_ngucanh": 6
+  },
+  "1c70832565ed76263885d46f692c5897": {
+   "q": "Những chính sách đối với thanh niên tình nguyện sau khi kết thúc hoạt động tình nguyện được quy định như thế nào?",
+   "dap_an": [
+    "17/2021/nđ-cp+12"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1cd7a87b2fd4dab320d7b458e5a257fb": {
+   "q": "Điều kiện về doanh nghiệp siêu nhỏ trong lĩnh vực nông nghiệp?",
+   "dap_an": [
+    "39/2018/nđ-cp+6"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1d035c4462e861e32b7ddb2c60b64c4e": {
+   "q": "Uỷ thác điều tra hình sự được quy định như thế nào?",
+   "dap_an": [
+    "99/2015/qh13+41"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1d1612380cf3f78e58ebf84085c3275d": {
+   "q": "Những trường hợp nào xuất bản phẩm lưu chiểu sau khi thẩm định nội dung cần được tư vấn xử lý?",
+   "dap_an": [
+    "169/2013/ttlt-btc-btttt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1d47bfc92303f89beeeb447b9a5359e1": {
+   "q": "Quy định về chi hỗ trợ hoạt động của các đội tuyên truyền lưu động phòng chống tác hại của rượu, bia được quy định như thế nào?",
+   "dap_an": [
+    "24/2020/nđ-cp+8"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1d90be38e175b86802cc690ad15f9784": {
+   "q": "Mức phạt đối với hành vi điều khiển xe ô tô kinh doanh vận tải hành khách lắp thêm hoặc tháo bớt giường nằm",
+   "dap_an": [
+    "100/2019/nđ-cp+16"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1da598d6f747ac0483679a3d319570a3": {
+   "q": "Trách nhiệm của Ngân hàng nhà nước liên quan tới bảo lãnh Chính phủ được quy định như thế nào?",
+   "dap_an": [
+    "91/2018/nđ-cp+59"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 10
+  },
+  "1da9b523479b6bf650e3253e58e5dc39": {
+   "q": "Thời gian lưu giữ hồ sơ ghi chép theo dõi tình hình sử dụng hóa chất nguy hiểm để thí nghiệm, nghiên cứu khoa học được quy định như thế nào?",
+   "dap_an": [
+    "04/2019/tt-bkhcn+7"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1db62b624ae2b87f0f3915272c6b593c": {
+   "q": "Hàng hóa sản xuất từ nguyên liệu không có xuất xứ khi nào được xem là hàng hóa có xuất xứ?",
+   "dap_an": [
+    "12/2019/tt-bct+7"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1dda095508f14f09e3728b7b8e513664": {
+   "q": "Chưa nộp phạt nên không được đăng kiểm xe ô tô có đúng luật?",
+   "dap_an": [
+    "100/2019/nđ-cp+80"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1de6913e9a24ce334bfebca1cb1115b4": {
+   "q": "Biểu hiện khoáng sản là gì?",
+   "dap_an": [
+    "42/2016/tt-btnmt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1e0e3da3aa08776445e4ae2375cc8faa": {
+   "q": "Quy định về các tình tiết giảm nhẹ khi xử lý kỷ luật trong Quốc phòng được quy định như thế nào?",
+   "dap_an": [
+    "16/2020/tt-bqp+5"
+   ],
+   "hien_tai": 9,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1e2e0aab19fc1425d184ade7c2d32d16": {
+   "q": "Khi nào Công nhân công an được phép chuyển ngành?",
+   "dap_an": [
+    "49/2019/nđ-cp+12"
+   ],
+   "hien_tai": 6,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1e35ec093a47e7dfa02824d2de167f6c": {
+   "q": "Việc ứng dụng mô hình thông tin công trình trong quản lý dự án đầu tư xây dựng được quy định như thế nào?",
+   "dap_an": [
+    "15/2021/nđ-cp+6"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1e9b02928546c77a73c651d3137226fc": {
+   "q": "Trang bị phòng thủ dân sự được quy định như thế nào?",
+   "dap_an": [
+    "02/2019/nđ-cp+8"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1e9f8719d4c0bcd63e8dcae2d94ee5a9": {
+   "q": "Đề nghị/thông báo họp báo của cơ quan đại diện nước ngoài, tổ chức nước ngoài tại Việt Nam được quy định như thế nào?",
+   "dap_an": [
+    "04/2014/tt-btttt+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1eb074da6edd4e778c5dfb50b84132c7": {
+   "q": "Mức phạt khi điều khiển xe máy không gắn biển số ?",
+   "dap_an": [
+    "100/2019/nđ-cp+17"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1ec4d2f3c874489a5bce0e5315d21089": {
+   "q": "Giấy chứng nhận ATTP của cơ sở sản xuất, kinh doanh thực phẩm nông, lâm, thủy sản có hiệu lực bao lâu?",
+   "dap_an": [
+    "38/2018/tt-bnnptnt+17"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1ecb4502c1bbe3df971b66232ab7c54c": {
+   "q": "Hủy bỏ và chấm dứt thế chấp tài sản cho khoản vay, khoản phát hành trái phiếu doanh nghiệp được chính phủ bảo lãnh được quy định như thế nào?",
+   "dap_an": [
+    "91/2018/nđ-cp+33"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1ed07271fb0e3a866ade732e14b4ae2e": {
+   "q": "Vị trí và chức năng của Ban Quản lý Khu Công nghệ cao Hòa Lạc được quy định như thế nào?",
+   "dap_an": [
+    "09/2019/qđ-ttg+1"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1ee560015f9381383ffebb7f2202e514": {
+   "q": "Báo cáo không đúng kết quả cung ứng dịch vụ bưu chính công ích theo quy định của pháp luật bị phạt bao nhiêu tiền?",
+   "dap_an": [
+    "15/2020/nđ-cp+8"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "1f3bcddef86be0dd3db36f1c2d42fa8f": {
+   "q": "Dụng cụ trong ngành tài nguyên môi trường là gì?",
+   "dap_an": [
+    "04/2017/tt-btnmt+3"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "1f6208daffd691d44e83c71e26e0ac28": {
+   "q": "Điều kiện cho phép mở cảng hàng không, sân bay gồm những gì?",
+   "dap_an": [
+    "05/2021/nđ-cp+39"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1f6c99df77252cf954735b0d30f67135": {
+   "q": "Phiếu đồng ý tham gia nghiên cứu y sinh học liên quan đến con người là gì?",
+   "dap_an": [
+    "45/2017/tt-byt+3"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1f84c3dcf0765909a04a28b66b1c6f46": {
+   "q": "Chuyến bay công vụ được định nghĩa như thế nào?",
+   "dap_an": [
+    "194/2016/tt-btc+2"
+   ],
+   "hien_tai": 4,
+   "bm25_or_codau_kem_ngucanh": 4
+  },
+  "1f912d23dc37e77b2ea3138120057a1c": {
+   "q": "Được làm thủ tục đăng ký xe qua mạng không?",
+   "dap_an": [
+    "58/2020/tt-bca+10"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 3
+  },
+  "1f92856c254dd897fa0725e870f84c33": {
+   "q": "Quyền, nghĩa vụ của người hành nghề khám chữa bệnh trong quân đội",
+   "dap_an": [
+    "50/2019/nđ-cp+5"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "1feb065cb11ec46148b2a84ad6eb7588": {
+   "q": "Thu nhập từ công cụ nợ trong giao dịch mua bán lại, giao dịch vay và cho vay được quy định thế nào?",
+   "dap_an": [
+    "30/2019/tt-btc+22"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "201fd2c207f334007fb2b805bc9d6d4a": {
+   "q": "Sở hữu kết quả nghiên cứu đề tài, dự án sản xuất thử nghiệm cấp Bộ Y tế được quy định như thế nào?",
+   "dap_an": [
+    "37/2010/tt-byt+25"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "203b7a56b3577e04b355e786779b164d": {
+   "q": "Trường hợp nào chủ đầu tư được quyền đình chỉ công việc khảo sát xây dựng?",
+   "dap_an": [
+    "15/2021/nđ-cp+28"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "20565ebea64fbf2790d383e11bdb7968": {
+   "q": "Sổ đăng ký thành viên của công ty TNHH có nhất thiết phải là bản giấy không?",
+   "dap_an": [
+    "59/2020/qh14+48"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "205f301fb8f639e508a3f32fd443a62c": {
+   "q": "Doanh nghiệp tư nhân thì có được giảm vốn hoạt động hay không?",
+   "dap_an": [
+    "59/2020/qh14+189"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "2067f0df7e6f943e8f202ede2b9f4d6e": {
+   "q": "Mức phạt khi sử dụng động vật chết do bệnh, dịch để chế biến thực phẩm được quy định như thế nào?",
+   "dap_an": [
+    "115/2018/nđ-cp+4"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "210bdc51993cbd80ed1a3d1aaa76ce27": {
+   "q": "Không bố trí người hướng dẫn, điều khiển giao thông khi thi công ở chỗ đường hẹp bị phạt bao nhiêu?",
+   "dap_an": [
+    "100/2019/nđ-cp+13"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "211b40a2fe7b3c36ec83d3fc2323ae89": {
+   "q": "Mức phạt nếu ngồi trên tay lái mô tô, xe gắn máy ?",
+   "dap_an": [
+    "100/2019/nđ-cp+11"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "211e29e456a552969de2e7a4b9e59ddc": {
+   "q": "Bồi dưỡng kiến thức về hoạt động đo đạc và bản đồ được quy định như thế nào?",
+   "dap_an": [
+    "27/2019/nđ-cp+45"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "212e73779317334763089ad5061395b1": {
+   "q": "Bố mẹ được phép bán đất đứng tên con khi con 16 tuổi không?",
+   "dap_an": [
+    "91/2015/qh13+21"
+   ],
+   "hien_tai": null,
+   "bm25_or_codau_kem_ngucanh": null
+  },
+  "214e417f28345d6f1295b47ce84faab8": {
+   "q": "Các hành vi bị nghiêm cấm khi giao dịch một cửa tại các tổ chức tín dụng được quy định như thế nào?",
+   "dap_an": [
+    "1498/2005/qđ-nhnn+8"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "2150352b55f05165e01f35747f6ff925": {
+   "q": "Yêu cầu đối với cuộc gọi điện thoại quảng cáo như thế nào?",
+   "dap_an": [
+    "91/2020/nđ-cp+21"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "21af785508a99745d6c96af872c530bb": {
+   "q": "Bị xử phạt thế nào nếu sử dụng ưu thế gây khó khăn cho hoạt động cung cấp dịch vụ viễn thông của doanh nghiệp viễn thông khác?",
+   "dap_an": [
+    "15/2020/nđ-cp+23"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  },
+  "21ca0eb7135ee9bf28d07eb604e6ea76": {
+   "q": "Chính phủ có nhiệm vụ, quyền hạn thế nào trong đầu tư theo phương thức PPP?",
+   "dap_an": [
+    "64/2020/qh14+89"
+   ],
+   "hien_tai": 2,
+   "bm25_or_codau_kem_ngucanh": 2
+  },
+  "21e72732508364d2bdb8ae7a979f73be": {
+   "q": "Chi phí điều tra tai nạn lao động hàng hải được quy định ra sao?",
+   "dap_an": [
+    "37/2018/tt-blđtbxh+11"
+   ],
+   "hien_tai": 1,
+   "bm25_or_codau_kem_ngucanh": 1
+  }
+ }
+}

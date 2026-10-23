@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Duyệt liên kết — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Liên kết chưa xác nhận</h1>
+  {% for r in rows %}
+    <div class="row">
+      <p><b>Chế tài</b> {{ r.saddr }}<br>{{ r.stext }}</p>
+      <p><b>Nghĩa vụ</b> {{ r.daddr }}<br>{{ r.dtext }}</p>
+      <form method="post" action="/links/{{ r.id }}/confirm" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button>Đúng</button>
+      </form>
+      <form method="post" action="/links/{{ r.id }}/reject" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button>Sai</button>
+      </form>
+    </div>
+  {% else %}
+    <p>Không còn liên kết chờ duyệt.</p>
+  {% endfor %}
+  </main>
+</body>
+</html>

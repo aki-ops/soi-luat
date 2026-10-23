@@ -1,0 +1,102 @@
+[
+ {
+  "file": "s01",
+  "q": "hạn nhận hồ sơ cấp đổi giấy phép kinh doanh hộ cá nhân",
+  "marker": "15 tháng 11 năm 2026"
+ },
+ {
+  "file": "s01",
+  "q": "Hộ kinh doanh nộp hồ sơ đổi giấy phép đến ngày nào?",
+  "marker": "15 tháng 11 năm 2026"
+ },
+ {
+  "file": "s02",
+  "q": "nghỉ bù sau công tác dài ngày",
+  "marker": "nghỉ bù tối đa 3 ngày"
+ },
+ {
+  "file": "s02",
+  "q": "Đi công tác dài ngày về được nghỉ bù mấy ngày?",
+  "marker": "nghỉ bù tối đa 3 ngày"
+ },
+ {
+  "file": "s03",
+  "q": "rà soát quy hoạch khu tái định cư",
+  "marker": "ra soat quy hoach khu tai dinh cu"
+ },
+ {
+  "file": "s03",
+  "q": "Sở Xây dựng phải rà soát quy hoạch tái định cư trước ngày nào?",
+  "marker": "ra soat quy hoach khu tai dinh cu"
+ },
+ {
+  "file": "s04",
+  "q": "lệ phí môn bài doanh nghiệp siêu nhỏ giảm",
+  "marker": "giảm 50%"
+ },
+ {
+  "file": "s04",
+  "q": "Doanh nghiệp siêu nhỏ có được giảm lệ phí môn bài không?",
+  "marker": "giảm 50%"
+ },
+ {
+  "file": "s05",
+  "q": "phạt không niêm yết giá hàng hóa",
+  "marker": "không niêm yết giá hàng hóa"
+ },
+ {
+  "file": "s05",
+  "q": "Không niêm yết giá bị phạt bao nhiêu?",
+  "marker": "không niêm yết giá hàng hóa"
+ },
+ {
+  "file": "s06",
+  "q": "kiểm tra hồ sơ trong 02 giờ làm việc",
+  "marker": "02 giờ làm việc"
+ },
+ {
+  "file": "s06",
+  "q": "Cán bộ một cửa kiểm tra hồ sơ trong bao lâu?",
+  "marker": "02 giờ làm việc"
+ },
+ {
+  "file": "s07",
+  "q": "miễn tiền thuê đất khắc phục hậu quả bão",
+  "marker": "miễn tiền thuê đất"
+ },
+ {
+  "file": "s07",
+  "q": "Hộ kinh doanh bị bão có được miễn tiền thuê đất không?",
+  "marker": "miễn tiền thuê đất"
+ },
+ {
+  "file": "s08",
+  "q": "giảm tỷ lệ hộ nghèo đa chiều dưới 2,5%",
+  "marker": "2,5%"
+ },
+ {
+  "file": "s08",
+  "q": "Mục tiêu giảm hộ nghèo đa chiều đến cuối năm 2027 là bao nhiêu?",
+  "marker": "2,5%"
+ },
+ {
+  "file": "s09",
+  "q": "bảo hành công trình 24 tháng kể từ ngày nghiệm thu",
+  "marker": "24 tháng"
+ },
+ {
+  "file": "s09",
+  "q": "Nhà thầu phải bảo hành công trình bao lâu?",
+  "marker": "24 tháng"
+ },
+ {
+  "file": "s10",
+  "q": "mật khẩu tối thiểu 12 ký tự",
+  "marker": "12 ký tự"
+ },
+ {
+  "file": "s10",
+  "q": "Mật khẩu phải có độ dài tối thiểu bao nhiêu ký tự?",
+  "marker": "12 ký tự"
+ }
+]

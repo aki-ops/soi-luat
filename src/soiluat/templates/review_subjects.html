@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Đối tượng Q5 — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Danh sách ưu tiên / hạ ưu tiên</h1>
+  <p>So khớp chữ có dấu, ranh giới từ. Cụm một tiếng nên nhập tên đầy đủ.</p>
+  <form method="post" action="/subjects" class="inline-stack">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="text" name="phrase" placeholder="cụm (ví dụ: tổ chức tín dụng)" required>
+    <select name="kind">
+      <option value="uu_tien">Ưu tiên</option>
+      <option value="ha_uu_tien">Hạ ưu tiên</option>
+    </select>
+    <button>Thêm</button>
+  </form>
+  {% for r in rows %}
+    <p>
+      {{ r.kind }} · {{ r.phrase }}
+      <form method="post" action="/subjects/{{ r.id }}/delete" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button>Xóa</button>
+      </form>
+    </p>
+  {% else %}
+    <p>Chưa có cụm.</p>
+  {% endfor %}
+  </main>
+</body>
+</html>

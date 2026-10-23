@@ -1,0 +1,14 @@
+{% set here = request.url.path if request is defined else "" %}
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Soi Luật — trang tra cứu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/><path d="M8 21h8"/></svg>
+      Soi Luật
+    </a>
+    <nav aria-label="Chức năng">
+      {% for href, label in [("/", "Tra cứu"), ("/review", "Duyệt liên kết"), ("/review/hints", "Hiệu lực gợi ý"), ("/review/subjects", "Đối tượng Q5"), ("/review/docs", "Văn bản"), ("/review/synonyms", "Từ điển"), ("/missed", "Truy vấn bỏ sót"), ("/jobs", "Nạp file")] %}
+      <a href="{{ href }}"{% if here == href %} aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>

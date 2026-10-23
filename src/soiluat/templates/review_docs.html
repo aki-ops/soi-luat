@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Văn bản — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Văn bản trong kho</h1>
+  <p>Sửa hiệu lực tại đây. Muốn sửa ranh giới hoặc chữ OCR: sửa file nguồn rồi nạp lại.</p>
+  {% for item in items %}
+    <div class="doc">
+      <p>
+        <b>{{ item.doc.file_path }}</b>
+        · {{ item.doc.so_hieu or "chưa có số hiệu" }}
+        · S={{ "%.2f"|format(item.doc.struct_score or 0) }}
+        · ban hành {{ item.doc.ngay_ban_hanh or "chưa rõ" }}
+        · hiệu lực từ {{ item.doc.ngay_hieu_luc or "chưa rõ" }}
+      </p>
+      <form method="post" action="/docs/{{ item.doc.id }}/hieu-luc" style="margin-bottom:8px">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Hiệu lực
+          <select name="hieu_luc">
+            <option value="chua_ro" {% if item.doc.hieu_luc=='chua_ro' %}selected{% endif %}>Chưa rõ</option>
+            <option value="con" {% if item.doc.hieu_luc=='con' %}selected{% endif %}>Còn</option>
+            <option value="het" {% if item.doc.hieu_luc=='het' %}selected{% endif %}>Hết</option>
+          </select>
+        </label>
+        <button>Lưu</button>
+      </form>
+      <form method="post" action="/docs/{{ item.doc.id }}/so-hieu" style="margin-bottom:8px">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Số hiệu
+          <input name="so_hieu" value="{{ item.doc.so_hieu or '' }}" size="24">
+        </label>
+        <button>Lưu số hiệu</button>
+      </form>
+      {% for u in item.units %}
+        <div class="unit">
+          <a href="/unit/{{ u.id }}">{{ u.path }}</a>
+          ({{ u.level }}, tin cậy {{ "%.2f"|format(u.boundary_confidence or 0) }})
+          — {{ (u.title or u.raw_text or "")[:160] }}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Chưa có văn bản trong kho.</p>
+  {% endfor %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Gợi ý hiệu lực — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Gợi ý thay thế / bãi bỏ</h1>
+  <p>Không tự đổi hiệu lực. Chấp nhận chỉ đánh dấu đã duyệt gợi ý.</p>
+  {% for r in rows %}
+    <div class="row">
+      <p>{{ r.file_path }} · {{ r.so_hieu or "" }} · {{ r.kind }}
+         {% if r.target_so_hieu %}→ {{ r.target_so_hieu }}{% endif %}</p>
+      <p>{{ r.snippet }}</p>
+      <form method="post" action="/hints/{{ r.id }}/confirm" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button>Đúng</button>
+      </form>
+      <form method="post" action="/hints/{{ r.id }}/reject" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button>Sai</button>
+      </form>
+    </div>
+  {% else %}
+    <p>Không còn gợi ý chờ duyệt.</p>
+  {% endfor %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,109 @@
+term,alt,kind,approved
+BHXH,bảo hiểm xã hội,viet_tat,1
+BHYT,bảo hiểm y tế,viet_tat,1
+BHTN,bảo hiểm thất nghiệp,viet_tat,1
+GTGT,giá trị gia tăng,viet_tat,1
+VAT,giá trị gia tăng,viet_tat,1
+TNDN,thu nhập doanh nghiệp,viet_tat,1
+TNCN,thu nhập cá nhân,viet_tat,1
+TTĐB,tiêu thụ đặc biệt,viet_tat,1
+NNT,người nộp thuế,viet_tat,1
+MST,mã số thuế,viet_tat,1
+HĐĐT,hóa đơn điện tử,viet_tat,1
+HĐĐT,hoá đơn điện tử,viet_tat,1
+NSNN,ngân sách nhà nước,viet_tat,1
+KBNN,Kho bạc Nhà nước,viet_tat,1
+BCTC,báo cáo tài chính,viet_tat,1
+TSCĐ,tài sản cố định,viet_tat,1
+XNK,xuất nhập khẩu,viet_tat,1
+PCCC,phòng cháy và chữa cháy,viet_tat,1
+PCCC,phòng cháy chữa cháy,viet_tat,1
+CNCH,cứu nạn cứu hộ,viet_tat,1
+ĐTM,đánh giá tác động môi trường,viet_tat,1
+BVMT,bảo vệ môi trường,viet_tat,1
+CTNH,chất thải nguy hại,viet_tat,1
+HĐLĐ,hợp đồng lao động,viet_tat,1
+NLĐ,người lao động,viet_tat,1
+NSDLĐ,người sử dụng lao động,viet_tat,1
+ATVSLĐ,an toàn vệ sinh lao động,viet_tat,1
+ATLĐ,an toàn lao động,viet_tat,1
+VSLĐ,vệ sinh lao động,viet_tat,1
+BLLĐ,Bộ luật Lao động,viet_tat,1
+BLDS,Bộ luật Dân sự,viet_tat,1
+BLHS,Bộ luật Hình sự,viet_tat,1
+TCTD,tổ chức tín dụng,viet_tat,1
+NHNN,Ngân hàng Nhà nước,viet_tat,1
+NHTM,ngân hàng thương mại,viet_tat,1
+UBND,Ủy ban nhân dân,viet_tat,1
+UBND,Uỷ ban nhân dân,viet_tat,1
+HĐND,Hội đồng nhân dân,viet_tat,1
+CQNN,cơ quan nhà nước,viet_tat,1
+TTHC,thủ tục hành chính,viet_tat,1
+VPHC,vi phạm hành chính,viet_tat,1
+XLVPHC,xử lý vi phạm hành chính,viet_tat,1
+VSATTP,vệ sinh an toàn thực phẩm,viet_tat,1
+ATTP,an toàn thực phẩm,viet_tat,1
+KCN,khu công nghiệp,viet_tat,1
+KKT,khu kinh tế,viet_tat,1
+GPXD,giấy phép xây dựng,viet_tat,1
+GCN,giấy chứng nhận,viet_tat,1
+QSDĐ,quyền sử dụng đất,viet_tat,1
+GCNQSDĐ,giấy chứng nhận quyền sử dụng đất,viet_tat,1
+CCCD,căn cước công dân,viet_tat,1
+CMND,chứng minh nhân dân,viet_tat,1
+ĐKKD,đăng ký kinh doanh,viet_tat,1
+GCNĐKDN,giấy chứng nhận đăng ký doanh nghiệp,viet_tat,1
+DNNN,doanh nghiệp nhà nước,viet_tat,1
+DNNVV,doanh nghiệp nhỏ và vừa,viet_tat,1
+DNTN,doanh nghiệp tư nhân,viet_tat,1
+CTCP,công ty cổ phần,viet_tat,1
+TNHH,trách nhiệm hữu hạn,viet_tat,1
+HTX,hợp tác xã,viet_tat,1
+HKD,hộ kinh doanh,viet_tat,1
+HĐQT,hội đồng quản trị,viet_tat,1
+ĐHĐCĐ,đại hội đồng cổ đông,viet_tat,1
+TMĐT,thương mại điện tử,viet_tat,1
+SHTT,sở hữu trí tuệ,viet_tat,1
+GPLX,giấy phép lái xe,viet_tat,1
+GTVT,giao thông vận tải,viet_tat,1
+QLTT,quản lý thị trường,viet_tat,1
+ký hợp đồng,giao kết hợp đồng,dien_dat,0
+ký kết hợp đồng,giao kết hợp đồng,dien_dat,0
+xin giấy phép,đề nghị cấp giấy phép,dien_dat,0
+xin cấp,đề nghị cấp,dien_dat,0
+xuất hóa đơn,lập hóa đơn,dien_dat,0
+xuất hoá đơn,lập hoá đơn,dien_dat,0
+hủy dữ liệu,xóa dữ liệu,dien_dat,0
+huỷ dữ liệu,xoá dữ liệu,dien_dat,0
+bình chữa cháy,phương tiện chữa cháy,dien_dat,0
+bình chữa cháy,phương tiện phòng cháy và chữa cháy,dien_dat,0
+mua sắm,trang bị,dien_dat,0
+tờ khai thuế,hồ sơ khai thuế,dien_dat,0
+tờ khai,hồ sơ khai,dien_dat,0
+gửi hồ sơ,nộp hồ sơ,dien_dat,0
+gửi tờ khai,nộp hồ sơ khai,dien_dat,0
+khai thuế,kê khai thuế,dien_dat,0
+nộp thuế muộn,chậm nộp tiền thuế,dien_dat,0
+nộp tiền bảo hiểm xã hội,đóng bảo hiểm xã hội,dien_dat,0
+trả lương,thanh toán tiền lương,dien_dat,0
+tiền làm thêm giờ,tiền lương làm thêm giờ,dien_dat,0
+đuổi việc,sa thải,dien_dat,0
+nghỉ việc,chấm dứt hợp đồng lao động,dien_dat,0
+thôi việc,chấm dứt hợp đồng lao động,dien_dat,0
+người làm công,người lao động,dien_dat,0
+lương tối thiểu,mức lương tối thiểu,dien_dat,0
+chậm,không đúng thời hạn,dien_dat,0
+trễ hạn,quá thời hạn,dien_dat,0
+quá hạn,quá thời hạn,dien_dat,0
+dán nhãn,ghi nhãn,dien_dat,0
+rác thải,chất thải,dien_dat,0
+rác thải nguy hại,chất thải nguy hại,dien_dat,0
+thông tin cá nhân,dữ liệu cá nhân,dien_dat,0
+rò rỉ dữ liệu,lộ lọt dữ liệu,dien_dat,0
+sổ đỏ,giấy chứng nhận quyền sử dụng đất,dien_dat,0
+bằng lái xe,giấy phép lái xe,dien_dat,0
+chứng minh thư,chứng minh nhân dân,dien_dat,0
+công ty,doanh nghiệp,dien_dat,0
+giấy phép kinh doanh,giấy chứng nhận đăng ký doanh nghiệp,dien_dat,0
+đóng cửa doanh nghiệp,giải thể doanh nghiệp,dien_dat,0
+nghiêm cấm,cấm,dien_dat,0

@@ -1,0 +1,68 @@
+{% set HL = {"con": "Còn hiệu lực", "het": "Hết hiệu lực", "chua_ro": "Hiệu lực chưa rõ"} %}
+{% set LS = {"da_xac_nhan": "liên kết đã duyệt", "may_goi_y": "liên kết máy gợi ý", "chua_noi": "chưa nối chế tài"} %}
+{% if q2_note %}
+  <p class="warn notice">{{ q2_note }}</p>
+{% endif %}
+{% if q and not cards %}
+  <div class="empty">
+  {% if empty_kho %}
+    <p><b>Kho chưa có văn bản.</b></p>
+    <p>Nạp file tại <a href="/jobs">Nạp file</a> rồi tìm lại.</p>
+  {% else %}
+    <p><b>Không tìm thấy quy định khớp với «{{ q }}» trong kho.</b></p>
+    <p class="note">Thử từ khoá ngắn hơn, bỏ bộ lọc, hoặc gõ số hiệu văn bản.</p>
+    {% if hints %}
+      <p>Gợi ý từ điển: {{ hints | join(", ") }}</p>
+    {% endif %}
+  {% endif %}
+  </div>
+{% endif %}
+{% if cards %}
+  <div class="summary" role="list" aria-label="Tóm tắt kết quả">
+    <div class="stat r1" role="listitem"><b>{{ n.n1 }}</b><span>rủi ro, liên kết đã duyệt</span></div>
+    <div class="stat r2" role="listitem"><b>{{ n.n2 }}</b><span>rủi ro có chế tài</span></div>
+    <div class="stat r3" role="listitem"><b>{{ n.n3 }}</b><span>rủi ro chưa rõ chế tài</span></div>
+    <div class="stat r4" role="listitem"><b>{{ n.n4 }}</b><span>quy định liên quan</span></div>
+  </div>
+  <form method="post" action="/export">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {% for c in cards %}
+      {% set dt = dates.get(c.unit_ids[0]) if (dates is defined and c.unit_ids) else none %}
+      <article class="card r{{ c.rank }}{% if c.grey %} grey{% endif %}">
+        <div class="chead">
+          <span class="badge r{{ c.rank }}">{{ c.kind }}</span>
+          {% if c.intent is defined and c.intent == "muc_phat" %}<span class="badge">Ý định: mức phạt</span>{% endif %}
+          <label class="pick"><input type="checkbox" name="uid" value="{{ c.unit_ids[0] }}"> Chọn xuất</label>
+        </div>
+        <h2>{{ c.title }}</h2>
+        {% if c.sample %}<p class="sample">{{ c.sample }}</p>{% endif %}
+        {% if c.duty_text %}
+          <div class="law">{{ c.duty_text }}<div class="cite">{{ c.duty_addr }}</div></div>
+        {% endif %}
+        {% if c.sanction_text %}
+          <div class="law sanction"><span class="law-tag">Chế tài</span>{{ c.sanction_text }}<div class="cite">{{ c.sanction_addr }}</div></div>
+        {% endif %}
+        {% if c.notes is defined %}{% for nt in c.notes[:3] %}<p class="note">Ghi chú: {{ nt }}</p>{% endfor %}{% endif %}
+        <div class="meta">
+          <span class="badge {{ c.hieu_luc }}">{{ HL.get(c.hieu_luc, c.hieu_luc) }}</span>
+          {% if c.so_hieu %}<span class="m">{{ c.so_hieu }}</span>{% endif %}
+          {% if card_pages(c) %}<span class="m">{{ card_pages(c) }}</span>{% endif %}
+          {% if dt and dt.ngay_ban_hanh %}<span class="m">ban hành {{ dt.ngay_ban_hanh }}</span>{% endif %}
+          {% if dt and dt.ngay_hieu_luc %}<span class="m">hiệu lực từ {{ dt.ngay_hieu_luc }}</span>{% endif %}
+          {% if c.link_status %}<span class="m">{{ LS.get(c.link_status, c.link_status) }}</span>{% endif %}
+          {% if c.synonym_note %}<span class="m">khớp theo từ đồng nghĩa</span>{% endif %}
+          {% if c.match_tier == 7 %}<span class="m">tìm theo nghĩa, không chung từ khoá</span>{% endif %}
+        </div>
+        {% if c.warnings %}<p class="warn">⚠ {{ c.warnings | join(" · ") }}</p>{% endif %}
+        <div class="cfoot">
+          {% if c.file_path %}<span class="file" title="{{ c.file_path }}">{{ c.file_path }}</span>{% endif %}
+          {% if c.unit_ids %}<a class="src" href="/unit/{{ c.unit_ids[0] }}">Xem nguồn →</a>{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+    <div class="export-bar">
+      <span class="note">Đánh dấu “Chọn xuất” trên thẻ rồi xuất ra Word.</span>
+      <button type="submit" class="primary">Xuất Word các thẻ đã chọn</button>
+    </div>
+  </form>
+{% endif %}

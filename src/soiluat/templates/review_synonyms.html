@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Từ điển — Soi Luật</title>
+  {% include "_style.html" %}
+</head>
+<body>
+  {% include "_nav.html" %}
+  <main class="wrap">
+  <h1>Từ điển đồng nghĩa / viết tắt</h1>
+  <p>Chỉ cặp <b>đã duyệt</b> được dùng khi tìm. Cặp người duyệt tự thêm được duyệt luôn.</p>
+  <form method="post" action="/synonyms" class="inline-stack">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <input type="text" name="term" placeholder="từ người dùng gõ (ví dụ: BHXH)" required>
+    <input type="text" name="alt" placeholder="cách viết trong văn bản (bảo hiểm xã hội)" required>
+    <input type="text" name="kind" list="kinds" placeholder="loại" value="dong_nghia" size="12">
+    <datalist id="kinds">{% for k in kinds %}<option value="{{ k }}">{% endfor %}</datalist>
+    <button>Thêm</button>
+  </form>
+  {% for group, label in [(0, "Chờ duyệt"), (1, "Đã duyệt")] %}
+    {% set items = rows | selectattr("approved", "equalto", group) | list %}
+    <h2>{{ label }} ({{ items | length }})</h2>
+    <div class="table-scroll"><table>
+      <tr><th>từ</th><th>thay bằng</th><th>loại</th><th></th></tr>
+      {% for r in items %}
+        <tr>
+          <td>{{ r.term }}</td>
+          <td>{{ r.alt }}</td>
+          <td>{{ r.kind }}</td>
+          <td>
+            <form method="post" action="/synonyms/{{ r.id }}/approve">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <input type="hidden" name="approved" value="{{ 0 if r.approved else 1 }}">
+              <button>{{ "Bỏ duyệt" if r.approved else "Duyệt" }}</button>
+            </form>
+            <form method="post" action="/synonyms/{{ r.id }}/delete">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <button>Xoá</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="4">Không có cặp.</td></tr>
+      {% endfor %}
+    </table></div>
+  {% endfor %}
+  </main>
+</body>
+</html>
