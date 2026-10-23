@@ -269,4 +269,4 @@ def test_export_has_page_file_notes_warnings(tmp_path):
     assert "Hạng" in text and "Điều 5 khoản 1" in text
     assert "Ghi chú cuối trang" in text
     assert "OCR chưa xác minh" in text
-    assert "Hiệu lực: chua_ro" in text
+    assert "Hiệu lực chưa rõ" in text and "chua_ro" not in text

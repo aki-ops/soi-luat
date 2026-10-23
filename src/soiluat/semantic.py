@@ -24,6 +24,9 @@ TOP = 20  # số Điều đầu của BM25 được xếp lại; tham số chọ
 RRF_K = 5
 W = 1.0
 DENSE_K = 20  # Advance: Điều gần nghĩa nhất toàn kho thêm vào ứng viên (cả khi không chung chữ nào); 0 = chỉ xếp lại
+# cosine tối thiểu của Điều thêm: kho Zalo, câu vô nghĩa ("?", "asdf", "xin chào"…) cao nhất 0,47; Điều đáp án
+# 96% ≥ 0,50. Riêng cho MODEL_NAME này: đổi mô hình thì đo lại
+DENSE_MIN = 0.50
 Q_PRE = "task: search result | query: "
 D_PRE = "title: {t} | text: "
 
@@ -219,7 +222,7 @@ def rerank(conn: sqlite3.Connection, query: str, ids: list[int], doc_ids: list[i
     score = {r: 1 / (RRF_K + b) + W / (RRF_K + dense.get(r, b)) for b, r in enumerate(top, 1)}
     bm = {r: b for b, r in enumerate(order, 1)}
     if DENSE_K and len(all_ids):
-        ok = np.isin(all_docs, doc_ids) if doc_ids else np.ones(len(all_ids), bool)
+        ok = (np.isin(all_docs, doc_ids) if doc_ids else np.ones(len(all_ids), bool)) & (sim_all >= DENSE_MIN)
         best = [int(all_ids[k]) for k in np.argsort(-np.where(ok, sim_all, -np.inf))[:DENSE_K] if ok[k]]
         # Chỉ thêm, không xáo TOP: hạng theo nghĩa của Điều thêm tính trên toàn kho, TOP giữ điểm như trên.
         # Có ở BM25 sau TOP thì cộng hạng BM25 đó; không có thì chỉ điểm theo nghĩa (≤ 1/(RRF_K+1): không vượt hạng 1)

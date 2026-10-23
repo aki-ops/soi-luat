@@ -6,6 +6,8 @@ from docx import Document
 
 from soiluat.cards import OCR_LABEL, Card
 
+HIEU_LUC = {"con": "Còn hiệu lực", "het": "Hết hiệu lực", "chua_ro": "Hiệu lực chưa rõ"}  # như _results.html
+
 
 def page_label(page_from, page_to=None) -> str:
     """"Trang x" hoặc "Trang x–y"; rỗng khi chưa biết trang."""
@@ -31,7 +33,7 @@ def export_cards(cards: list[Card], dest: Path) -> None:
     for c in cards:
         doc.add_heading(c.kind + " — " + (c.title or ""), level=1)
         addr = c.duty_addr or c.sanction_addr or c.so_hieu
-        meta = [f"Hạng {c.rank}", addr, card_pages(c), c.file_path, f"Hiệu lực: {c.hieu_luc}"]
+        meta = [f"Hạng {c.rank}", addr, card_pages(c), c.file_path, HIEU_LUC.get(c.hieu_luc, c.hieu_luc)]
         doc.add_paragraph(" · ".join(x for x in meta if x))
         if c.sample:
             doc.add_paragraph(c.sample)

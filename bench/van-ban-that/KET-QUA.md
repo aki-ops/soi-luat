@@ -183,4 +183,6 @@ Sửa (`semantic.rerank`, `DENSE_K = 20`): ở Advance thêm 20 Điều gần ng
 
 Câu đổi hạng trong 84 câu: 24/2026 "khí cười N2O" 22 → **5**; 27/2026 "bốc xếp thủ công vật nặng" không ra → 12; 391 Điều 60 22 → 30 (đều ngoài top 10 trước và sau). Normal không đổi (không gọi vector).
 
-Hạn chế: ghi chú và câu hỏi do người đo tự viết, chỉ 6 câu; ghi chú tìm ra nhưng ở hạng 7–21, chưa phải đầu. Trên bộ Zalo (788 câu, kho nhúng đủ 61 nghìn Điều): Hit@1/3/5 không đổi, Hit@10 91,9 → 92,5%; xem `bench/zalo/KET-QUA.md`. Kịch bản: `realtools/notes_exp2.py`, `run_k.py` trong scratchpad của phiên đo (không đưa vào dự án).
+Hạn chế: ghi chú và câu hỏi do người đo tự viết, chỉ 6 câu; ghi chú tìm ra nhưng ở hạng 7–21, chưa phải đầu. Trên bộ Zalo (788 câu, kho nhúng đủ 61 nghìn Điều): Hit@1/3/5 không đổi, Hit@10 91,9 → 92,5%; xem `bench/zalo/KET-QUA.md`.
+
+Sau đó thêm ngưỡng cosine 0,50 cho Điều thêm từ vector (câu vô nghĩa không còn nhận 20 thẻ bịa; lý do và số đo ở `bench/zalo/KET-QUA.md`). Đo lại trên kho này: 84 câu y như bảng trên (rộng 73,8 / 96,4 / 97,6 / 97,6%), số thẻ trung bình 48,8 → 40,5; ghi chú tìm ra **5 / 6** (hạng 7, 8, 8, 8, 21) — ghi chú học bạ (cosine < 0,50) không còn, và 27/2026 với câu giàn giáo lại không ra. Xuất Word thẻ "tìm theo nghĩa": tạo file bình thường; Word không ghi mức khớp của thẻ nào (kể cả đồng nghĩa), chỉ nội dung quy định. Kịch bản: `realtools/notes_exp2.py`, `run_k.py` trong scratchpad của phiên đo (không đưa vào dự án).

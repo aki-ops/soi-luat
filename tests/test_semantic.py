@@ -88,6 +88,9 @@ def test_rerank_adds_dense_match_bm25_missed(db, doc, fake, monkeypatch):
     # BM25 chỉ ra D1, D2 (không chung chữ với D3); vector toàn kho thêm D3 — chỉ có điểm theo nghĩa nên đứng sau
     assert semantic.rerank(db, "đội mũ khi đi xe", [a, b]) == [a, b, c]
     assert semantic.rerank(db, "đội mũ khi đi xe", []) == [c]  # BM25 không ra gì vẫn có kết quả
+    monkeypatch.setattr(semantic, "DENSE_MIN", 0.9)  # "giá thuế mũ" giống mỗi Điều ~0,58: không Điều nào đủ ngưỡng
+    assert semantic.rerank(db, "giá thuế mũ", []) == []  # không bịa kết quả khi chẳng gì đủ gần
+    monkeypatch.setattr(semantic, "DENSE_MIN", 0.5)
     # chỉ thêm, không xáo: thứ tự các Điều BM25 tìm ra giống hệt khi tắt phần thêm
     with_k = [i for i in semantic.rerank(db, "đội mũ khi đi xe", [b, c, a]) if i in (a, b, c)]
     monkeypatch.setattr(semantic, "DENSE_K", 0)
@@ -101,7 +104,8 @@ def test_dense_only_card_marked_and_note_titled_by_file(db, doc, fake, tmp_path)
     from soiluat.cards import assemble_cards
 
     note = tmp_path / "kn-tien.txt"
-    note.write_text("Ra quán hỏi trước bảng giá rồi mới gọi món.\n", encoding="utf-8")  # chỉ chung "giá" theo nghĩa
+    # FakeEncoder so chuỗi con nên "mũi" giống nghĩa "mũ"; BM25 coi là hai từ khác nhau
+    note.write_text("Bị đau mũi thì nên đi khám sớm.\n", encoding="utf-8")
     ingest_path(db, note, tmp_path)
     semantic.embed_roots(db, fake, semantic.missing_roots(db))
     r = search.cascade_search(db, "mũ")  # BM25 chỉ ra D3; vector thêm cả ghi chú dù không chung chữ
