@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
+import sys
 import time
 from pathlib import Path
 
@@ -33,7 +34,12 @@ D_PRE = "title: {t} | text: "
 
 def model_dir() -> Path:
     raw = os.environ.get("SOILUAT_MODEL_DIR")
-    return Path(raw) if raw else data_dir() / "models" / "embeddinggemma"
+    if raw:
+        return Path(raw)
+    path = data_dir() / "models" / "embeddinggemma"
+    if not path.exists() and getattr(sys, "frozen", False):  # bản đóng gói: models\ cạnh SoiLuat\ và SoiLuatImporter\
+        return Path(sys.executable).resolve().parent.parent / "models" / "embeddinggemma"
+    return path
 
 
 class Encoder:

@@ -143,10 +143,17 @@ powershell -File pack\build.ps1
 
 Ra `dist\SoiLuat\SoiLuat.exe` và `dist\SoiLuatImporter\SoiLuatImporter.exe` (onedir). Search App **không** kèm Tesseract. Copy **cả thư mục `dist`** (giữ hai thư mục cạnh nhau để nút Nạp tìm được Importer), không cần cài Python trên máy chạy.
 
-Kèm OCR vào bản đóng gói:
+Bản đủ (OCR tiếng Việt + Advance); máy build cần thêm onnxruntime, tokenizers, numpy:
 
 ```text
-powershell -File pack\build.ps1 -Tesseract "C:\Program Files\Tesseract-OCR" -VieData duong\toi\vie.traineddata
+powershell -File pack\build.ps1 -Tesseract "C:\Program Files\Tesseract-OCR" -VieData duong\toi\vie.traineddata -Model duong\toi\embeddinggemma
 ```
 
-Ra `dist\SoiLuatImporter\tesseract\` (có `tessdata\vie.traineddata`); Importer tự tìm thư mục này. Không kèm thì máy chạy cài Tesseract như mục trên.
+| Thư mục trong `dist` | Dung lượng (đo 23/10/2026) |
+|---|---|
+| `SoiLuat\` (Search App, kèm thư viện Advance) | 142 MB |
+| `SoiLuatImporter\` (gồm `tesseract\`: chỉ `tesseract.exe` + DLL nó cần, `tessdata` chỉ `vie` + `osd` để xoay trang) | 289 MB |
+| `models\embeddinggemma\` (mô hình Advance) | 315 MB |
+| **Tổng** | **~737 MB** |
+
+Bản đóng gói dùng Tesseract và mô hình đi kèm trước bản cài trên máy. Không kèm dữ liệu: kho `data\` được tạo trống ở thư mục chạy lần đầu. Bỏ `-Model` thì Advance báo "Chưa cài mô hình" (Normal vẫn chạy); bỏ `-Tesseract`/`-VieData` thì máy chạy phải cài Tesseract như mục trên.

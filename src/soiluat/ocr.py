@@ -32,6 +32,8 @@ def find_tesseract() -> str | None:
     if env:
         p = Path(env)
         cands.append(p / "tesseract.exe" if p.is_dir() else p)
+    if getattr(sys, "frozen", False):  # bản đóng gói dùng Tesseract đi kèm trước bản cài trên máy
+        cands.append(Path(sys.executable).parent / "tesseract" / "tesseract.exe")
     which = shutil.which("tesseract")
     if which:
         cands.append(Path(which))
@@ -39,8 +41,6 @@ def find_tesseract() -> str | None:
     lad = _localappdata()
     if lad:
         cands.append(lad / "Programs" / "Tesseract-OCR" / "tesseract.exe")
-    if getattr(sys, "frozen", False):
-        cands.append(Path(sys.executable).parent / "tesseract" / "tesseract.exe")
     for c in cands:
         if c.is_file():
             return str(c)
@@ -54,10 +54,13 @@ def find_tessdata(tesseract_cmd: str | None) -> tuple[str | None, list[str]]:
         v = os.environ.get(var)
         if v:
             cands += [Path(v), Path(v) / "tessdata"]
+    bundled = getattr(sys, "frozen", False) and tesseract_cmd is not None
+    if bundled:  # bản đóng gói: tessdata đi kèm Tesseract trước
+        cands.append(Path(tesseract_cmd).parent / "tessdata")
     lad = _localappdata()
     if lad:
         cands += [lad / "SoiLuat" / "tessdata", lad / "SoiLuatDemo" / "tessdata"]
-    if tesseract_cmd:
+    if tesseract_cmd and not bundled:
         cands.append(Path(tesseract_cmd).parent / "tessdata")
     for c in cands:
         if (c / "vie.traineddata").is_file():

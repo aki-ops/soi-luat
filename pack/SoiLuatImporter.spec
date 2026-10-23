@@ -9,6 +9,9 @@ ROOT = Path(SPECPATH).parent
 datas = collect_data_files("soiluat")
 # win32com: đổi .doc/.rtf qua Word COM (tuỳ chọn, cần pywin32 trên máy build)
 hidden = collect_submodules("soiluat") + [
+    "onnxruntime",
+    "tokenizers",
+    "numpy",
     "pytesseract",
     "PIL",
     "soiluat.convert",
@@ -29,7 +32,12 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=["torch", "onnxruntime", "llama_cpp", "cv2"],
+    # Advance (semantic.py) cần onnxruntime + tokenizers + numpy; bỏ phần onnxruntime không dùng khi chỉ chạy suy luận
+    excludes=["cv2", "torch", "onnx", "llama_cpp", "sympy", "huggingface_hub",
+              "onnxruntime.transformers", "onnxruntime.quantization", "onnxruntime.tools",
+              # numpy kéo theo thư viện tuỳ chọn có trên máy build (+~400 MB) mà app không import
+              "pandas", "scipy", "matplotlib", "pyarrow", "numba", "llvmlite", "botocore", "boto3",
+              "IPython", "tkinter", "sklearn"],
     noarchive=False,
 )
 pyz = PYZ(a.pure)

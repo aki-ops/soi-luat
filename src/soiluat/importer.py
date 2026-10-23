@@ -118,8 +118,9 @@ def main(argv: list[str] | None = None) -> int:
     if not args.nhung and (semantic.model_dir() / "tokenizer.json").exists():
         n = semantic.pending(conn)
         if n:
+            cmd = "SoiLuatImporter.exe" if getattr(sys, "frozen", False) else "python -m soiluat.importer"
             print(f"Còn {n} Điều chưa có vector theo nghĩa (vẫn tìm được bằng BM25). "
-                  "Tính nền: python -m soiluat.importer --nhung --nen")
+                  f"Tính nền: {cmd} --nhung --nen")
     conn.close()
     return rc or (1 if counts["loi"] else 0)
 

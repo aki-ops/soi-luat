@@ -50,6 +50,24 @@ def test_ocr_status_tessdata_beside_exe_and_localappdata(tmp_path, monkeypatch):
     assert ocr.find_tessdata(str(exe))[0] == str(lad)  # %LOCALAPPDATA%\SoiLuat đứng trước
 
 
+def test_frozen_prefers_bundled_tesseract_and_tessdata(tmp_path, monkeypatch):
+    import sys
+
+    _isolate(monkeypatch, tmp_path)
+    app = tmp_path / "SoiLuatImporter" / "SoiLuatImporter.exe"
+    exe = app.parent / "tesseract" / "tesseract.exe"
+    (exe.parent / "tessdata").mkdir(parents=True)
+    exe.write_bytes(b"")
+    (exe.parent / "tessdata" / "vie.traineddata").write_bytes(b"")
+    lad = tmp_path / "lad" / "SoiLuat" / "tessdata"  # máy dùng cũng có tessdata riêng
+    lad.mkdir(parents=True)
+    (lad / "vie.traineddata").write_bytes(b"")
+    monkeypatch.setattr(sys, "frozen", True, raising=False)
+    monkeypatch.setattr(sys, "executable", str(app))
+    assert ocr.find_tesseract() == str(exe)
+    assert ocr.find_tessdata(str(exe))[0] == str(exe.parent / "tessdata")
+
+
 def test_ocr_status_missing_vie_message(tmp_path, monkeypatch):
     _isolate(monkeypatch, tmp_path)
     monkeypatch.setattr(ocr, "find_tesseract", lambda: None)
