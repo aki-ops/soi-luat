@@ -4,11 +4,13 @@
 #   tesseract\                  -Tesseract: chỉ tesseract.exe + DLL nó cần, tessdata chỉ vie + osd (xoay trang)
 #   models\embeddinggemma\      -Model: mô hình cho chế độ Advance (thiếu thì Advance báo chưa cài)
 # Không kèm kho dữ liệu: data\ tạo trống ở thư mục chạy lần đầu.
+# -Setup: thêm bước đóng MỘT file cài đặt SoiLuat-Setup.exe (Inno Setup 6, cài cho người dùng, không cần admin).
 # Cần thêm trên máy build cho Advance: onnxruntime, tokenizers, numpy (không có thì bản đóng gói chỉ chạy Normal).
 param(
     [string]$Out = "dist",
     [string]$Tesseract = "",   # thư mục cài Tesseract 5 (vd. "C:\Program Files\Tesseract-OCR")
     [string]$VieData = "",     # đường dẫn vie.traineddata (bản UB-Mannheim mặc định chỉ có eng/osd)
+    [switch]$Setup,            # thêm: đóng thành MỘT file cài đặt $Out\SoiLuat-Setup.exe (cần Inno Setup 6)
     [string]$Model = ""        # thư mục mô hình EmbeddingGemma (tokenizer.json, onnx\model_quantized.onnx[_data])
 )
 $ErrorActionPreference = "Stop"
@@ -43,3 +45,11 @@ if ($Model) {
 if (-not (Test-Path (Join-Path $app "SoiLuat.exe"))) { throw "Thiếu SoiLuat.exe" }
 Write-Host "Xong: $app\SoiLuat.exe"
 Write-Host "Copy cả thư mục $app. App chỉ nghe 127.0.0.1, cổng 8000 (bận thì 8001-8020)."
+if ($Setup) {
+    $iscc = @("$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe", "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe",
+              "$env:ProgramFiles\Inno Setup 6\ISCC.exe") | Where-Object { Test-Path $_ } | Select-Object -First 1
+    if (-not $iscc) { throw "Thiếu Inno Setup 6: winget install JRSoftware.InnoSetup" }
+    & $iscc "/DSrc=$((Resolve-Path $app).Path)" "/DOut=$((Resolve-Path $Out).Path)" pack\SoiLuat.iss
+    if ($LASTEXITCODE -ne 0) { throw "Inno Setup lỗi" }
+    Write-Host "File cài đặt: $Out\SoiLuat-Setup.exe"
+}

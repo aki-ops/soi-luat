@@ -141,7 +141,9 @@ Máy có Python (máy build):
 powershell -File pack\build.ps1
 ```
 
-Ra `dist\SoiLuat\SoiLuat.exe` (onedir, **một** app). Copy **cả thư mục `dist\SoiLuat`**, không cần cài Python trên máy chạy. Chạy `SoiLuat.exe` là mở app và trình duyệt; `SoiLuat.exe import ...` là dòng lệnh nạp.
+Ra `dist\SoiLuat\SoiLuat.exe` (onedir, **một** app), không cần cài Python trên máy chạy. Chạy `SoiLuat.exe` là mở app và trình duyệt; `SoiLuat.exe import ...` là dòng lệnh nạp.
+
+Thêm `-Setup` (cần `winget install JRSoftware.InnoSetup`) để đóng **một file cài đặt** `dist\SoiLuat-Setup.exe`: bấm cài là có đủ app + OCR tiếng Việt + mô hình, không cần quyền admin, cài vào `%LOCALAPPDATA%\Programs\SoiLuat`, có lối tắt Start menu. Kho dữ liệu nằm ở `%LOCALAPPDATA%\SoiLuat\data` (không mất khi gỡ hoặc cài đè bản mới).
 
 Bản đủ (OCR tiếng Việt + Advance); máy build cần thêm onnxruntime, tokenizers, numpy:
 
@@ -154,6 +156,8 @@ powershell -File pack\build.ps1 -Tesseract "C:\Program Files\Tesseract-OCR" -Vie
 | `SoiLuat.exe` + `_internal\` (app, thư viện Advance, Word/OCR) | 152 MB |
 | `tesseract\` (chỉ `tesseract.exe` + DLL nó cần, `tessdata` chỉ `vie` + `osd` để xoay trang) | 133 MB |
 | `models\embeddinggemma\` (mô hình Advance) | 315 MB |
-| **Tổng** | **~600 MB** |
+| **Tổng (đã giải nén)** | **~600 MB** |
+
+File cài đặt `SoiLuat-Setup.exe` nén còn **~298 MB**; cài mất ~30 giây (đo 23/10/2026).
 
 Bản đóng gói dùng Tesseract và mô hình đi kèm trước bản cài trên máy. Không kèm dữ liệu: kho `data\` được tạo trống ở thư mục chạy lần đầu. Bỏ `-Model` thì Advance báo "Chưa cài mô hình" (Normal vẫn chạy); bỏ `-Tesseract`/`-VieData` thì máy chạy phải cài Tesseract như mục trên.
