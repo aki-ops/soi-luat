@@ -1,6 +1,8 @@
 """Chấm tìm kiếm trên kho văn bản thật: 84 câu đã kiểm chứng (realdocs/queries.json).
 
 python eval_real.py REALDOCS normal|advance
+REALDOCS chứa data/soiluat.db và queries.json; cũng dùng cho câu hỏi văn phòng tự gom (bench/gold/README.md):
+mỗi câu cần file, q, dieu_doc; kind, dieu_quoted, page, also_ok là tuỳ chọn.
 Trúng (rộng): thẻ cùng file và (Điều ∈ {dieu_doc, dieu_quoted, also_ok} hoặc trang thẻ phủ trang bằng chứng).
 Trúng (chặt): chỉ tính Điều. Hạng = vị trí thẻ (như người dùng thấy), không gộp.
 """
@@ -44,7 +46,7 @@ if MODE == "advance":  # nạp mô hình trước, không tính vào độ trễ
     cards_for("khởi động")
 out, lat = [], []
 for q in qs:
-    ok_dieu = {x for x in [q["dieu_doc"], q["dieu_quoted"], *q.get("also_ok", [])] if x}
+    ok_dieu = {str(x) for x in [q["dieu_doc"], q.get("dieu_quoted"), *q.get("also_ok", [])] if x}
     t = time.perf_counter()
     cs = cards_for(q["q"])
     lat.append((time.perf_counter() - t) * 1000)
@@ -56,10 +58,10 @@ for q in qs:
         pf, pt = c.page_from, c.page_to or c.page_from
         if strict is None and d in ok_dieu:
             strict = k
-        if loose is None and (d in ok_dieu or (pf is not None and pf <= q["page"] <= pt)):
+        if loose is None and (d in ok_dieu or (pf is not None and q.get("page") and pf <= q["page"] <= pt)):
             loose = k
     file_rank = next((k for k, c in enumerate(cs, 1) if Path(c.file_path).name == q["file"]), None)
-    out.append({**{k: q[k] for k in ("file", "kind", "q", "dieu_doc", "page")}, "rong": loose, "chat": strict,
+    out.append({**{k: q.get(k) for k in ("file", "q", "dieu_doc", "page")}, "kind": q.get("kind", "cau_hoi"), "rong": loose, "chat": strict,
                 "file_dau": file_rank, "so_the": len(cs), "ms": round(lat[-1])})
 
 

@@ -1,0 +1,4 @@
+[
+ {"q": "VÍ DỤ — thay bằng câu hỏi thật: hạn nộp báo cáo định kỳ hằng quý là ngày nào?", "file": "ten_file_trong_kho.pdf", "dieu_doc": "5", "kind": "cau_hoi", "nguon": "ai hỏi, ngày nào"},
+ {"q": "VÍ DỤ — từ khoá: mức phạt chậm nộp báo cáo", "file": "ten_file_trong_kho.docx", "dieu_doc": "12", "also_ok": ["13"], "kind": "tu_khoa", "nguon": ""}
+]
