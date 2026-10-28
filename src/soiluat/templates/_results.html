@@ -18,6 +18,12 @@
   </div>
 {% endif %}
 {% if cards %}
+  {% if sure is defined and sure is not none %}
+    <p class="note sure {{ 'sure-yes' if sure else 'sure-no' }}">
+      {% if sure %}<b>Độ tin cậy cao:</b> kết quả đầu tiên khớp câu hỏi nhất (máy tự đánh giá, vẫn nên đọc lại điều luật).
+      {% else %}<b>Chưa chắc chắn:</b> nên xem 3 kết quả đầu trước khi chọn.{% endif %}
+    </p>
+  {% endif %}
   <div class="summary" role="list" aria-label="Tóm tắt kết quả">
     <div class="stat r1" role="listitem"><b>{{ n.n1 }}</b><span>rủi ro, liên kết đã duyệt</span></div>
     <div class="stat r2" role="listitem"><b>{{ n.n2 }}</b><span>rủi ro có chế tài</span></div>

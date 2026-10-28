@@ -28,7 +28,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.middleware.base import BaseHTTPMiddleware
 import uvicorn
 
-from soiluat import pageimg, semantic
+from soiluat import crossrank, pageimg, semantic
 from soiluat.cards import assemble_cards, summarize
 from soiluat.config import HOST, PORT, data_dir, db_path
 from soiluat.db import backup_db, connect, init_schema
@@ -126,6 +126,7 @@ def _search_ctx(
     hints: list[str] = []
     q2_note = ""
     empty_kho = False
+    sure = None
     n_docs = conn.execute("SELECT COUNT(*) AS n FROM documents").fetchone()["n"]
     empty_kho = int(n_docs or 0) == 0
     n_che = conn.execute(
@@ -147,6 +148,8 @@ def _search_ctx(
                 "thêm số hiệu văn bản để thu hẹp."
             )
             ids = ids[:DIEU_CAP]
+        # nhãn tin cậy nói về kết quả đầu: bộ lọc/giới hạn đổi kết quả đầu thì bỏ nhãn
+        sure = result.sure if ids and result.ids and ids[0] == result.ids[0] else None
         idset = set(ids)
         cards = assemble_cards(
             conn,
@@ -183,6 +186,7 @@ def _search_ctx(
         "n": n,
         "hints": hints,
         "q2_note": q2_note,
+        "sure": sure,
         "empty_kho": empty_kho,
         "n_docs": int(n_docs or 0),
     }
@@ -767,6 +771,17 @@ def pick_port(start: int, tries: int = 20) -> int:
     raise SystemExit(f"Cổng {start}–{start + tries} đều bận. Đặt SOILUAT_PORT hoặc --port khác.")
 
 
+def _warm_models() -> None:
+    conn = get_conn()
+    try:
+        semantic.warm(conn)
+        crossrank.ranker()
+    except Exception:  # noqa: BLE001 — nạp trước chỉ để nhanh hơn; lỗi thì để lần tìm đầu tự nạp
+        pass
+    finally:
+        conn.close()
+
+
 def main(argv: list[str] | None = None) -> None:
     argv = sys.argv[1:] if argv is None else argv
     if argv[:1] == ["import"]:  # SoiLuat.exe import <đường dẫn> [--ocr] [--nhung]: nạp hàng loạt từ dòng lệnh
@@ -789,6 +804,7 @@ def main(argv: list[str] | None = None) -> None:
     data_dir().mkdir(parents=True, exist_ok=True)
     conn = get_conn()
     conn.close()
+    threading.Thread(target=_warm_models, name="soiluat-warm", daemon=True).start()
     port = pick_port(args.port)
     url = f"http://{HOST}:{port}/"
     print(f"Soi Luật đang chạy: {url}", flush=True)

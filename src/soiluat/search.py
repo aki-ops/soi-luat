@@ -16,7 +16,7 @@ from soiluat.fold import (
     query_has_accent,
     search_accent,
 )
-from soiluat import semantic
+from soiluat import crossrank, semantic
 from soiluat.query import split_intent
 from soiluat.sohieu import (
     citation_remainder,
@@ -57,6 +57,7 @@ class CascadeResult:
     f2_ids: set[int] = field(default_factory=set)
     tiers: dict[int, int] = field(default_factory=dict)  # id -> tầng khớp (0 = tra số hiệu)
     intent: str = ""
+    sure: bool | None = None  # Advance: kết quả đầu "độ tin cậy cao"; None = không chấm (Normal, tra số hiệu, thiếu mô hình)
 
     def __iter__(self):
         yield self.ids
@@ -577,6 +578,10 @@ def _dense_only(ids: list[int], tiers: dict[int, int]) -> dict[int, int]:
     return tiers
 
 
+def _sure(gap: float | None) -> bool | None:
+    return None if gap is None else gap >= crossrank.SURE_GAP
+
+
 def _fts_cascade(
     conn: sqlite3.Connection,
     raw_query: str,
@@ -591,7 +596,8 @@ def _fts_cascade(
     if not accented:
         ids, tier, note, tiers, _ = _run_cascade(conn, raw_query, tok_f, branch="fold", doc_ids=doc_ids)
         ids = semantic.rerank(conn, dense_q, ids[:RETURN_TOP], doc_ids)
-        return CascadeResult(ids, tier, note, tiers=_dense_only(ids, tiers))
+        ids, gap = crossrank.rerank_top(conn, dense_q, ids)
+        return CascadeResult(ids, tier, note, tiers=_dense_only(ids, tiers), sure=_sure(gap))
 
     tok_a = tokenize(search_accent(raw_query), indexes=vocab_indexes(conn, accent=True))
     _, tier, note, tiers, score = _run_cascade(conn, raw_query, tok_a, branch="accent", doc_ids=doc_ids)
@@ -612,9 +618,10 @@ def _fts_cascade(
         f2_ids = set(f2_score)
         _merge(score, tiers, f2_score, f2_tiers)
     ids = semantic.rerank(conn, dense_q, sorted(score, key=lambda i: (score[i], i))[:RETURN_TOP], doc_ids)
+    ids, gap = crossrank.rerank_top(conn, dense_q, ids)
     keep = set(ids)
     return CascadeResult(ids, tier, note, fold_ids=(fold_ids | f2_ids) & keep, f2_ids=f2_ids & keep,
-                         tiers=_dense_only(ids, tiers))
+                         tiers=_dense_only(ids, tiers), sure=_sure(gap))
 
 
 def _tier0(ids: list[int], note: str) -> CascadeResult:

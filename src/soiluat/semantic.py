@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sqlite3
 import sys
 import time
@@ -154,12 +155,32 @@ def root_ids(conn: sqlite3.Connection, unit_ids: list[int]) -> dict[int, int]:
     return {r[0]: r[1] for r in rows if r[1] is not None}
 
 
+def _marker(path: str) -> str:
+    """Số khoản / chữ điểm dựng lại từ đường dẫn: 'D3.K1' → '1.', 'D3.K1.Đa' → 'a)'."""
+    seg = path.rsplit(".", 1)[-1]
+    return seg[1:] + "." if seg.startswith("K") else seg[1:] + ")" if seg.startswith("Đ") else ""
+
+
+def root_parts(conn: sqlite3.Connection, root_id: int) -> tuple[str, str]:
+    """(tiêu đề, nội dung) của Điều gốc theo dạng văn bản luật mà mô hình đã được đo: 'Điều 3. Tên Điều' rồi từng khoản,
+    điểm kèm số/chữ ('1.', 'a)') mỗi dòng một đơn vị. App tách số điều và số khoản khỏi chữ, nên dựng lại ở đây."""
+    r = conn.execute("SELECT doc_id, path, level, title, COALESCE(reviewed_text, normalized_text) FROM units WHERE id = ?",
+                     (root_id,)).fetchone()
+    title = (r[3] or "").strip()
+    m = re.match(r"^D(\d+[a-z]?)$", r[1] or "", re.I) if r[2] == "dieu" else None
+    head = f"Điều {m.group(1)}. {title}" if m else title
+    lines = [f"{_marker(p)} {t}".strip() for p, t in conn.execute(
+        "SELECT path, COALESCE(reviewed_text, normalized_text) FROM units WHERE doc_id = ? AND path LIKE ? ORDER BY id",
+        (r[0], r[1] + ".%")) if t]
+    own = (r[4] or "").strip()
+    if own and own != title:  # Điều có nội dung ngay dưới tên (đoạn mở đầu, hoặc không chia khoản)
+        lines.insert(0, own)
+    return head, "\n".join(lines)
+
+
 def root_text(conn: sqlite3.Connection, root_id: int) -> str:
-    r = conn.execute("SELECT doc_id, path, title FROM units WHERE id = ?", (root_id,)).fetchone()
-    body = " ".join(t for (t,) in conn.execute(
-        "SELECT COALESCE(reviewed_text, normalized_text) FROM units WHERE doc_id = ? AND (path = ? OR path LIKE ?)"
-        " ORDER BY id", (r[0], r[1], r[1] + ".%")) if t)
-    return D_PRE.format(t=r[2] or "none") + body
+    title, body = root_parts(conn, root_id)
+    return D_PRE.format(t=title or "none") + body
 
 
 def missing_roots(conn: sqlite3.Connection) -> list[int]:
@@ -198,6 +219,14 @@ def _all_vectors(conn: sqlite3.Connection, np):
         mat = np.frombuffer(b"".join(r[2] for r in rows), np.float16).reshape(len(rows), -1).astype(np.float32)
         _ALL.update(key=key, ids=np.array([r[0] for r in rows]), docs=np.array([r[1] for r in rows]), mat=mat)
     return _ALL["ids"], _ALL["docs"], _ALL["mat"]
+
+
+def warm(conn: sqlite3.Connection) -> None:
+    """Nạp trước mô hình và ma trận vector (câu hỏi đầu tiên không phải gánh ~1 phút nạp). Gọi nền khi app khởi động."""
+    if get_mode(conn) == "advance" and encoder() is not None:
+        import numpy as np
+
+        _all_vectors(conn, np)
 
 
 def rerank(conn: sqlite3.Connection, query: str, ids: list[int], doc_ids: list[int] | None = None) -> list[int]:
