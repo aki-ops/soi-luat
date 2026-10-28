@@ -159,6 +159,6 @@ powershell -File pack\build.ps1 -Tesseract "C:\Program Files\Tesseract-OCR" -Vie
 | `models\aiteamvn-embedding\` + `models\aiteamvn-reranker\` (mô hình Advance, ONNX int8, kèm NOTICE và giấy phép Apache-2.0) | 559 + 560 MB |
 | **Tổng (đã giải nén)** | **~1,4 GB** |
 
-Phần app + OCR đo 28/10/2026 trên bản dựng mới (`_internal` 140 MB, `tesseract` 134 MB). File cài đặt `SoiLuat-Setup.exe` **chưa đóng lại** sau khi đổi mô hình: trọng số int8 gần như không nén thêm, nên ước tính **~1,2–1,3 GB** (bản EmbeddingGemma cũ là ~298 MB). Chưa kiểm giới hạn dung lượng của Inno Setup ở cỡ này.
+Phần app + OCR đo 28/10/2026 trên bản dựng mới (`_internal` 140 MB, `tesseract` 134 MB). File cài đặt `SoiLuat-Setup.exe` nén còn **840 MB** (bản EmbeddingGemma cũ: ~298 MB); đóng mất ~11 phút, cài mất ~77 giây, gỡ sạch (đo 29/10/2026).
 
 Bản đóng gói dùng Tesseract và mô hình đi kèm trước bản cài trên máy. Không kèm dữ liệu: kho `data\` được tạo trống ở thư mục chạy lần đầu. Bỏ `-Models` thì Advance báo "Chưa cài mô hình" (Normal vẫn chạy); bỏ `-Tesseract`/`-VieData` thì máy chạy phải cài Tesseract như mục trên.

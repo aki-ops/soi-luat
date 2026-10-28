@@ -9,7 +9,7 @@ Soi Luật là app tra cứu văn bản pháp luật **chạy ngay trên máy b�
 
 ## 1. Cài đặt
 
-1. Chạy file **`SoiLuat-Setup.exe`** (khoảng 1,2 GB vì kèm hai mô hình tìm theo nghĩa; ước tính, chưa đóng lại sau khi đổi mô hình).
+1. Chạy file **`SoiLuat-Setup.exe`** (khoảng 840 MB vì kèm hai mô hình tìm theo nghĩa; cài mất khoảng 1–2 phút).
 2. Bấm Next theo các bước. Không cần quyền admin; app cài vào `%LOCALAPPDATA%\Programs\SoiLuat`.
 3. Tích "Mở Soi Luật" ở bước cuối, hoặc mở từ Start menu → **Soi Luật**.
 
