@@ -3,13 +3,13 @@
 Soi Luật là app tra cứu văn bản pháp luật **chạy ngay trên máy bạn** (Windows). Bạn nạp văn bản (Word, PDF, ảnh scan, Excel…) vào một "kho" riêng, rồi hỏi bằng từ khoá hoặc câu hỏi tự nhiên. Kết quả là **nguyên văn** Điều/khoản trong văn bản của bạn, kèm văn bản nguồn và số trang, không phải lời diễn giải của máy.
 
 - Không cần internet, không gửi dữ liệu đi đâu. App chỉ nghe ở `127.0.0.1` (chỉ máy bạn truy cập được).
-- Không dùng AI sinh văn bản. Chế độ Advance chỉ dùng một mô hình nhỏ để hiểu nghĩa câu hỏi, chạy trên CPU.
+- Không dùng AI sinh văn bản. Chế độ Advance chỉ dùng hai mô hình nhỏ để hiểu nghĩa câu hỏi và chấm lại các kết quả đầu, chạy trên CPU, hoàn toàn offline.
 
 ---
 
 ## 1. Cài đặt
 
-1. Chạy file **`SoiLuat-Setup.exe`** (khoảng 300 MB).
+1. Chạy file **`SoiLuat-Setup.exe`** (khoảng 1,2 GB vì kèm hai mô hình tìm theo nghĩa; ước tính, chưa đóng lại sau khi đổi mô hình).
 2. Bấm Next theo các bước. Không cần quyền admin; app cài vào `%LOCALAPPDATA%\Programs\SoiLuat`.
 3. Tích "Mở Soi Luật" ở bước cuối, hoặc mở từ Start menu → **Soi Luật**.
 
@@ -136,14 +136,16 @@ Tick **Chọn xuất** ở các thẻ muốn lấy, kéo xuống cuối rồi b�
 
 | | **Normal** (mặc định) | **Advance** |
 |---|---|---|
-| Cách tìm | Khớp từ khoá (BM25) | Khớp từ khoá + hiểu nghĩa |
-| RAM | ~75 MB | ~0,5–1,4 GB |
-| Tốc độ | ~0,3 giây (kho nhỏ) | ~0,6 giây; câu đầu tiên chậm hơn vì nạp mô hình |
-| Khi nào nên dùng | Mọi máy; từ khoá rõ ràng | Câu hỏi diễn đạt khác chữ trong văn bản; ghi chú tự viết |
+| Cách tìm | Khớp từ khoá (BM25) | Khớp từ khoá + hiểu nghĩa + chấm lại 5 kết quả đầu |
+| RAM | ~75 MB | ~1,5–2 GB |
+| Tốc độ | ~1 giây | ~9 giây một câu (kho lớn, máy 6 nhân); lần đầu sau khi mở app chậm hơn vì nạp mô hình |
+| Khi nào nên dùng | Mọi máy; từ khoá rõ ràng | Máy từ 8 GB RAM; câu hỏi diễn đạt khác chữ trong văn bản; cần kết quả đầu đúng hơn |
 
-Cách Advance làm việc: xếp lại 20 kết quả đầu của Normal theo độ gần nghĩa, và thêm tối đa 20 Điều gần nghĩa nhất toàn kho (chỉ thêm nếu đủ giống). Thứ tự kết quả Normal **không bị đảo**; phần thêm chỉ nằm sau. Đo thực tế trên bộ 788 câu hỏi pháp lý: câu đúng nằm trong 10 kết quả đầu ở **90,2%** (Normal) và **92,5%** (Advance).
+Cách Advance làm việc: gộp kết quả theo từ khoá với các Điều gần nghĩa nhất toàn kho (chỉ lấy nếu đủ giống), rồi một mô hình đọc kỹ 5 Điều đầu và xếp lại. Đo thực tế trên 788 câu hỏi pháp lý và 500 câu tư vấn thật: Điều đúng đứng **đầu tiên** ở khoảng **74–79%** (Normal: 51–59%), và nằm trong **10 kết quả đầu** ở khoảng **95%** (Normal: 83–90%).
 
-Khi mở Advance lần đầu, app tự **tính vector nền** cho các Điều chưa có (khoảng 4–5 Điều/giây) khi không có file nào đang nạp. Tiến độ hiện ở khung Nạp file; trong lúc chưa xong, Điều chưa tính vẫn tìm được bằng từ khoá. Kho lớn thì lần đầu tính lâu (10 nghìn Điều khoảng 37 phút), có thể để máy chạy; tắt giữa chừng rồi mở lại sẽ tiếp tục.
+**Nhãn độ tin cậy** hiện phía trên kết quả: **"Độ tin cậy cao"** khi kết quả đầu hơn hẳn kết quả thứ hai (khoảng 60% số câu, đúng ~92%), còn **"Chưa chắc chắn: nên xem 3 kết quả đầu"** cho phần còn lại (đúng ở kết quả đầu khoảng 55%). Đây là máy tự đánh giá, vẫn phải đọc lại Điều luật. Nhãn chỉ có ở Advance.
+
+Khi mở Advance lần đầu, app tự **tính vector nền** cho các Điều chưa có (khoảng 3 Điều/giây) khi không có file nào đang nạp. Tiến độ hiện ở khung Nạp file; trong lúc chưa xong, Điều chưa tính vẫn tìm được bằng từ khoá. Kho lớn thì lần đầu tính lâu (10 nghìn Điều khoảng 1 giờ; 60 nghìn Điều cỡ 6 giờ), có thể để máy chạy; tắt giữa chừng rồi mở lại sẽ tiếp tục. Nếu trước đây bạn đã dùng Advance bản cũ, vector cũ không dùng lại được và app sẽ tính lại từ đầu.
 
 ## 7. Cài đặt (góc trên bên phải)
 
@@ -212,8 +214,8 @@ Thông số khác: `SoiLuat.exe --port 8100` đổi cổng; `set SOILUAT_NO_BROW
 | File scan báo **cần OCR** | Nạp lại với ô **OCR** được bật. |
 | OCR báo chưa sẵn sàng | Cài đặt → OCR → Kiểm tra lại. Bản cài đã kèm Tesseract tiếng Việt; nếu báo lỗi, cài lại app. |
 | `.doc`/`.rtf` báo lỗi | Cần Microsoft Word (hoặc LibreOffice). Hoặc lưu thành `.docx` rồi nạp. |
-| Advance báo "Chưa cài mô hình" | Thiếu thư mục `models\embeddinggemma` cạnh `SoiLuat.exe`; cài lại bằng bộ cài đủ. App vẫn tìm như Normal. |
-| Câu đầu ở Advance chậm | Bình thường: đang nạp mô hình và vector vào RAM. Kho lớn (~60 nghìn Điều) có thể 7–36 giây lần đầu; các câu sau ~1,5 giây. |
+| Advance báo "Chưa cài mô hình" | Thiếu thư mục `models\aiteamvn-embedding` (và `models\aiteamvn-reranker`) cạnh `SoiLuat.exe`; cài lại bằng bộ cài đủ. App vẫn tìm như Normal. Thiếu riêng reranker thì vẫn tìm theo nghĩa nhưng không có nhãn độ tin cậy. |
+| Câu đầu ở Advance chậm | Bình thường: app đang nạp hai mô hình và vector vào RAM (có thể tới 1 phút ngay sau khi mở app, kho lớn). Các câu sau khoảng 9 giây. |
 | Máy ì khi Advance | Chuyển về Normal; hoặc đợi tính vector nền xong. |
 | Câu hỏi không ra kết quả | Thử từ khoá ngắn hơn, bỏ bộ lọc, gõ số hiệu; xem **Truy vấn bỏ sót** và thêm vào Từ điển. |
 | Số hiệu/ngày sai ở văn bản scan | Sửa tay trong Cài đặt → Văn bản. |
@@ -226,6 +228,7 @@ Thông số khác: `SoiLuat.exe --port 8100` đổi cổng; `set SOILUAT_NO_BROW
 - Văn bản scan chất lượng thấp hoặc chữ viết tay: OCR có thể sai chữ, số hiệu và ngày tháng.
 - Một số Điều có cấu trúc lạ có thể không tách được; Phụ lục dạng bảng dài tìm kém hơn Điều thường.
 - Thẻ "tìm theo nghĩa" có thể không liên quan trực tiếp; ngưỡng cắt được chỉnh cho mô hình hiện tại.
+- Ngay cả ở Advance, Điều đúng đứng đầu khoảng 3 lần trong 4; khoảng 1 lần trong 8 Điều đúng không nằm trong 10 kết quả đầu. Nhãn "Độ tin cậy cao" cũng sai khoảng 1 lần trong 12.
 - Bản cài hiện chưa thử trên nhiều máy Windows khác nhau.
 
 ---

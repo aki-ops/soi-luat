@@ -2,7 +2,7 @@
 # Kết quả: $Out\SoiLuat\ (copy NGUYÊN thư mục này sang máy dùng)
 #   SoiLuat.exe                 app duy nhất: tìm, nạp file, OCR, nhúng vector; "SoiLuat.exe import ..." là dòng lệnh
 #   tesseract\                  -Tesseract: chỉ tesseract.exe + DLL nó cần, tessdata chỉ vie + osd (xoay trang)
-#   models\embeddinggemma\      -Model: mô hình cho chế độ Advance (thiếu thì Advance báo chưa cài)
+#   models\aiteamvn-embedding\, models\aiteamvn-reranker\, models\LICENSE-Apache-2.0.txt   -Models: mô hình Advance (thiếu thì Advance báo chưa cài / tìm như Normal)
 # Không kèm kho dữ liệu: data\ tạo trống ở thư mục chạy lần đầu.
 # -Setup: thêm bước đóng MỘT file cài đặt SoiLuat-Setup.exe (Inno Setup 6, cài cho người dùng, không cần admin).
 # Cần thêm trên máy build cho Advance: onnxruntime, tokenizers, numpy (không có thì bản đóng gói chỉ chạy Normal).
@@ -11,7 +11,7 @@ param(
     [string]$Tesseract = "",   # thư mục cài Tesseract 5 (vd. "C:\Program Files\Tesseract-OCR")
     [string]$VieData = "",     # đường dẫn vie.traineddata (bản UB-Mannheim mặc định chỉ có eng/osd)
     [switch]$Setup,            # thêm: đóng thành MỘT file cài đặt $Out\SoiLuat-Setup.exe (cần Inno Setup 6)
-    [string]$Model = ""        # thư mục mô hình EmbeddingGemma (tokenizer.json, onnx\model_quantized.onnx[_data])
+    [string]$Models = ""       # thư mục do pack\export_models.py tạo (aiteamvn-embedding, aiteamvn-reranker, LICENSE-Apache-2.0.txt)
 )
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot\..
@@ -36,11 +36,15 @@ if ($VieData) {
     New-Item -ItemType Directory -Force $td | Out-Null
     Copy-Item -Force $VieData $td
 }
-if ($Model) {
-    $md = Join-Path $app "models\embeddinggemma"
-    New-Item -ItemType Directory -Force (Join-Path $md "onnx") | Out-Null
-    Copy-Item -Force (Join-Path $Model "tokenizer.json") $md
-    Copy-Item -Force (Join-Path $Model "onnx\model_quantized.onnx*") (Join-Path $md "onnx")
+if ($Models) {
+    foreach ($m in "aiteamvn-embedding", "aiteamvn-reranker") {
+        $src = Join-Path $Models $m
+        foreach ($f in "tokenizer.json", "onnx\model_int8.onnx", "NOTICE.md") {
+            if (-not (Test-Path (Join-Path $src $f))) { throw "Thiếu $src\$f (chạy pack\export_models.py trước)" }
+        }
+        Copy-Item -Recurse -Force $src (Join-Path $app "models\$m")
+    }
+    Copy-Item -Force (Join-Path $Models "LICENSE-Apache-2.0.txt") (Join-Path $app "models")
 }
 if (-not (Test-Path (Join-Path $app "SoiLuat.exe"))) { throw "Thiếu SoiLuat.exe" }
 Write-Host "Xong: $app\SoiLuat.exe"

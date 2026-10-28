@@ -230,12 +230,12 @@
           <button type="submit" name="mode" value="normal" aria-pressed="{{ 'true' if mode.mode == 'normal' else 'false' }}"
                   title="BM25 thuần: nhẹ, chạy mọi máy">Normal</button>
           <button type="submit" name="mode" value="advance" aria-pressed="{{ 'true' if mode.mode == 'advance' else 'false' }}"
-                  title="BM25 + embedding: chính xác hơn vài %, tốn thêm ~0,5–1,4 GB RAM">Advance</button>
+                  title="BM25 + vector + reranker: kết quả đầu đúng hơn khoảng 15–25 điểm %, ~2 GB RAM, ~9 giây một câu">Advance</button>
         </span>
         <p class="note" id="mode-note">
           {%- if mode.mode == 'advance' and not mode.installed %}<span class="warn">Chưa cài mô hình tìm theo nghĩa — đang tìm như Normal (xem README).</span>
           {%- elif mode.mode == 'advance' and mode.pending %}Còn {{ mode.pending }} Điều chưa nhúng (vẫn tìm được); app tự nhúng nền khi rảnh.
-          {%- elif mode.mode == 'advance' %}BM25 + embedding. Câu tìm đầu tiên chậm hơn (nạp mô hình).
+          {%- elif mode.mode == 'advance' %}BM25 + vector + reranker. Mỗi câu ~9 giây; câu đầu sau khi mở app có thể chậm hơn (nạp mô hình).
           {%- else %}BM25 thuần: nhẹ, chạy mọi máy.{% endif -%}
         </p>
       </form>
@@ -336,7 +336,7 @@
     const noteFor = m => {
       if (m.mode === "advance" && !m.installed) return ["Chưa cài mô hình tìm theo nghĩa — đang tìm như Normal (xem README).", true];
       if (m.mode === "advance" && m.pending) return [`Còn ${m.pending} Điều chưa nhúng (vẫn tìm được); app tự nhúng nền khi rảnh.`, false];
-      if (m.mode === "advance") return ["BM25 + embedding. Câu tìm đầu tiên chậm hơn (nạp mô hình).", false];
+      if (m.mode === "advance") return ["BM25 + vector + reranker. Mỗi câu ~9 giây; câu đầu sau khi mở app có thể chậm hơn (nạp mô hình).", false];
       return ["BM25 thuần: nhẹ, chạy mọi máy.", false];
     };
     function render() {
