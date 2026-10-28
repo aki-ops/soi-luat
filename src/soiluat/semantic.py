@@ -1,9 +1,10 @@
-"""Xếp hạng lại theo nghĩa bằng EmbeddingGemma (ONNX int8, CPU).
+"""Xếp hạng theo nghĩa bằng AITeamVN Vietnamese_Embedding (ONNX int8, CPU).
 
 Chế độ "advance" (chọn trên Search App, lưu trong app_meta); "normal" (mặc định), thiếu mô hình,
 thiếu onnxruntime/tokenizers/numpy, hoặc SOILUAT_SEMANTIC=0 → tìm như cũ (BM25), không nạp mô hình.
 Vector tính một lần cho mỗi Điều (đơn vị gốc, parent_id IS NULL) bằng `soiluat-importer --nhung`;
-khi tìm chỉ nhúng câu hỏi rồi trộn hạng (RRF) với TOP Điều đầu của BM25, cộng DENSE_K Điều gần nghĩa nhất toàn kho.
+khi tìm chỉ nhúng câu hỏi rồi hợp TOP Điều đầu của BM25 với DENSE_K Điều gần nghĩa nhất TOÀN KHO,
+điểm = 1/(RRF_K + hạng BM25) + W/(RRF_K + hạng theo nghĩa trên toàn kho).
 """
 
 from __future__ import annotations
@@ -17,28 +18,30 @@ from pathlib import Path
 
 from soiluat.config import data_dir
 
-MODEL_NAME = "embeddinggemma-300m-q8-256-len128"  # đổi MAXLEN/DIM thì đổi tên: vector cũ không trộn với mới
-DIM = 256  # Matryoshka: cắt 768 → 256 rồi chuẩn hoá lại
-MAXLEN = 128  # token; Zalo: độ chính xác như 256 (Hit@5 89,1%), nhúng nhanh gấp ~2 lần (4,5 Điều/s, 2 luồng)
+MODEL_NAME = "aiteamvn-embedding-int8-1024-len128"  # đổi MAXLEN/DIM/mô hình thì đổi tên: vector cũ không trộn với mới
+DIM = 1024  # AITeamVN Vietnamese_Embedding (bge-m3): CLS, chuẩn hoá L2
+MAXLEN = 128  # token; độ dài mà mọi số đo của Advance dùng
 THREADS = 2  # máy văn phòng: chừa CPU cho Office
-TOP = 20  # số Điều đầu của BM25 được xếp lại; tham số chọn trên tập train Zalo
+TOP = 20  # số Điều đầu của BM25 đưa vào hợp (N)
+DENSE_K = 50  # số Điều gần nghĩa nhất toàn kho đưa vào hợp (M), cả khi không chung chữ nào
 RRF_K = 5
-W = 1.0
-DENSE_K = 20  # Advance: Điều gần nghĩa nhất toàn kho thêm vào ứng viên (cả khi không chung chữ nào); 0 = chỉ xếp lại
-# cosine tối thiểu của Điều thêm: kho Zalo, câu vô nghĩa ("?", "asdf", "xin chào"…) cao nhất 0,47; Điều đáp án
-# 96% ≥ 0,50. Riêng cho MODEL_NAME này: đổi mô hình thì đo lại
-DENSE_MIN = 0.50
-Q_PRE = "task: search result | query: "
-D_PRE = "title: {t} | text: "
+W = 2.0  # trọng số hạng theo nghĩa; (N, M, k, w) = (20, 50, 5, 2) chọn trên tập riêng, ngoài bộ đo
+# cosine tối thiểu của Điều chỉ có nhờ vector (BM25 không tìm ra): chặn kết quả bịa cho câu vô nghĩa.
+# Riêng cho MODEL_NAME này: đổi mô hình thì đo lại. Đo trên 1.200 câu chỉnh (ngoài bộ đo): 0,40 không làm Hit@10
+# tụt (92,5 / 96,3 so với 92,2 / 96,5 khi không ngưỡng), chặn 29/30 câu vô nghĩa hoặc ngoài đề; 0,45 làm Hit@10 tụt ~0,7.
+DENSE_MIN = 0.40
+Q_PRE = ""
+D_PRE = "{t}\n"
+ONNX_FILE = "model_int8.onnx"
 
 
 def model_dir() -> Path:
     raw = os.environ.get("SOILUAT_MODEL_DIR")
     if raw:
         return Path(raw)
-    path = data_dir() / "models" / "embeddinggemma"
+    path = data_dir() / "models" / "aiteamvn-embedding"
     if not path.exists() and getattr(sys, "frozen", False):  # bản đóng gói: models\ nằm cạnh SoiLuat.exe
-        return Path(sys.executable).resolve().parent / "models" / "embeddinggemma"
+        return Path(sys.executable).resolve().parent / "models" / "aiteamvn-embedding"
     return path
 
 
@@ -53,9 +56,9 @@ class Encoder:
         so = ort.SessionOptions()
         so.intra_op_num_threads = threads
         so.inter_op_num_threads = 1
-        so.enable_cpu_mem_arena = False  # bật: RAM giữ ~1,3 GB sau lần chạy đầu; tắt: ~430 MB
+        so.enable_cpu_mem_arena = False  # bật: RAM giữ thêm sau lần chạy đầu; tắt: gọn hơn, chậm không đáng kể
         so.enable_mem_pattern = False
-        self.sess = ort.InferenceSession(str(path / "onnx" / "model_quantized.onnx"), so,
+        self.sess = ort.InferenceSession(str(path / "onnx" / ONNX_FILE), so,
                                          providers=["CPUExecutionProvider"])
         self.tok = Tokenizer.from_file(str(path / "tokenizer.json"))
         self.tok.enable_truncation(MAXLEN)
@@ -95,7 +98,7 @@ def set_mode(conn: sqlite3.Connection, mode: str) -> None:
 
 def model_installed() -> bool:
     path = model_dir()
-    return (path / "onnx" / "model_quantized.onnx").exists() and (path / "tokenizer.json").exists()
+    return (path / "onnx" / ONNX_FILE).exists() and (path / "tokenizer.json").exists()
 
 
 def lower_priority() -> None:
@@ -185,7 +188,7 @@ _ALL: dict = {}  # ma trận vector toàn kho, nạp lại khi (file db, số ve
 
 
 def _all_vectors(conn: sqlite3.Connection, np):
-    """(id gốc, doc_id, ma trận float32) của mọi gốc đã nhúng. Kho Zalo 61 nghìn Điều × 256 ≈ 62 MB RAM."""
+    """(id gốc, doc_id, ma trận float32) của mọi gốc đã nhúng. Kho Zalo 61 nghìn Điều × 1024 ≈ 252 MB RAM."""
     db = conn.execute("PRAGMA database_list").fetchone()[2]
     key = (db, *conn.execute("SELECT COUNT(*), MAX(unit_id) FROM unit_vectors WHERE model = ?",
                              (MODEL_NAME,)).fetchone())
@@ -198,12 +201,13 @@ def _all_vectors(conn: sqlite3.Connection, np):
 
 
 def rerank(conn: sqlite3.Connection, query: str, ids: list[int], doc_ids: list[int] | None = None) -> list[int]:
-    """Đổi thứ tự TOP Điều đầu theo RRF(hạng BM25, hạng theo nghĩa); Điều chưa có vector giữ hạng BM25.
-    Thêm DENSE_K Điều gần nghĩa nhất toàn kho (trong doc_ids nếu có) dù BM25 không tìm ra: chỉ có điểm theo nghĩa."""
-    if get_mode(conn) != "advance" or (len(ids) < 2 and not DENSE_K):
+    """Hợp TOP Điều đầu của BM25 với DENSE_K Điều gần nghĩa nhất toàn kho (trong doc_ids nếu có), xếp theo
+    1/(RRF_K + hạng BM25) + W/(RRF_K + hạng theo nghĩa toàn kho). Điều chưa có vector (văn bản mới nạp, đang nhúng nền)
+    lấy hạng theo nghĩa = hạng BM25, không bị phạt. Điều chỉ có nhờ vector phải đạt DENSE_MIN."""
+    if get_mode(conn) != "advance":
         return ids
     if not conn.execute("SELECT 1 FROM unit_vectors WHERE model = ? LIMIT 1", (MODEL_NAME,)).fetchone():
-        return ids  # chưa có vector nào: khỏi nạp mô hình (~0,5–1,3 GB RAM)
+        return ids  # chưa có vector nào: khỏi nạp mô hình (~0,6–1,3 GB RAM)
     enc = encoder()
     if enc is None:
         return ids
@@ -211,30 +215,22 @@ def rerank(conn: sqlite3.Connection, query: str, ids: list[int], doc_ids: list[i
     roots = root_ids(conn, ids)
     order = list(dict.fromkeys(roots.get(i, -i) for i in ids))  # đơn vị không tìm được gốc: tự làm gốc
     top = order[:TOP]
-    q = enc.encode([Q_PRE + query])[0]
-    if DENSE_K:
-        all_ids, all_docs, mat = _all_vectors(conn, np)
-        row = {int(r): k for k, r in enumerate(all_ids)}
-        sim_all = mat @ q
-        sims = {r: float(sim_all[row[r]]) for r in top if r in row}
-    else:  # chỉ xếp lại: đọc vector của TOP, không giữ ma trận toàn kho
-        vecs = dict(conn.execute(
-            "SELECT unit_id, vec FROM unit_vectors WHERE model = ? AND unit_id IN (SELECT value FROM json_each(?))",
-            (MODEL_NAME, json.dumps(top))).fetchall())
-        # theo thứ tự TOP như nhánh trên: hai Điều giống nghĩa bằng nhau thì giữ thứ tự BM25
-        sims = {r: float(np.frombuffer(vecs[r], np.float16).astype(np.float32) @ q) for r in top if r in vecs}
-    dense = {r: k for k, r in enumerate(sorted(sims, key=lambda r: -sims[r]), 1)}
-    # Điều chưa nhúng (văn bản mới nạp, đang nhúng nền): hạng theo nghĩa = hạng BM25, không bị phạt
-    score = {r: 1 / (RRF_K + b) + W / (RRF_K + dense.get(r, b)) for b, r in enumerate(top, 1)}
     bm = {r: b for b, r in enumerate(order, 1)}
-    if DENSE_K and len(all_ids):
-        ok = (np.isin(all_docs, doc_ids) if doc_ids else np.ones(len(all_ids), bool)) & (sim_all >= DENSE_MIN)
-        best = [int(all_ids[k]) for k in np.argsort(-np.where(ok, sim_all, -np.inf))[:DENSE_K] if ok[k]]
-        # Chỉ thêm, không xáo TOP: hạng theo nghĩa của Điều thêm tính trên toàn kho, TOP giữ điểm như trên.
-        # Có ở BM25 sau TOP thì cộng hạng BM25 đó; không có thì chỉ điểm theo nghĩa (≤ 1/(RRF_K+1): không vượt hạng 1)
-        score.update((r, (1 / (RRF_K + bm[r]) if r in bm else 0) + W / (RRF_K + k))
-                     for k, r in enumerate(best, 1) if r not in score)
-    head = sorted(score, key=lambda r: -score[r])
+    all_ids, all_docs, mat = _all_vectors(conn, np)
+    sim_all = mat @ enc.encode([Q_PRE + query])[0]
+    ok = np.isin(all_docs, doc_ids) if doc_ids else np.ones(len(all_ids), bool)
+    best = [int(all_ids[k]) for k in np.argsort(-np.where(ok, sim_all, -np.inf))[:DENSE_K] if ok[k]]
+    dense = {r: k for k, r in enumerate(best, 1)}
+    have = {int(r) for r in all_ids}
+    score = {}
+    for r in top:
+        d = dense.get(r) if r in have else bm[r]
+        score[r] = 1 / (RRF_K + bm[r]) + (W / (RRF_K + d) if d else 0)
+    row = {int(r): k for k, r in enumerate(all_ids)}
+    for r, k in dense.items():
+        if r not in score and sim_all[row[r]] >= DENSE_MIN:  # chỉ có nhờ vector (BM25 không đưa vào hợp)
+            score[r] = W / (RRF_K + k)
+    head = sorted(score, key=lambda r: (-score[r], bm.get(r, len(bm) + 1)))
     pos = {r: k for k, r in enumerate(head + [r for r in order[TOP:] if r not in score])}
     new = [r for r in score if r not in bm]  # gốc là chính đơn vị Điều/đoạn nên dùng thẳng làm id
     roots.update((r, r) for r in new)

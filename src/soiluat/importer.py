@@ -87,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--doan", action="store_true", help="Ép chia theo đoạn (tầng 3)")
     p.add_argument("--check-ocr", action="store_true", help="In trạng thái OCR (JSON) rồi thoát")
     p.add_argument("--nhung", action="store_true",
-                   help="Tính vector theo nghĩa cho các Điều chưa có (cần mô hình EmbeddingGemma; chậm, chạy một lần)")
+                   help="Tính vector theo nghĩa cho các Điều chưa có (cần mô hình AITeamVN embedding; chậm, chạy một lần)")
     p.add_argument("--nen", action="store_true",
                    help="Với --nhung: chạy nền, 1 luồng, ưu tiên CPU thấp nhất (không làm chậm Word/Excel)")
     args = p.parse_args(argv)

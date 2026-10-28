@@ -1,4 +1,4 @@
-"""Xếp hạng lại theo nghĩa (EmbeddingGemma): logic trộn hạng, lưu vector, dự phòng khi thiếu mô hình."""
+"""Xếp hạng theo nghĩa (AITeamVN embedding): hợp BM25 với vector toàn kho, lưu vector, dự phòng khi thiếu mô hình."""
 
 import os
 from pathlib import Path
@@ -71,33 +71,40 @@ def test_embed_roots_only_roots_and_idempotent(db, doc, fake):
     assert n[0] == 4 and n[1] == 4 * 2  # float16 × DIM của FakeEncoder
 
 
-def test_rerank_moves_semantic_match_up(db, doc, fake, monkeypatch):
-    monkeypatch.setattr(semantic, "DENSE_K", 0)  # chỉ xếp lại
+def test_rerank_moves_semantic_match_up(db, doc, fake):
     semantic.embed_roots(db, fake, semantic.missing_roots(db))
     a, b, c = (_unit(db, p) for p in ("D1", "D2", "D3"))
     kb = _unit(db, "D2.K1")
     out = semantic.rerank(db, "đội mũ khi đi xe", [a, b, kb, c])
-    # BM25: D1, D2, D3; theo nghĩa D3 giống nhất → D3 vượt D2, D1 giữ đầu (RRF), đơn vị cùng Điều vẫn liền nhau
-    assert out == [a, c, b, kb]
+    # BM25: D1, D2, D3; theo nghĩa D3 giống nhất → D3 vượt D2; đơn vị cùng Điều vẫn liền nhau
+    assert sorted(out) == sorted([a, b, kb, c])
+    assert out.index(c) < out.index(b) and out.index(kb) == out.index(b) + 1
 
 
-def test_rerank_adds_dense_match_bm25_missed(db, doc, fake, monkeypatch):
+def test_rerank_formula_matches_hop_experiment(db, doc, fake, monkeypatch):
+    """Điểm = 1/(RRF_K + hạng BM25) + W/(RRF_K + hạng theo nghĩa toàn kho), cộng Điều chỉ có nhờ vector."""
     semantic.embed_roots(db, fake, semantic.missing_roots(db))
     a, b, c = (_unit(db, p) for p in ("D1", "D2", "D3"))
-    monkeypatch.setattr(semantic, "DENSE_K", 1)
-    # BM25 chỉ ra D1, D2 (không chung chữ với D3); vector toàn kho thêm D3 — chỉ có điểm theo nghĩa nên đứng sau
-    assert semantic.rerank(db, "đội mũ khi đi xe", [a, b]) == [a, b, c]
+    monkeypatch.setattr(semantic, "DENSE_K", 1)  # chỉ D3 vào danh sách theo nghĩa
+    # BM25 chỉ ra D1, D2: D1 chỉ có điểm BM25 (1/6); D2 1/7; D3 chỉ có nhờ vector: 2/6 → đứng đầu
+    assert semantic.rerank(db, "đội mũ khi đi xe", [a, b]) == [c, a, b]
     assert semantic.rerank(db, "đội mũ khi đi xe", []) == [c]  # BM25 không ra gì vẫn có kết quả
     monkeypatch.setattr(semantic, "DENSE_MIN", 0.9)  # "giá thuế mũ" giống mỗi Điều ~0,58: không Điều nào đủ ngưỡng
     assert semantic.rerank(db, "giá thuế mũ", []) == []  # không bịa kết quả khi chẳng gì đủ gần
     monkeypatch.setattr(semantic, "DENSE_MIN", 0.5)
-    # chỉ thêm, không xáo: thứ tự các Điều BM25 tìm ra giống hệt khi tắt phần thêm
-    with_k = [i for i in semantic.rerank(db, "đội mũ khi đi xe", [b, c, a]) if i in (a, b, c)]
-    monkeypatch.setattr(semantic, "DENSE_K", 0)
-    assert with_k == semantic.rerank(db, "đội mũ khi đi xe", [b, c, a])
-    monkeypatch.setattr(semantic, "DENSE_K", 1)
+    monkeypatch.setattr(semantic, "DENSE_K", 0)  # không Điều gần nghĩa nào: giữ nguyên thứ tự BM25
+    assert semantic.rerank(db, "đội mũ khi đi xe", [b, c, a]) == [b, c, a]
+    monkeypatch.setattr(semantic, "DENSE_K", 50)
     other = db.execute("SELECT MAX(doc_id) + 1 FROM units").fetchone()[0]
     assert semantic.rerank(db, "đội mũ khi đi xe", [a, b], doc_ids=[other]) == [a, b]  # tra trong văn bản khác
+
+
+def test_bm25_candidate_outside_dense_list_keeps_bm25_score_only(db, doc, fake, monkeypatch):
+    semantic.embed_roots(db, fake, semantic.missing_roots(db))
+    a, b, c = (_unit(db, p) for p in ("D1", "D2", "D3"))
+    monkeypatch.setattr(semantic, "DENSE_K", 1)
+    # D3 vừa có ở BM25 (hạng 3) vừa đứng đầu theo nghĩa: 1/8 + 2/6; D1, D2 ngoài danh sách theo nghĩa: chỉ điểm BM25
+    assert semantic.rerank(db, "đội mũ khi đi xe", [a, b, c]) == [c, a, b]
 
 
 def test_dense_only_card_marked_and_note_titled_by_file(db, doc, fake, tmp_path):
@@ -129,10 +136,10 @@ def test_frozen_model_dir_beside_exe(tmp_path, monkeypatch):
 
     monkeypatch.delenv("SOILUAT_MODEL_DIR", raising=False)
     monkeypatch.setenv("SOILUAT_DATA", str(tmp_path / "data"))
-    assert semantic.model_dir() == tmp_path / "data" / "models" / "embeddinggemma"  # chạy từ mã nguồn
+    assert semantic.model_dir() == tmp_path / "data" / "models" / "aiteamvn-embedding"  # chạy từ mã nguồn
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     monkeypatch.setattr(sys, "executable", str(tmp_path / "dist" / "SoiLuat" / "SoiLuat.exe"))
-    assert semantic.model_dir() == tmp_path / "dist" / "SoiLuat" / "models" / "embeddinggemma"
+    assert semantic.model_dir() == tmp_path / "dist" / "SoiLuat" / "models" / "aiteamvn-embedding"
 
 
 def test_missing_model_dir_gives_no_encoder(tmp_path, monkeypatch):
@@ -155,6 +162,19 @@ def test_cascade_search_goes_through_rerank(db, doc, monkeypatch):
     assert search.cascade_search(db, "nộp thuế").ids == list(reversed(base)) and calls == ["nộp thuế"]
 
 
+def test_rerank_gets_full_question_even_when_bm25_drops_muc_phat(db, doc, monkeypatch):
+    seen = []
+
+    def spy(conn, q, ids, doc_ids=None):
+        seen.append(q)
+        return ids
+
+    monkeypatch.setattr(semantic, "rerank", spy)
+    q = "mức phạt không đội mũ bảo hiểm"
+    r = search.cascade_search(db, q)
+    assert r.intent == "muc_phat" and seen == [q]  # BM25 bỏ cụm "mức phạt"; embedding vẫn nhận nguyên câu hỏi
+
+
 @pytest.mark.skipif(not os.environ.get("SOILUAT_MODEL_DIR"), reason="cần SOILUAT_MODEL_DIR trỏ tới mô hình thật")
 def test_real_model_prefers_related_text(monkeypatch):
     pytest.importorskip("onnxruntime")
@@ -173,7 +193,7 @@ def test_unembedded_dieu_not_penalised_and_pending_counts(db, doc, fake):
     assert semantic.pending(db) == 4
     semantic.embed_roots(db, fake, [c])  # chỉ D3 có vector: D1, D2 là "văn bản mới"
     assert semantic.pending(db) == 3
-    # D1, D2 chưa nhúng giữ hạng BM25; D3 giống nghĩa nhất vẫn vượt D2 nhưng không vượt cả D1 (hạng 1)
+    # D1, D2 chưa nhúng lấy hạng theo nghĩa = hạng BM25; D3 giống nghĩa nhất vượt D2 nhưng không vượt D1 (hạng 1)
     assert semantic.rerank(db, "đội mũ khi đi xe", [a, b, c]) == [a, c, b]
 
 

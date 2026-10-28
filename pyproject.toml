@@ -20,7 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 ocr = ["pytesseract>=0.3.13", "pillow>=10"]
 word = ["pywin32>=306"]
-nghia = ["onnxruntime>=1.20", "tokenizers>=0.20", "numpy>=1.26"]  # xếp hạng lại theo nghĩa (EmbeddingGemma)
+nghia = ["onnxruntime>=1.22", "tokenizers>=0.20", "numpy>=1.26"]  # Advance: embedding + reranker AITeamVN (đã kiểm với onnxruntime 1.22.1)
 dev = ["pytest>=8", "httpx>=0.27"]
 pack = ["pyinstaller>=6"]
 

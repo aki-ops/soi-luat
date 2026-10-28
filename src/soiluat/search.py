@@ -582,13 +582,15 @@ def _fts_cascade(
     raw_query: str,
     *,
     doc_ids: list[int] | None = None,
+    full_query: str | None = None,
 ) -> CascadeResult:
     accented = query_has_accent(raw_query)
+    dense_q = full_query or raw_query  # embedding cần nguyên câu hỏi: BM25 bỏ cụm "mức phạt", nghĩa của câu thì không
     tok_f = tokenize(fold_search(raw_query), indexes=vocab_indexes(conn, accent=False))
 
     if not accented:
         ids, tier, note, tiers, _ = _run_cascade(conn, raw_query, tok_f, branch="fold", doc_ids=doc_ids)
-        ids = semantic.rerank(conn, raw_query, ids[:RETURN_TOP], doc_ids)
+        ids = semantic.rerank(conn, dense_q, ids[:RETURN_TOP], doc_ids)
         return CascadeResult(ids, tier, note, tiers=_dense_only(ids, tiers))
 
     tok_a = tokenize(search_accent(raw_query), indexes=vocab_indexes(conn, accent=True))
@@ -609,7 +611,7 @@ def _fts_cascade(
         )
         f2_ids = set(f2_score)
         _merge(score, tiers, f2_score, f2_tiers)
-    ids = semantic.rerank(conn, raw_query, sorted(score, key=lambda i: (score[i], i))[:RETURN_TOP], doc_ids)
+    ids = semantic.rerank(conn, dense_q, sorted(score, key=lambda i: (score[i], i))[:RETURN_TOP], doc_ids)
     keep = set(ids)
     return CascadeResult(ids, tier, note, fold_ids=(fold_ids | f2_ids) & keep, f2_ids=f2_ids & keep,
                          tiers=_dense_only(ids, tiers))
@@ -621,12 +623,12 @@ def _tier0(ids: list[int], note: str) -> CascadeResult:
 
 def cascade_search(conn: sqlite3.Connection, raw_query: str) -> CascadeResult:
     intent, q = split_intent(raw_query)
-    result = _cascade(conn, q)
+    result = _cascade(conn, q, full_query=raw_query)
     result.intent = intent
     return result
 
 
-def _cascade(conn: sqlite3.Connection, raw_query: str) -> CascadeResult:
+def _cascade(conn: sqlite3.Connection, raw_query: str, full_query: str | None = None) -> CascadeResult:
     docs = _so_hieu_docs(conn, raw_query)
     dieu = find_dieu_so(raw_query)
     rest = citation_remainder(raw_query)
@@ -635,7 +637,7 @@ def _cascade(conn: sqlite3.Connection, raw_query: str) -> CascadeResult:
         return _tier0(lookup_so_hieu(conn, raw_query), "so_hieu")
 
     if docs and rest:
-        result = _fts_cascade(conn, rest, doc_ids=docs)
+        result = _fts_cascade(conn, rest, doc_ids=docs, full_query=full_query)
         if dieu:
             narrowed = _ids_on_dieu(conn, result.ids, dieu)
             if narrowed:
@@ -649,7 +651,7 @@ def _cascade(conn: sqlite3.Connection, raw_query: str) -> CascadeResult:
     if dieu and not rest:
         return _tier0(lookup_dieu_all_docs(conn, dieu), "dieu")
 
-    return _fts_cascade(conn, raw_query)
+    return _fts_cascade(conn, raw_query, full_query=full_query)
 
 
 def apply_doc_filters(

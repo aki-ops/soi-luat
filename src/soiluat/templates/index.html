@@ -233,7 +233,7 @@
                   title="BM25 + embedding: chính xác hơn vài %, tốn thêm ~0,5–1,4 GB RAM">Advance</button>
         </span>
         <p class="note" id="mode-note">
-          {%- if mode.mode == 'advance' and not mode.installed %}<span class="warn">Chưa cài mô hình EmbeddingGemma — đang tìm như Normal (xem README).</span>
+          {%- if mode.mode == 'advance' and not mode.installed %}<span class="warn">Chưa cài mô hình tìm theo nghĩa — đang tìm như Normal (xem README).</span>
           {%- elif mode.mode == 'advance' and mode.pending %}Còn {{ mode.pending }} Điều chưa nhúng (vẫn tìm được); app tự nhúng nền khi rảnh.
           {%- elif mode.mode == 'advance' %}BM25 + embedding. Câu tìm đầu tiên chậm hơn (nạp mô hình).
           {%- else %}BM25 thuần: nhẹ, chạy mọi máy.{% endif -%}
@@ -334,7 +334,7 @@
       if (open || active) timer = setTimeout(() => refresh(false), active ? 1000 : 5000);
     }
     const noteFor = m => {
-      if (m.mode === "advance" && !m.installed) return ["Chưa cài mô hình EmbeddingGemma — đang tìm như Normal (xem README).", true];
+      if (m.mode === "advance" && !m.installed) return ["Chưa cài mô hình tìm theo nghĩa — đang tìm như Normal (xem README).", true];
       if (m.mode === "advance" && m.pending) return [`Còn ${m.pending} Điều chưa nhúng (vẫn tìm được); app tự nhúng nền khi rảnh.`, false];
       if (m.mode === "advance") return ["BM25 + embedding. Câu tìm đầu tiên chậm hơn (nạp mô hình).", false];
       return ["BM25 thuần: nhẹ, chạy mọi máy.", false];
