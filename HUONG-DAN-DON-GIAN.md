@@ -1,18 +1,31 @@
-# Soi Luật — Hướng dẫn đơn giản
+# Soi Luật — Hướng dẫn sử dụng
 
-**Soi Luật là gì?** Một phần mềm giúp bạn **tìm nhanh một quy định** trong đống văn bản pháp luật của mình (Luật, Nghị định, Thông tư…), giống như hỏi Google nhưng chỉ trong máy bạn. Phần mềm **không cần mạng** và **không gửi gì ra ngoài**.
+**Soi Luật là gì?** Một phần mềm giúp bạn **tìm nhanh một quy định** trong đống văn bản pháp luật của mình (Luật, Nghị định, Thông tư…). Giống như hỏi Google, nhưng chỉ tìm trong những văn bản bạn đã cho phần mềm đọc, và tất cả diễn ra **ngay trong máy bạn**: **không cần mạng**, **không gửi gì ra ngoài**.
 
-Cách dùng chỉ có 3 bước: **Cài → Cho phần mềm đọc văn bản của bạn → Gõ câu hỏi.**
+Phần mềm trả lại **nguyên văn** điều luật trong văn bản của bạn, kèm tên văn bản và số trang. Nó không tự viết hay giải thích lại luật.
+
+Cách dùng chỉ có 4 bước: **Cài → Mở → Cho phần mềm đọc văn bản của bạn → Gõ câu hỏi.**
+
+---
+
+## Trước khi cài: máy bạn cần gì?
+
+| | |
+|---|---|
+| Máy | Windows 10 hoặc 11 |
+| Bộ nhớ trống trên ổ đĩa | Khoảng **2 GB** cho phần mềm, cộng thêm chỗ cho văn bản của bạn (một kho vài chục nghìn điều luật chiếm khoảng 1,5 GB) |
+| RAM | **8 GB trở lên**. Có chế độ tìm thông minh (Advance), chế độ này dùng khoảng 2 GB RAM. Máy dưới 8 GB nên dùng chế độ thường |
+| Mạng | Không cần |
 
 ---
 
 ## Bước 1. Cài phần mềm (làm một lần)
 
-1. Bấm đúp vào file **`SoiLuat-Setup.exe`**.
-2. Nếu Windows hiện khung xanh "Windows protected your PC": bấm **More info**, rồi bấm **Run anyway**. (Khung này hiện vì phần mềm chưa mua chữ ký của Microsoft, không phải do bị lỗi hay có virus.)
+1. Bấm đúp vào file **`SoiLuat-Setup.exe`** (file khá lớn, khoảng 840 MB).
+2. Nếu Windows hiện khung xanh **"Windows protected your PC"**: bấm **More info**, rồi bấm **Run anyway**. (Khung này hiện vì phần mềm chưa mua chữ ký của Microsoft. Nó không có nghĩa là phần mềm bị lỗi hay có virus.)
 3. Cứ bấm **Next** (Tiếp theo) cho đến khi xong, rồi bấm **Finish**.
 
-Đợi khoảng nửa phút là xong. Không cần mật khẩu quản trị.
+Cài mất khoảng 1–2 phút. Không cần mật khẩu quản trị.
 
 ## Bước 2. Mở phần mềm
 
@@ -29,7 +42,7 @@ Lần đầu, màn hình sẽ nói **"Kho chưa có văn bản"**. Nghĩa là b�
 2. Có hai cách:
    - **Kéo file hoặc cả thư mục từ máy bạn thả vào cửa sổ**, hoặc
    - Bấm **Chọn file** (chọn được nhiều file một lúc) hoặc **Chọn thư mục** (lấy tất cả file trong thư mục).
-3. Chờ. Mỗi file sẽ hiện chữ **"Xong"** khi đọc xong.
+3. Chờ. Mỗi file sẽ hiện chữ **"Đủ"** khi đọc xong.
 
 Phần mềm đọc được: file **Word, PDF, ảnh chụp văn bản, Excel, TXT**.
 
@@ -49,15 +62,15 @@ Gõ vào **ô ở dưới cùng màn hình**, rồi bấm **Enter** (hoặc bấ
 | Hỏi như nói chuyện | `phạt bao nhiêu nếu không đội mũ bảo hiểm?` |
 | Tìm đúng một Điều | `15/2020/NĐ-CP Điều 5` |
 
-Gõ có dấu hay không dấu đều được.
+Gõ có dấu hay không dấu đều được. Từ ngắn, đúng thuật ngữ thường cho kết quả tốt nhất.
 
 ## Bước 5. Đọc kết quả
 
 Kết quả hiện thành các **thẻ**. Mỗi thẻ cho bạn biết:
 
-- **Nội dung quy định** (chép nguyên văn từ văn bản của bạn, phần mềm không tự viết lại).
+- **Nội dung quy định** (chép nguyên văn từ văn bản của bạn).
 - **Văn bản nào, trang nào** (ghi ở dưới thẻ).
-- **Còn hay hết hiệu lực**: ban đầu sẽ ghi **"Hiệu lực chưa rõ"**. Phần mềm không tự biết, bạn muốn ghi lại thì xem phần "Mẹo" bên dưới.
+- **Còn hay hết hiệu lực**: ban đầu sẽ ghi **"Hiệu lực chưa rõ"**. Phần mềm không tự biết điều này. Muốn ghi lại thì xem phần "Mẹo" bên dưới.
 
 Muốn xem **đúng chỗ trong văn bản gốc**: bấm **"Xem nguồn →"** ở cuối thẻ.
 
@@ -65,15 +78,52 @@ Muốn **lấy kết quả ra Word** để gửi hoặc in: tích ô **"Chọn x
 
 Nếu hiện **"Không tìm thấy quy định khớp"**: thử gõ ngắn hơn, đổi từ khác, hoặc bấm **Bộ lọc** cạnh ô gõ để kiểm tra không lọc nhầm.
 
+### Dòng "Độ tin cậy" (chỉ có khi bật chế độ tìm thông minh)
+
+Ở chế độ tìm thông minh (xem phần Mẹo), phía trên các thẻ có một dòng nhỏ cho biết **máy tự đánh giá kết quả đầu tiên chắc đến đâu**:
+
+| Dòng hiện ra | Ý nghĩa | Bạn nên |
+|---|---|---|
+| Ô **màu xanh lá**: **Độ tin cậy cao** | Kết quả đầu tiên hơn hẳn các kết quả còn lại. Trong thử nghiệm, loại này đúng khoảng **94 trên 100 lần** | Đọc kết quả đầu, rồi vẫn đối chiếu bản gốc |
+| Ô **màu vàng**: **Chưa chắc chắn: nên xem 3 kết quả đầu trước khi chọn** | Có vài kết quả gần ngang nhau. Loại này kết quả đầu chỉ đúng khoảng **một nửa** số lần | Đọc cả 3 kết quả đầu, đừng chỉ nhìn cái đầu tiên |
+
+Dòng này chỉ là **gợi ý của máy**, không phải bảo đảm.
+
 > ✋ Phần mềm chỉ giúp **tìm nhanh**. Trước khi dùng cho việc quan trọng, **luôn bấm "Xem nguồn" để đối chiếu bản gốc**. Đây không phải tư vấn pháp lý.
+
+---
+
+## Hai chế độ tìm: thường và thông minh
+
+Bấm biểu tượng **bánh răng ⚙ (góc trên bên phải)**, chọn **Chế độ tìm**. Phần mềm nhớ lựa chọn của bạn.
+
+| | **Normal** (thường, mặc định) | **Advance** (thông minh) |
+|---|---|---|
+| Cách tìm | Tìm theo **đúng từ** bạn gõ | Tìm theo **ý**, kể cả khi văn bản dùng từ khác với từ bạn gõ |
+| Tốc độ | Khoảng **1 giây** | Khoảng **9 giây** một câu |
+| Độ chính xác (thử nghiệm) | Điều đúng đứng đầu khoảng **một nửa** số lần | Điều đúng đứng đầu khoảng **ba phần tư** số lần; nằm trong 10 kết quả đầu khoảng **96 trên 100 lần** |
+| Cần máy | Mọi máy | Khoảng 2 GB RAM, 8 GB RAM trở lên |
+| Có dòng "Độ tin cậy" | Không | Có |
+
+**Nên chọn Advance** khi bạn hay hỏi bằng câu nói thường, hoặc cần kết quả đầu đúng hơn. **Nên chọn Normal** khi bạn đã biết rõ từ khoá, hoặc máy yếu.
+
+**Khi bật Advance lần đầu, hãy để máy chạy một thời gian.** Phần mềm sẽ tự "đọc hiểu" lại toàn bộ văn bản trong kho, làm ngầm và không chặn việc hỏi:
+- Kho nhỏ (vài trăm điều luật): chỉ vài phút.
+- Kho lớn (khoảng 10.000 điều luật): khoảng 1 giờ.
+- Kho rất lớn (khoảng 60.000 điều luật): vài giờ, nên để máy chạy qua đêm.
+
+Trong lúc chưa xong, bạn vẫn tìm được bình thường (chỉ chưa thông minh hết mức). Tiến độ hiện ở nút **Nạp file**. Tắt máy giữa chừng cũng không sao, mở lại sẽ làm tiếp.
+
+Ngay sau khi mở phần mềm, **câu hỏi đầu tiên ở Advance có thể chậm hơn** (có khi tới nửa phút) vì phần mềm đang chuẩn bị. Các câu sau sẽ nhanh hơn.
 
 ---
 
 ## Mẹo nhỏ
 
-- **Ghi lại văn bản còn hay hết hiệu lực:** bấm biểu tượng **bánh răng ⚙ (góc trên bên phải)** → **Văn bản** → chọn Còn / Hết / Chưa rõ cho từng văn bản → **Lưu**. Sau đó có thể lọc chỉ xem văn bản còn hiệu lực.
-- **Muốn tìm thông minh hơn** (hiểu ý, không cần trúng từ): bấm ⚙ → chọn **Advance**. Máy sẽ chậm hơn một chút và cần nhiều bộ nhớ hơn. Nếu máy yếu, hoặc thấy máy bị ì, chọn lại **Normal**.
-- **Sao lưu phòng khi hỏng máy:** bấm ⚙ → **Sao lưu SQLite**.
+- **Ghi lại văn bản còn hay hết hiệu lực:** bấm **⚙ → Văn bản** → chọn Còn / Hết / Chưa rõ cho từng văn bản → **Lưu**. Sau đó có thể lọc chỉ xem văn bản còn hiệu lực.
+- **Sao lưu phòng khi hỏng máy:** bấm **⚙ → Sao lưu SQLite**. Nên làm sau khi nạp nhiều văn bản.
+- **Đổi sang máy khác:** chép thư mục `%LOCALAPPDATA%\SoiLuat` (gõ dòng này vào thanh địa chỉ của cửa sổ thư mục để vào) sang máy mới sau khi đã cài phần mềm. (Văn bản nạp bằng "đường dẫn có sẵn trên máy" thì file gốc phải còn đúng chỗ cũ mới xem được ảnh trang.)
+- **Cài lại hay cài bản mới:** văn bản bạn đã nạp **không bị mất**, vì chúng nằm riêng, không nằm trong thư mục cài.
 
 ## Gặp sự cố?
 
@@ -84,6 +134,15 @@ Nếu hiện **"Không tìm thấy quy định khớp"**: thử gõ ngắn hơn,
 | File báo **"cần OCR"** | Đây là file scan. Mở **Nạp file**, tích ô **OCR**, nạp lại file đó. |
 | File báo **"lỗi"** | Đọc lý do ghi ngay trên dòng đó. Thường do file bị hỏng. |
 | Hỏi mà không ra gì | Gõ ngắn hơn, bỏ bộ lọc, hoặc kiểm tra xem đã nạp đúng văn bản chưa (góc trên giữa có ghi **số văn bản trong kho**). |
+| Báo **"Chưa cài mô hình tìm theo nghĩa"** khi chọn Advance | Thiếu phần "bộ não" của chế độ thông minh. Cài lại phần mềm bằng đúng file `SoiLuat-Setup.exe` đầy đủ. Trong lúc đó phần mềm vẫn tìm như chế độ thường. |
+| Chế độ Advance chậm, máy bị ì | Chuyển về **Normal**, hoặc để máy làm xong việc "đọc hiểu" ngầm rồi hãy dùng. Đóng bớt Word/Excel nếu máy ít RAM. |
+| Câu đầu tiên sau khi mở phần mềm rất chậm | Bình thường ở Advance, chờ khoảng nửa phút. Các câu sau sẽ nhanh hơn. |
 | Muốn xoá hết làm lại | Đóng phần mềm, xoá thư mục `C:\Users\<tên bạn>\AppData\Local\SoiLuat\data` (gõ `%LOCALAPPDATA%\SoiLuat` vào thanh địa chỉ của thư mục để vào). |
 
-Cần hướng dẫn chi tiết hơn: xem file **HUONG-DAN.md**.
+## Nhớ ba điều
+
+1. **Luôn đối chiếu bản gốc** bằng "Xem nguồn" trước khi dùng cho việc quan trọng.
+2. Phần mềm **không biết văn bản nào còn hiệu lực**. "Hiệu lực chưa rõ" là bình thường, bạn tự đánh dấu nếu cần.
+3. Kết quả đầu tiên **không phải lúc nào cũng đúng**. Ngay cả ở chế độ thông minh, cứ khoảng 4 câu thì có 1 câu kết quả đầu chưa đúng, nên hãy xem thêm vài kết quả bên dưới.
+
+Cần hướng dẫn chi tiết hơn: xem file **HUONG-DAN.md**. Cần hiểu phần mềm chạy ra sao bên trong: xem **TAI-LIEU-KY-THUAT.md**.

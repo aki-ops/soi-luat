@@ -1,4 +1,4 @@
-"""FTS5 nhiều tầng + tra số hiệu. Không embedding."""
+"""FTS5 nhiều tầng + tra số hiệu. Advance thêm vector toàn kho (semantic) và reranker top-5 (crossrank)."""
 
 from __future__ import annotations
 
